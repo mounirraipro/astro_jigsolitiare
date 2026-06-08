@@ -1,0 +1,23 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { allLevels } from "@/data/gameData";
+---
+
+<BaseLayout title="JigSolitaire Levels" description="Browse imported JigSolitaire puzzle levels and start playing online.">
+  <section class="listing-shell">
+    <header class="listing-header">
+      <p class="eyebrow">All Levels</p>
+      <h1>Imported JigSolitaire puzzles.</h1>
+      <p>Pick any preview, then play the full game in the browser.</p>
+    </header>
+    <div class="level-grid">
+      {allLevels.map(({ category, level }) => (
+        <a class="level-card" href="/play">
+          <img src={level.thumbnail} alt={`${level.title} puzzle thumbnail`} loading="lazy" />
+          <strong>{level.title}</strong>
+          <span>{category.name} - {level.gridSize} - {level.difficulty}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

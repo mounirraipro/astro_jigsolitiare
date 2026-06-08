@@ -1,0 +1,173 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { pageContent, type ContentSection, type ContentPage as PageContent, type PageKey } from "@/data/pageContent";
+
+type Props = {
+  pageKey: PageKey;
+};
+
+const { pageKey } = Astro.props;
+const page = pageContent[pageKey] as PageContent;
+const slugify = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+
+const displayNumber = (index: number) => String(index + 1).padStart(2, "0");
+const extraStructuredData =
+  pageKey === "faq"
+    ? [
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: page.sections.map((section: ContentSection) => ({
+            "@type": "Question",
+            name: section.heading,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: section.body ?? section.items?.join(" ") ?? "",
+            },
+          })),
+        },
+      ]
+    : pageKey === "how-to-play"
+      ? [
+          {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            name: page.title,
+            description: page.description,
+            step: page.sections.map((section: ContentSection, index: number) => ({
+              "@type": "HowToStep",
+              position: index + 1,
+              name: section.heading,
+              text: section.body ?? section.items?.join(" ") ?? "",
+            })),
+          },
+        ]
+      : [];
+
+const quickLinkClass =
+  "group relative flex min-h-9 items-center justify-between gap-3 py-2 pl-7 pr-1 text-[0.95rem] font-semibold text-copy no-underline transition-colors hover:text-game-green-dark before:absolute before:left-1 before:size-2 before:rounded-full before:bg-game-green before:content-[''] after:size-2 after:rotate-45 after:border-r-2 after:border-t-2 after:border-focus-blue/75 after:content-['']";
+---
+
+<BaseLayout
+  seo={{
+    title: page.title,
+    description: page.description,
+    seoTitle: page.seoTitle,
+    keywords: page.keywords,
+    schemaType: page.schemaType,
+    updated: page.updated,
+  }}
+  structuredData={extraStructuredData}
+>
+  <article class="bg-white">
+    <header class="overflow-hidden border-b border-line bg-[linear-gradient(90deg,transparent_50%,rgb(238_244_251_/_0.72)_50%),linear-gradient(180deg,#f7faff,#fff)]">
+      <div class="mx-auto grid min-h-[306px] w-[min(1260px,calc(100%-48px))] grid-cols-[minmax(0,0.86fr)_minmax(360px,1.14fr)] items-center max-lg:grid-cols-1 max-sm:w-[calc(100%-28px)]">
+        <div class="py-13 max-sm:py-9">
+          {page.eyebrow && (
+            <p class="mb-6 text-[0.78rem] font-black uppercase tracking-[0.08em] text-game-green after:mt-3.5 after:block after:h-px after:w-10 after:bg-current after:content-['']">
+              {page.eyebrow}
+            </p>
+          )}
+          <h1 class="mb-5 max-w-[720px] text-[clamp(3.2rem,7.8vw,5.8rem)] font-black leading-[0.92] tracking-normal text-ink max-sm:text-[clamp(2.75rem,18vw,4.2rem)]">
+            {page.title}
+          </h1>
+          <p class="max-w-[540px] text-[clamp(1.12rem,2vw,1.28rem)] leading-normal text-[#44516a]">
+            {page.intro}
+          </p>
+          {page.updated && <p class="mt-5 text-[0.78rem] font-black uppercase tracking-[0.02em] text-quiet">Last updated: {page.updated}</p>}
+        </div>
+
+        <div
+          class="relative min-h-[306px] border-l border-line-strong/60 bg-[linear-gradient(rgb(40_94_168_/_0.06)_1px,transparent_1px),linear-gradient(90deg,rgb(40_94_168_/_0.06)_1px,transparent_1px)] bg-[size:38px_38px] max-lg:min-h-[250px] max-lg:border-l-0 max-lg:border-t max-sm:min-h-[210px]"
+          aria-hidden="true"
+        >
+          <div class="absolute left-[150px] top-9 h-14 w-20 rotate-45 rounded-xl border border-focus-blue/25 bg-white/70 shadow-[0_16px_36px_rgb(40_94_168_/_0.08)] max-sm:left-24">
+            <span class="absolute left-5 top-5 h-0.5 w-9 rounded-full bg-focus-blue/40"></span>
+            <span class="absolute left-5 top-8 h-0.5 w-9 rounded-full bg-focus-blue/40"></span>
+          </div>
+
+          <div class="absolute left-13 top-32 grid grid-cols-3 gap-2 rounded-xl border border-focus-blue/25 bg-white/70 shadow-[0_16px_36px_rgb(40_94_168_/_0.08)] max-sm:left-3 max-sm:scale-85 max-sm:origin-left">
+            <span class="grid size-10 place-items-center text-sm text-focus-blue"></span>
+            <span class="grid size-10 place-items-center text-sm text-focus-blue">^</span>
+            <span class="grid size-10 place-items-center text-sm text-focus-blue"></span>
+            <span class="grid size-10 place-items-center text-sm text-focus-blue">&lt;</span>
+            <span class="grid size-10 place-items-center text-sm text-focus-blue"></span>
+            <span class="grid size-10 place-items-center text-sm text-focus-blue">&gt;</span>
+          </div>
+
+          <div class="absolute right-14 top-12 grid grid-cols-4 gap-2.5 rounded-[22px] border border-focus-blue/20 bg-white/70 p-3 shadow-[0_28px_70px_rgb(40_94_168_/_0.12)] [transform-origin:center] [transform:rotateX(58deg)_rotateZ(-36deg)] max-sm:right-1.5 max-sm:gap-2 max-sm:p-2 max-sm:[transform:rotateX(58deg)_rotateZ(-36deg)_scale(.82)]">
+            {
+              Array.from({ length: 16 }).map((_, index) => (
+                <span
+                  class:list={[
+                    "aspect-square w-[72px] rounded-[13px] border shadow-[inset_0_0_0_1px_rgb(255_255_255_/_0.8)] max-sm:w-[54px] max-sm:rounded-[10px]",
+                    [6, 9, 15].includes(index)
+                      ? "border-game-green/40 bg-gradient-to-br from-[#2cc66f]/85 to-[#91e2ad]/70"
+                      : "border-focus-blue/25 bg-white/90",
+                  ]}
+                />
+              ))
+            }
+          </div>
+
+          <div class="absolute right-4 top-17 size-10 rounded-xl border border-focus-blue/25 bg-white/70 shadow-[0_16px_36px_rgb(40_94_168_/_0.08)]">
+            <span class="absolute left-3 top-3.5 h-0.5 w-4.5 rounded-full bg-focus-blue/55 shadow-[0_6px_0_rgb(40_94_168_/_0.55),0_12px_0_rgb(40_94_168_/_0.55)]"></span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="mx-auto grid w-[min(1080px,calc(100%-48px))] grid-cols-[minmax(0,1fr)_330px] gap-[70px] py-12 max-lg:grid-cols-1 max-lg:gap-9 max-sm:w-[calc(100%-28px)]">
+      <div class="min-w-0">
+        <div class="grid">
+          {
+            page.sections.map((section: ContentSection, index: number) => (
+              <section class="grid grid-cols-[48px_minmax(0,1fr)] gap-6 border-b border-line py-7 first:pt-0 last:border-b-0 last:pb-0 max-sm:grid-cols-[40px_minmax(0,1fr)] max-sm:gap-4" id={slugify(section.heading)}>
+                <span class="grid size-12 place-items-center rounded-lg bg-game-green-soft text-lg font-black leading-none text-game-green max-sm:size-10 max-sm:text-base">
+                  {displayNumber(index)}
+                </span>
+                <div>
+                  <h2 class="mb-2 text-[clamp(1.35rem,2.5vw,1.72rem)] font-black leading-tight tracking-normal text-ink">
+                    {section.heading}
+                  </h2>
+                  {section.body && <p class="max-w-[720px] text-base leading-7 text-muted">{section.body}</p>}
+                  {section.items && (
+                    <ul class="mt-3 grid max-w-[720px] list-none gap-2 p-0 text-base leading-7 text-muted">
+                      {section.items.map((item: string) => (
+                        <li class="relative pl-5 before:absolute before:left-0 before:top-[0.85em] before:size-1.5 before:-translate-y-1/2 before:rounded-full before:bg-game-green before:content-['']">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </section>
+            ))
+          }
+        </div>
+      </div>
+
+      <aside class="sticky top-24 self-start border-l border-line pl-9 max-lg:static max-lg:border-l-0 max-lg:border-t max-lg:pt-6 max-lg:pl-0" aria-label="Page links">
+        <p class="mb-3 text-[0.77rem] font-black uppercase tracking-[0.08em] text-ink">Quick Links</p>
+        <nav class="grid gap-0.5">
+          {page.sections.map((section: ContentSection) => <a class={quickLinkClass} href={`#${slugify(section.heading)}`}>{section.heading}</a>)}
+          <span class="my-2.5 h-px bg-line" aria-hidden="true"></span>
+          <a class={quickLinkClass} href="/faq">FAQ</a>
+          <a class={quickLinkClass} href="/contact">Contact</a>
+        </nav>
+
+        <div class="mt-5 grid grid-cols-[38px_minmax(0,1fr)] gap-3.5 rounded-lg border border-line-strong bg-white p-4">
+          <span class="grid size-8 place-items-center rounded-full border-2 border-game-green text-base font-black text-game-green">?</span>
+          <p class="m-0 text-sm leading-5 text-muted">
+            <strong class="mb-1 block text-sm text-ink">Need help?</strong>
+            Visit our <a class="font-bold text-focus-blue underline-offset-2 hover:underline" href="/faq">FAQ</a> or <a class="font-bold text-focus-blue underline-offset-2 hover:underline" href="/contact">contact</a> support.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </article>
+</BaseLayout>

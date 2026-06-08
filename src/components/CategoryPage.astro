@@ -1,0 +1,31 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCategoryBySlug } from "@/data/gameData";
+
+type Props = {
+  slug: string;
+};
+
+const { slug } = Astro.props;
+const category = getCategoryBySlug(slug);
+if (!category) throw new Error(`Missing category: ${slug}`);
+---
+
+<BaseLayout title={`${category.name} Puzzles`} description={category.description}>
+  <section class="listing-shell">
+    <header class="listing-header">
+      <p class="eyebrow">JigSolitaire Category</p>
+      <h1>{category.name} puzzles.</h1>
+      <p>{category.longDescription}</p>
+    </header>
+    <div class="level-grid">
+      {category.levels.map((level) => (
+        <a class="level-card" href="/play">
+          <img src={level.thumbnail} alt={`${level.title} puzzle thumbnail`} loading="lazy" />
+          <strong>{level.title}</strong>
+          <span>{level.gridSize} - {level.difficulty}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

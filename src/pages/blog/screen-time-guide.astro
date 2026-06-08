@@ -1,0 +1,17 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { articles } from "@/data/articles";
+
+const article = articles.find((item) => item.slug === "screen-time-guide");
+if (!article) throw new Error("Missing article: screen-time-guide");
+---
+
+<BaseLayout title={article.title} description={article.description} seo={{ title: article.title, seoTitle: article.title, description: article.description, keywords: article.keywords, schemaType: "Article", path: "/blog/screen-time-guide" }}>
+  <article class="article-shell">
+    <nav class="crumbs"><a href="/blog">Blog</a><span>/</span><span>{article.category}</span></nav>
+    <h1>{article.title}</h1>
+    <p class="article-meta">{new Date(article.datePublished).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })} - {article.readTime}</p>
+    <p class="article-description">{article.description}</p>
+    <div class="article-content" set:html={article.html} />
+  </article>
+</BaseLayout>

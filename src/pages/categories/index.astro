@@ -1,0 +1,23 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { categories } from "@/data/gameData";
+---
+
+<BaseLayout title="JigSolitaire Categories" description="Browse JigSolitaire puzzle categories including Animals, Nature, Cities, Art, and Food.">
+  <section class="listing-shell">
+    <header class="listing-header">
+      <p class="eyebrow">Puzzle Categories</p>
+      <h1>Five imported puzzle worlds.</h1>
+      <p>These categories and images come from the original JigSolitaire game assets.</p>
+    </header>
+    <div class="category-grid">
+      {categories.map((category) => (
+        <a class="media-card" href="/play" style={`--accent:${category.color}`}>
+          <img src={category.levels[0]?.thumbnail ?? category.levels[0]?.image} alt={`${category.name} category preview`} loading="lazy" />
+          <span>{category.name}</span>
+          <small>{category.levels.length} levels</small>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

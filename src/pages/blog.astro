@@ -1,0 +1,24 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { articles } from "@/data/articles";
+---
+
+<BaseLayout title="JigSolitaire Blog" description="Puzzle guides, reviews, strategy articles, and cognitive science posts from JigSolitaire.">
+  <section class="listing-shell">
+    <header class="listing-header">
+      <p class="eyebrow">JigSolitaire Blog</p>
+      <h1>Puzzle guides, science, reviews, and strategy.</h1>
+      <p>Explore the imported JigSolitaire article library, now rendered as Astro pages.</p>
+    </header>
+    <div class="article-grid">
+      {articles.map((post) => (
+        <a class="article-card" href={`/blog/${post.slug}`}>
+          <span>{post.category}</span>
+          <h2>{post.title}</h2>
+          <p>{post.description}</p>
+          <small>{new Date(post.datePublished).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })} - {post.readTime}</small>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

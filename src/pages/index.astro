@@ -1,0 +1,164 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { articles } from "@/data/articles";
+import { categories } from "@/data/gameData";
+import { siteConfig } from "@/data/siteConfig";
+
+const recentPosts = articles.slice(0, 3);
+const featuredCategories = categories.map((category) => ({
+  ...category,
+  preview: category.levels[0]?.thumbnail ?? category.levels[0]?.image,
+}));
+
+const faqItems = [
+  ["What is JigSolitaire?", "JigSolitaire is a free browser puzzle game where you swap scrambled image tiles until the full picture is restored. Correct adjacent tiles merge into groups as you solve."],
+  ["Is JigSolitaire free?", "Yes. The game is free to play in the browser with no download and no account required."],
+  ["Does it work on mobile?", "Yes. The copied game supports mouse and touch play, so it works on desktop, tablets, and modern phones."],
+  ["How many puzzle categories are included?", "This Astro version includes the copied Animals, Nature, Cities, Art, and Food puzzle sets."],
+];
+---
+
+<BaseLayout title={siteConfig.name} description={siteConfig.description}>
+  <section class="hero-play">
+    <div class="hero-game">
+      <iframe src="/game/index.html" title="Play JigSolitaire" loading="eager"></iframe>
+    </div>
+    <div class="hero-copy">
+      <div class="hero-copy-main">
+        <p class="eyebrow">Instant play</p>
+        <h1>JigSolitaire Online</h1>
+        <p>Swap tiles, merge groups, and restore the image. No download. No account.</p>
+        <a class="text-link hero-note" href="/how-to-play">Learn the rules</a>
+      </div>
+      <div class="hero-play-panel">
+        <div class="hero-panel-top">
+          <span>Ready in browser</span>
+          <strong>Start a visual puzzle.</strong>
+        </div>
+        <div class="hero-actions">
+          <a class="primary-action" href="/play"><span class="play-triangle"></span>Play Full Screen</a>
+          <a class="secondary-action" href="/how-to-play">How To Play</a>
+        </div>
+        <dl class="stat-row">
+          <div><dt>{categories.reduce((sum, category) => sum + category.levels.length, 0)}+</dt><dd>Levels</dd></div>
+          <div><dt>{categories.length}</dt><dd>Categories</dd></div>
+          <div><dt>{articles.length}</dt><dd>Guides</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section home-worlds">
+    <div class="home-section-head">
+      <p class="eyebrow">Choose a world</p>
+      <h2>Five visual collections.</h2>
+      <p>Pick a style, then let color and shape guide the solve.</p>
+    </div>
+    <div class="world-showcase">
+      <a class="world-feature" href="/play" style={`--accent:${featuredCategories[0].color}`}>
+        <img src={featuredCategories[0].preview} alt={`${featuredCategories[0].name} JigSolitaire puzzle preview`} loading="lazy" />
+        <div>
+          <span>{featuredCategories[0].name}</span>
+          <strong>Begin with Animals.</strong>
+          <small>{featuredCategories[0].levels.length} levels ready to play</small>
+        </div>
+      </a>
+      <div class="world-stack">
+        {featuredCategories.slice(1).map((category) => (
+          <a class="world-card" href="/play" style={`--accent:${category.color}`}>
+            <img src={category.preview} alt={`${category.name} JigSolitaire puzzle preview`} loading="lazy" />
+            <div>
+              <span>{category.name}</span>
+              <small>{category.levels.length} levels</small>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section home-process">
+    <div class="home-section-head split-head">
+      <div>
+        <p class="eyebrow">How it works</p>
+        <h2>Simple moves. Clear progress.</h2>
+      </div>
+      <p>Four steps from scrambled image to solved picture.</p>
+    </div>
+    <div class="process-strip">
+      <article><span>01</span><h3>Preview</h3><p>Study the complete image before the tiles scatter.</p></article>
+      <article><span>02</span><h3>Swap</h3><p>Drag tiles into stronger positions using color, edges, and texture as clues.</p></article>
+      <article><span>03</span><h3>Merge</h3><p>Correct neighbors join into groups, turning progress into momentum.</p></article>
+      <article><span>04</span><h3>Finish</h3><p>Restore the image, then chase a cleaner solve or a harder category.</p></article>
+    </div>
+  </section>
+
+  <section class="home-section home-blog">
+    <div class="blog-editorial">
+      <div class="home-section-head">
+        <p class="eyebrow">From the blog</p>
+        <h2>Sharper puzzle thinking.</h2>
+        <p>Short reads for better focus, setup, and solving.</p>
+        <a class="text-link" href="/blog">Browse all articles</a>
+      </div>
+      <div class="blog-board">
+        <a class="editorial-card editorial-card-featured" href={`/blog/${recentPosts[0].slug}`}>
+          <span>{recentPosts[0].category}</span>
+          <h3>{recentPosts[0].title}</h3>
+          <p>{recentPosts[0].description}</p>
+          <small>{recentPosts[0].readTime}</small>
+        </a>
+        <div class="article-rail">
+          {recentPosts.slice(1).map((post, index) => (
+            <a class="editorial-card editorial-card-row" href={`/blog/${post.slug}`} style={`--i:${index + 2}`}>
+              <span>{post.category}</span>
+              <h3>{post.title}</h3>
+              <small>{post.readTime}</small>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section home-faq">
+    <div class="faq-layout">
+      <div class="faq-cardlet">
+        <p class="eyebrow">FAQ</p>
+        <h2>Quick answers.</h2>
+        <p>Need the short version before playing?</p>
+      </div>
+      <div class="faq-list" data-faq-list>
+        {faqItems.map(([question, answer]) => (
+          <details>
+            <summary>{question}</summary>
+            <p>{answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="home-cta">
+    <div>
+      <p class="eyebrow">Ready?</p>
+      <h2>Open a puzzle and start solving.</h2>
+    </div>
+    <a class="primary-action" href="/play"><span class="play-triangle"></span>Play JigSolitaire</a>
+  </section>
+
+  <script is:inline>
+    (() => {
+      document.querySelectorAll("[data-faq-list]").forEach((list) => {
+        list.querySelectorAll("details").forEach((item) => {
+          item.addEventListener("toggle", () => {
+            if (!item.open) return;
+            list.querySelectorAll("details[open]").forEach((other) => {
+              if (other !== item) other.open = false;
+            });
+          });
+        });
+      });
+    })();
+  </script>
+</BaseLayout>

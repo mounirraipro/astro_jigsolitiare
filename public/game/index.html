@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>JigSolitaire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="game.css">
+</head>
+
+<body>
+  <div id="app">
+
+    <!-- ── Global Audio Controls ── -->
+    <div id="global-audio-controls" class="audio-controls">
+      <button id="btn-toggle-music" aria-label="Toggle Music">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18V5l12-2v13"></path>
+          <circle cx="6" cy="18" r="3"></circle>
+          <circle cx="18" cy="16" r="3"></circle>
+        </svg>
+      </button>
+      <div class="volume-slider-container">
+        <input type="range" id="music-volume" class="volume-slider" min="0" max="1" step="0.01" value="0.5">
+      </div>
+    </div>
+
+    <!-- ── Start Screen ── -->
+    <div id="start-screen" class="screen active">
+      <div class="start-content">
+        <div class="start-logo">JigSolitaire</div>
+        <button id="btn-play" class="btn-play">Play</button>
+      </div>
+    </div>
+
+    <!-- ── Collection Select ── -->
+    <div id="collection-screen" class="screen">
+      <div class="screen-inner">
+        <div class="screen-topbar">
+          <h2 class="screen-title">Choose a collection</h2>
+        </div>
+        <div class="scroll-area">
+          <div id="collection-grid" class="puzzle-grid"></div>
+        </div>
+        <div class="screen-footer">
+          <div class="or-divider"><span>OR</span></div>
+          <button id="btn-quick-play-collection" class="btn-quick-play">Quick Play</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Puzzle Select ── -->
+    <div id="puzzle-screen" class="screen">
+      <div class="screen-inner">
+        <div class="screen-topbar">
+          <button id="btn-back-collection" class="btn-back-top" aria-label="Back">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <h2 class="screen-title">Choose a Puzzle</h2>
+        </div>
+        <div class="scroll-area">
+          <div id="puzzle-grid" class="puzzle-grid"></div>
+        </div>
+        <div class="screen-footer">
+          <div class="or-divider"><span>OR</span></div>
+          <button id="btn-quick-play-puzzle" class="btn-quick-play">Quick Play</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Game Screen ── -->
+    <div id="game-screen" class="screen">
+      <div class="game-topbar">
+        <button id="btn-quit" class="btn-topbar-action">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          <span>Quit</span>
+        </button>
+        <div id="game-timer" class="game-timer-display">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          <span id="timer-value">0s</span>
+        </div>
+      </div>
+
+      <div class="game-board-area">
+        <canvas id="game-canvas"></canvas>
+      </div>
+
+      <div class="game-actions-bar">
+        <div class="action-item">
+          <button id="btn-undo" class="btn-action-round" aria-label="Undo">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="1 4 1 10 7 10"></polyline>
+              <path d="M3.51 15a9 9 0 1 0 .49-3.87"></path>
+            </svg>
+          </button>
+          <span class="action-label">UNDO</span>
+        </div>
+        <div class="action-item">
+          <button id="btn-show" class="btn-action-round" aria-label="Show answer">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </button>
+          <span class="action-label">SHOW</span>
+        </div>
+        <div class="action-item">
+          <button id="btn-surrender" class="btn-action-round" aria-label="Surrender">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
+              <line x1="4" y1="22" x2="4" y2="15"></line>
+            </svg>
+          </button>
+          <span class="action-label">SURRENDER</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Win Screen ── -->
+    <div id="win-screen" class="screen">
+      <canvas id="confetti-canvas" class="confetti-canvas"></canvas>
+      <div class="win-screen-wrapper">
+        <div class="win-topbar">
+        <button id="btn-menu-win" class="btn-topbar-action">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          <span>Menu</span>
+        </button>
+      </div>
+
+      <div class="win-stats-row">
+        <span class="win-badge-cleared">LEVEL CLEARED</span>
+        <span class="win-pill" id="win-time-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          <span id="win-time-label">0 SECONDS</span>
+        </span>
+        <span class="win-pill" id="win-moves-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="5 9 2 12 5 15"></polyline>
+            <polyline points="9 5 12 2 15 5"></polyline>
+            <polyline points="15 19 12 22 9 19"></polyline>
+            <polyline points="19 9 22 12 19 15"></polyline>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <line x1="12" y1="2" x2="12" y2="22"></line>
+          </svg>
+          <span id="win-moves-label">0 MOVES</span>
+        </span>
+      </div>
+
+      <div class="win-image-area">
+        <img id="win-preview-image" alt="Solved Puzzle">
+      </div>
+
+      <div class="win-actions-bar">
+        <button id="btn-continue" class="btn-action-primary">CONTINUE</button>
+        <button id="btn-select-level" class="btn-action-secondary">SELECT A LEVEL</button>
+      </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="new_game.js"></script>
+  <script src="game.js"></script>
+</body>
+
+</html>

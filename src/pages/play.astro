@@ -1,0 +1,90 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { siteConfig } from "@/data/siteConfig";
+import { categories } from "@/data/gameData";
+
+const playSteps = [
+  ["1", "Choose", "Pick a collection and level."],
+  ["2", "Preview", "Memorize the full image."],
+  ["3", "Swap", "Move adjacent tiles into place."],
+];
+
+const tips = [
+  "Start from corners and strong color zones.",
+  "Use merged groups as anchors.",
+  "Sort tiles into regions before perfect placement.",
+];
+---
+
+<BaseLayout title={`Play ${siteConfig.name}`} description={`Play ${siteConfig.name} online free in your browser.`}>
+  <section class="play-stage" id="top">
+    <div class="play-stage-bg" aria-hidden="true"></div>
+    <div class="play-shell" data-game-shell>
+      <iframe src="/game/index.html" title="JigSolitaire game" allow="autoplay; fullscreen *" allowfullscreen></iframe>
+      <div class="play-float-controls">
+        <button type="button" data-share-game aria-label="Share game">
+          <span>Share</span>
+        </button>
+        <button type="button" data-fullscreen-game aria-label="Fullscreen game">
+          <span>Fullscreen</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="play-info-section">
+    <div class="play-info-head">
+      <p class="eyebrow">Play online</p>
+      <h1>JigSolitaire in your browser.</h1>
+      <p>Free, instant, and built for quick visual puzzle sessions.</p>
+    </div>
+    <div class="play-step-grid">
+      {playSteps.map(([number, title, text]) => (
+        <article>
+          <span>{number}</span>
+          <h2>{title}</h2>
+          <p>{text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="play-info-section play-split-section">
+    <div>
+      <p class="eyebrow">Collections</p>
+      <h2>Pick a visual mood.</h2>
+      <div class="play-category-pills">
+        {categories.map((category) => <a href="/play" style={`--accent:${category.color}`}>{category.name}</a>)}
+      </div>
+    </div>
+    <div class="play-tip-panel">
+      <p class="eyebrow">Tips</p>
+      <ul>
+        {tips.map((tip) => <li>{tip}</li>)}
+      </ul>
+    </div>
+  </section>
+  <script is:inline>
+    (() => {
+      const shell = document.querySelector("[data-game-shell]");
+      const iframe = shell?.querySelector("iframe");
+      const fullscreen = document.querySelector("[data-fullscreen-game]");
+      const share = document.querySelector("[data-share-game]");
+      fullscreen?.addEventListener("click", async () => {
+        const active = document.fullscreenElement;
+        if (active) {
+          await document.exitFullscreen?.();
+          return;
+        }
+        await (iframe?.requestFullscreen?.() ?? shell?.requestFullscreen?.());
+      });
+      share?.addEventListener("click", async () => {
+        const data = { title: "JigSolitaire", text: "Play JigSolitaire online.", url: location.href };
+        try {
+          if (navigator.share) await navigator.share(data);
+          else await navigator.clipboard?.writeText(location.href);
+        } catch {}
+      });
+    })();
+  </script>
+</BaseLayout>
