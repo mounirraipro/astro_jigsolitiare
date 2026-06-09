@@ -12,7 +12,7 @@ import { brandAccentClass } from "@/data/accentClasses";
       <p>Pick a game, open it in the same clean iframe layout, and keep playing without downloads or accounts.</p>
     </header>
     <div class="site-game-grid">
-      <a class:list={["site-game-card", "site-game-card-featured", brandAccentClass]} href="/play">
+      <a class:list={["site-game-card", "site-game-card-featured", brandAccentClass]} href="/play/">
         <img src="/level-thumbs/Animals/JigSolitaire_Animals1.webp" alt="JigSolitaire puzzle thumbnail" loading="lazy" />
         <div>
           <span>JigSolitaire</span>
@@ -22,7 +22,7 @@ import { brandAccentClass } from "@/data/accentClasses";
         </div>
       </a>
       {externalGames.map((game) => (
-        <a class:list={["site-game-card", game.accentClass]} href={`/games/${game.slug}`}>
+        <a class:list={["site-game-card", game.accentClass]} href={`/games/${game.slug}/`}>
           <img src={game.thumbnail} alt={`${game.title} thumbnail`} loading="lazy" />
           <div>
             <span>{game.category}</span>

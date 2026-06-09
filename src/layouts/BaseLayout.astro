@@ -3,7 +3,7 @@ import "@/styles/global.css";
 import GoogleTags from "@/components/GoogleTags.astro";
 import { siteConfig } from "@/data/siteConfig";
 import { siteRoutes } from "@/data/siteRoutes";
-import { buildJsonLd, buildPageTitle, getCanonicalUrl, getSeoForPath, type SeoPage } from "@/data/seo";
+import { buildJsonLd, buildPageTitle, getCanonicalUrl, getSeoForPath, withTrailingSlash, type SeoPage } from "@/data/seo";
 
 type Props = {
   title?: string;
@@ -35,6 +35,7 @@ const legalLinks = siteRoutes.filter((route) => route.group === "legal");
 const supportLinks = siteRoutes.filter((route) => ["/faq", "/contact", "/about", "/accessibility"].includes(route.path));
 const isActive = (path: string) => (path === "/" ? pathname === "/" : pathname.startsWith(path));
 const footerLinkClass = "text-[0.92rem] font-medium text-muted no-underline transition-colors hover:text-game-green-dark";
+const routeHref = (path: string) => withTrailingSlash(path);
 ---
 
 <!doctype html>
@@ -85,11 +86,11 @@ const footerLinkClass = "text-[0.92rem] font-medium text-muted no-underline tran
         </a>
 
         <nav class="nav-pill-links" aria-label="Primary navigation">
-          {islandLinks.map((route) => <a href={route.path} aria-current={isActive(route.path) ? "page" : undefined}>{route.title}</a>)}
+          {islandLinks.map((route) => <a href={routeHref(route.path)} aria-current={isActive(route.path) ? "page" : undefined}>{route.title}</a>)}
         </nav>
 
         <div class="nav-actions">
-          <a class="nav-play" href="/play"><span></span>Play</a>
+          <a class="nav-play" href="/play/"><span></span>Play</a>
           <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="site-menu" aria-expanded="false" data-menu-toggle>
             <span></span>
             <span></span>
@@ -108,7 +109,7 @@ const footerLinkClass = "text-[0.92rem] font-medium text-muted no-underline tran
           </div>
           <nav class="menu-link-grid" aria-label="Full menu">
             {menuLinks.map((route, index) => (
-              <a href={route.path} aria-current={isActive(route.path) ? "page" : undefined}>
+              <a href={routeHref(route.path)} aria-current={isActive(route.path) ? "page" : undefined}>
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <strong>{route.title}</strong>
               </a>
@@ -116,7 +117,7 @@ const footerLinkClass = "text-[0.92rem] font-medium text-muted no-underline tran
           </nav>
           <div class="menu-bottom">
             <p>Swap tiles. Merge groups. Restore the image.</p>
-            <a href="/play">Start playing</a>
+            <a href="/play/">Start playing</a>
           </div>
         </div>
       </div>
@@ -141,36 +142,36 @@ const footerLinkClass = "text-[0.92rem] font-medium text-muted no-underline tran
         <nav aria-label="Play links">
           <p class="mb-3 text-[0.72rem] font-black uppercase tracking-[0.1em] text-ink">Play</p>
           <div class="grid gap-2.5">
-            <a class={footerLinkClass} href="/play">Play Now</a>
-            <a class={footerLinkClass} href="/how-to-play">How To Play</a>
-            <a class={footerLinkClass} href="/games">All Games</a>
+            <a class={footerLinkClass} href="/play/">Play Now</a>
+            <a class={footerLinkClass} href="/how-to-play/">How To Play</a>
+            <a class={footerLinkClass} href="/games/">All Games</a>
           </div>
         </nav>
 
         <nav aria-label="Community links">
           <p class="mb-3 text-[0.72rem] font-black uppercase tracking-[0.1em] text-ink">Community</p>
           <div class="grid gap-2.5">
-            <a class={footerLinkClass} href="/blog">Blog</a>
-            <a class={footerLinkClass} href="/parents">Parents</a>
-            <a class={footerLinkClass} href="/sitemap">Sitemap</a>
+            <a class={footerLinkClass} href="/blog/">Blog</a>
+            <a class={footerLinkClass} href="/parents/">Parents</a>
+            <a class={footerLinkClass} href="/sitemap/">Sitemap</a>
           </div>
         </nav>
 
         <nav aria-label="Support links">
           <p class="mb-3 text-[0.72rem] font-black uppercase tracking-[0.1em] text-ink">Support</p>
           <div class="grid gap-2.5">
-            {supportLinks.map((route) => <a class={footerLinkClass} href={route.path}>{route.title}</a>)}
+            {supportLinks.map((route) => <a class={footerLinkClass} href={routeHref(route.path)}>{route.title}</a>)}
           </div>
         </nav>
 
         <nav aria-label="Legal links">
           <p class="mb-3 text-[0.72rem] font-black uppercase tracking-[0.1em] text-ink">Legal</p>
           <div class="grid gap-2.5">
-            {legalLinks.map((route) => <a class={footerLinkClass} href={route.path}>{route.title}</a>)}
+            {legalLinks.map((route) => <a class={footerLinkClass} href={routeHref(route.path)}>{route.title}</a>)}
           </div>
         </nav>
 
-        <form class="border-l border-line pl-8 max-lg:border-l-0 max-lg:pl-0 max-sm:col-span-2" action="/contact" method="get">
+        <form class="border-l border-line pl-8 max-lg:border-l-0 max-lg:pl-0 max-sm:col-span-2" action="/contact/" method="get">
           <p class="mb-3 text-[0.72rem] font-black uppercase tracking-[0.1em] text-ink">Stay Updated</p>
           <p class="mb-3 text-[0.84rem] leading-5 text-muted">Get news and updates about new games and features.</p>
           <div class="grid h-10 grid-cols-[minmax(0,1fr)_40px] overflow-hidden rounded-[7px] border border-line-strong bg-white">
@@ -183,8 +184,8 @@ const footerLinkClass = "text-[0.92rem] font-medium text-muted no-underline tran
       <div class="mx-auto flex w-[min(1120px,calc(100%-48px))] justify-between gap-5 border-t border-line py-4 text-xs text-quiet max-sm:w-[calc(100%-28px)] max-sm:flex-col">
         <span>&copy; 2026 {siteConfig.name}. All rights reserved.</span>
         <span class="flex gap-6">
-          <a class="transition hover:text-game-green-dark" href="/accessibility">Accessibility</a>
-          <a class="transition hover:text-game-green-dark" href="/sitemap">Sitemap</a>
+          <a class="transition hover:text-game-green-dark" href="/accessibility/">Accessibility</a>
+          <a class="transition hover:text-game-green-dark" href="/sitemap/">Sitemap</a>
         </span>
       </div>
     </footer>

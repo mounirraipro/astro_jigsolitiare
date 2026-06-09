@@ -132,7 +132,14 @@ export const normalizePath = (pathname: string) => {
   return path || "/";
 };
 
-export const getCanonicalUrl = (path: string, origin = siteConfig.siteUrl) => new URL(path, origin).href;
+export const withTrailingSlash = (path: string) => {
+  if (!path || path === "/") return "/";
+  if (path.includes(".") || path.endsWith("/")) return path;
+  const [pathname, query = ""] = path.split("?");
+  return `${pathname}/${query ? `?${query}` : ""}`;
+};
+
+export const getCanonicalUrl = (path: string, origin = siteConfig.siteUrl) => new URL(withTrailingSlash(path), origin).href;
 
 export const getSeoForPath = (pathname: string): SeoPage => {
   const path = normalizePath(pathname);

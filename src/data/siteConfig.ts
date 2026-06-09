@@ -6,7 +6,7 @@ export const siteConfig = {
   gameGenre: "tile-swap puzzle game",
   audience: "puzzle players, families, students, adults, and casual brain-game fans",
   contactEmail: "support@jigsolitaire.online",
-  siteUrl: "https://jigsolitaire.online",
+  siteUrl: "https://astro.jigsolitaire.online",
   locale: "en_US",
   language: "en",
   themeColor: "#ff5e4d",

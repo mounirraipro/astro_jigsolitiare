@@ -46,7 +46,7 @@ const bentoGamesRight = bentoGames.slice(4, 8);
 <BaseLayout title={game.title} description={game.description} seo={{ path: `/games/${game.slug}` }}>
   <section class="embedded-game-page">
     <header class="embedded-game-head">
-      <nav class="crumbs"><a href="/games">Games</a><span>/</span><span>{game.category}</span></nav>
+      <nav class="crumbs"><a href="/games/">Games</a><span>/</span><span>{game.category}</span></nav>
       <h1>{game.title}</h1>
       <p>{game.description}</p>
     </header>

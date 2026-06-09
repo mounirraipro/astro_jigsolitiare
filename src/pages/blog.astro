@@ -12,7 +12,7 @@ import { articles } from "@/data/articles";
     </header>
     <div class="article-grid">
       {articles.map((post) => (
-        <a class="article-card" href={`/blog/${post.slug}`}>
+        <a class="article-card" href={`/blog/${post.slug}/`}>
           <span>{post.category}</span>
           <h2>{post.title}</h2>
           <p>{post.description}</p>

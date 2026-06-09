@@ -94,15 +94,15 @@ const quickLinkClass =
         <p>Quick Links</p>
         <nav>
           {page.sections.map((section: ContentSection) => <a class={quickLinkClass} href={`#${slugify(section.heading)}`}>{section.heading}</a>)}
-          <a class={quickLinkClass} href="/faq">FAQ</a>
-          <a class={quickLinkClass} href="/contact">Contact</a>
+          <a class={quickLinkClass} href="/faq/">FAQ</a>
+          <a class={quickLinkClass} href="/contact/">Contact</a>
         </nav>
 
         <div class="content-help-card">
           <span>?</span>
           <p>
             <strong>Need help?</strong>
-            Visit our <a href="/faq">FAQ</a> or <a href="/contact">contact</a> support.
+            Visit our <a href="/faq/">FAQ</a> or <a href="/contact/">contact</a> support.
           </p>
         </div>
       </aside>

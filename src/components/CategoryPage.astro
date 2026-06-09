@@ -22,7 +22,7 @@ const accentClass = getCategoryAccentClass(category.name);
     </header>
     <div class="level-grid">
       {category.levels.map((level) => (
-        <a class:list={["level-card", accentClass]} href="/play">
+        <a class:list={["level-card", accentClass]} href="/play/">
           <img src={level.thumbnail} alt={`${level.title} puzzle thumbnail`} loading="lazy" />
           <strong>{level.title}</strong>
           <span>{level.gridSize} - {level.difficulty}</span>

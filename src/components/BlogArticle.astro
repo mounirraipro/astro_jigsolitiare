@@ -48,7 +48,7 @@ const articleStructuredData = [
 >
   <article class="blog-article">
     <header class="blog-article-header">
-      <nav class="crumbs"><a href="/blog">Blog</a><span>/</span><span>{article.category}</span></nav>
+      <nav class="crumbs"><a href="/blog/">Blog</a><span>/</span><span>{article.category}</span></nav>
       <h1>{article.title}</h1>
       <p>{article.description}</p>
       <div class="author-byline">
@@ -66,7 +66,7 @@ const articleStructuredData = [
 
         <section class="article-tags-box" aria-label="Article tags">
           <span class="article-tags-label">Filed under:</span>
-          <a class="article-tag article-tag-category" href={`/blog?category=${encodeURIComponent(article.category)}`}>{article.category}</a>
+          <a class="article-tag article-tag-category" href={`/blog/?category=${encodeURIComponent(article.category)}`}>{article.category}</a>
           {tags.map((tag) => <span class="article-tag">{tag}</span>)}
         </section>
 
@@ -107,7 +107,7 @@ const articleStructuredData = [
             <h2>Continue Reading</h2>
             <div>
               {related.map((item) => (
-                <a href={`/blog/${item.slug}`}>
+                <a href={`/blog/${item.slug}/`}>
                   <span>{item.category}</span>
                   <strong>{item.title}</strong>
                   <small>{item.readTime}</small>
@@ -130,7 +130,7 @@ const articleStructuredData = [
         <div class="article-side-card">
           <p>Play after reading</p>
           <h2>Try the ideas in a puzzle.</h2>
-          <a class="primary-action" href="/play"><span class="play-triangle"></span>Play JigSolitaire</a>
+          <a class="primary-action" href="/play/"><span class="play-triangle"></span>Play JigSolitaire</a>
         </div>
       </aside>
     </div>

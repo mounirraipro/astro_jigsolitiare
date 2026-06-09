@@ -13,7 +13,7 @@ const featuredCategories = categories.map((category) => ({
 }));
 const homeBentoGames = [
   {
-    href: "/play",
+    href: "/play/",
     title: "JigSolitaire Online",
     shortTitle: "JigSolitaire",
     category: "Now playing",
@@ -22,7 +22,7 @@ const homeBentoGames = [
     accentClass: brandAccentClass,
   },
   ...externalGames.map((game) => ({
-    href: `/games/${game.slug}`,
+    href: `/games/${game.slug}/`,
     title: game.title,
     shortTitle: game.shortTitle,
     category: game.category,
@@ -76,7 +76,7 @@ const faqItems = [
         <p class="eyebrow">Instant play</p>
         <h1>JigSolitaire Online</h1>
         <p>Swap tiles, merge groups, and restore the image. No download. No account.</p>
-        <a class="text-link hero-note" href="/how-to-play">Learn the rules</a>
+        <a class="text-link hero-note" href="/how-to-play/">Learn the rules</a>
       </div>
       <div class="hero-play-panel">
         <div class="hero-panel-top">
@@ -84,8 +84,8 @@ const faqItems = [
           <strong>Start a visual puzzle.</strong>
         </div>
         <div class="hero-actions">
-          <a class="primary-action" href="/play"><span class="play-triangle"></span>Play Full Screen</a>
-          <a class="secondary-action" href="/how-to-play">How To Play</a>
+          <a class="primary-action" href="/play/"><span class="play-triangle"></span>Play Full Screen</a>
+          <a class="secondary-action" href="/how-to-play/">How To Play</a>
         </div>
         <dl class="stat-row">
           <div><dt>{categories.reduce((sum, category) => sum + category.levels.length, 0)}+</dt><dd>Levels</dd></div>
@@ -103,7 +103,7 @@ const faqItems = [
       <p>Pick a style, then let color and shape guide the solve.</p>
     </div>
     <div class="world-showcase">
-      <a class:list={["world-feature", getCategoryAccentClass(featuredCategories[0].name)]} href="/play">
+      <a class:list={["world-feature", getCategoryAccentClass(featuredCategories[0].name)]} href="/play/">
         <img src={featuredCategories[0].preview} alt={`${featuredCategories[0].name} JigSolitaire puzzle preview`} loading="lazy" />
         <div>
           <span>{featuredCategories[0].name}</span>
@@ -113,7 +113,7 @@ const faqItems = [
       </a>
       <div class="world-stack">
         {featuredCategories.slice(1).map((category) => (
-          <a class:list={["world-card", getCategoryAccentClass(category.name)]} href="/play">
+          <a class:list={["world-card", getCategoryAccentClass(category.name)]} href="/play/">
             <img src={category.preview} alt={`${category.name} JigSolitaire puzzle preview`} loading="lazy" />
             <div>
               <span>{category.name}</span>
@@ -147,10 +147,10 @@ const faqItems = [
         <p class="eyebrow">From the blog</p>
         <h2>Sharper puzzle thinking.</h2>
         <p>Short reads for better focus, setup, and solving.</p>
-        <a class="text-link" href="/blog">Browse all articles</a>
+        <a class="text-link" href="/blog/">Browse all articles</a>
       </div>
       <div class="blog-board">
-        <a class="editorial-card editorial-card-featured" href={`/blog/${recentPosts[0].slug}`}>
+        <a class="editorial-card editorial-card-featured" href={`/blog/${recentPosts[0].slug}/`}>
           <span>{recentPosts[0].category}</span>
           <h3>{recentPosts[0].title}</h3>
           <p>{recentPosts[0].description}</p>
@@ -158,7 +158,7 @@ const faqItems = [
         </a>
         <div class="article-rail">
           {recentPosts.slice(1).map((post) => (
-            <a class="editorial-card editorial-card-row" href={`/blog/${post.slug}`}>
+            <a class="editorial-card editorial-card-row" href={`/blog/${post.slug}/`}>
               <span>{post.category}</span>
               <h3>{post.title}</h3>
               <small>{post.readTime}</small>
@@ -192,7 +192,7 @@ const faqItems = [
       <p class="eyebrow">Ready?</p>
       <h2>Open a puzzle and start solving.</h2>
     </div>
-    <a class="primary-action" href="/play"><span class="play-triangle"></span>Play JigSolitaire</a>
+    <a class="primary-action" href="/play/"><span class="play-triangle"></span>Play JigSolitaire</a>
   </section>
 
   <script is:inline>
