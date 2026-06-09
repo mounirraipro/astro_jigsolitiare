@@ -1,17 +1,9 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import BlogArticle from "@/components/BlogArticle.astro";
 import { articles } from "@/data/articles";
 
 const article = articles.find((item) => item.slug === "tile-swap-puzzle-games-guide");
 if (!article) throw new Error("Missing article: tile-swap-puzzle-games-guide");
 ---
 
-<BaseLayout title={article.title} description={article.description} seo={{ title: article.title, seoTitle: article.title, description: article.description, keywords: article.keywords, schemaType: "Article", path: "/blog/tile-swap-puzzle-games-guide" }}>
-  <article class="article-shell">
-    <nav class="crumbs"><a href="/blog">Blog</a><span>/</span><span>{article.category}</span></nav>
-    <h1>{article.title}</h1>
-    <p class="article-meta">{new Date(article.datePublished).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })} - {article.readTime}</p>
-    <p class="article-description">{article.description}</p>
-    <div class="article-content" set:html={article.html} />
-  </article>
-</BaseLayout>
+<BlogArticle article={article} />

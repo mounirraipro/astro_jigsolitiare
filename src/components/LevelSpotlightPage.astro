@@ -1,0 +1,49 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import type { GameCategory, GameLevel } from "@/data/gameData";
+
+type Props = {
+  title: string;
+  description: string;
+  heading: string;
+  intro: string;
+  category: GameCategory;
+  level: GameLevel;
+  related: GameLevel[];
+};
+
+const { title, description, heading, intro, category, level, related } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="listing-shell level-spotlight">
+    <header class="listing-header">
+      <p class="eyebrow">{category.name} Level</p>
+      <h1>{heading}</h1>
+      <p>{intro}</p>
+    </header>
+
+    <div class="level-hero-card" style={`--accent:${category.color}`}>
+      <img src={level.image} alt={`${heading} puzzle preview`} />
+      <div>
+        <span>{level.gridSize} - {level.difficulty}</span>
+        <h2>{level.title}</h2>
+        <p>{category.longDescription}</p>
+        <a class="primary-action" href="/play"><span class="play-triangle"></span>Play this puzzle</a>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <h2>More animal puzzles.</h2>
+    </div>
+    <div class="level-grid">
+      {related.map((item) => (
+        <a class="level-card" href="/play" style={`--accent:${category.color}`}>
+          <img src={item.thumbnail} alt={`${item.title} puzzle thumbnail`} loading="lazy" />
+          <strong>{item.title}</strong>
+          <span>{item.gridSize} - {item.difficulty}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

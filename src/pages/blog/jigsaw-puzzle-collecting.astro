@@ -1,0 +1,9 @@
+---
+import BlogArticle from "@/components/BlogArticle.astro";
+import { articles } from "@/data/articles";
+
+const article = articles.find((post) => post.slug === "jigsaw-puzzle-collecting");
+if (!article) throw new Error("Missing article: jigsaw-puzzle-collecting");
+---
+
+<BlogArticle article={article} />

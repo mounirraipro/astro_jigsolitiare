@@ -1,5 +1,19 @@
 ---
-import RoutePlaceholder from "@/components/RoutePlaceholder.astro";
+import LevelSpotlightPage from "@/components/LevelSpotlightPage.astro";
+import { getCategoryBySlug } from "@/data/gameData";
+
+const category = getCategoryBySlug("animals");
+if (!category) throw new Error("Missing animals category");
+const level = category.levels[0];
+const related = category.levels.slice(1, 7);
 ---
 
-<RoutePlaceholder title="Dog And Cat Level" path="/levels/animals/dog-cat" />
+<LevelSpotlightPage
+  title="Dog and Cat Puzzle Level"
+  description="Play an animal-themed JigSolitaire puzzle with friendly visual cues, clear shapes, and browser-based tile swapping."
+  heading="Dog and cat puzzle."
+  intro="A friendly animal route for players who want a clear, approachable image before moving into the larger animal collection."
+  category={category}
+  level={level}
+  related={related}
+/>

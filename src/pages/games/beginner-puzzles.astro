@@ -1,5 +1,20 @@
 ---
-import RoutePlaceholder from "@/components/RoutePlaceholder.astro";
+import LevelCollectionPage from "@/components/LevelCollectionPage.astro";
+import { allLevels } from "@/data/gameData";
+
+const beginnerLevels = allLevels.filter(({ level }) => ["Easy", "Medium"].includes(level.difficulty));
 ---
 
-<RoutePlaceholder title="Beginner Puzzles" path="/games/beginner-puzzles" />
+<LevelCollectionPage
+  title="Beginner Puzzle Games"
+  description="Start with beginner JigSolitaire puzzles using smaller grids and clearer visual anchors."
+  eyebrow="Beginner Puzzles"
+  heading="Start with clean, readable grids."
+  intro="These imported JigSolitaire levels are the best place to learn the swap-and-merge rhythm before trying the harder grids."
+  levels={beginnerLevels.map(({ category, level }) => ({ categoryName: category.name, categoryColor: category.color, level }))}
+  notes={[
+    "Easy and Medium levels are ideal for learning how tile groups merge.",
+    "Use these puzzles for quick sessions, warm-ups, or younger players.",
+    "No account or download is required; the full game runs in the browser."
+  ]}
+/>

@@ -27,6 +27,9 @@ const contentPagePaths: Record<PageKey, string> = {
   faq: "/faq",
   "how-to-play": "/how-to-play",
   parents: "/parents",
+  strategy: "/strategy",
+  "difficulty-guide": "/difficulty-guide",
+  "game-mechanics": "/game-mechanics",
   "privacy-policy": "/privacy-policy",
   terms: "/terms",
 };

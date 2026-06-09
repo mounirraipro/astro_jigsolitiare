@@ -1,0 +1,52 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import type { GameLevel } from "@/data/gameData";
+
+type LevelItem = {
+  categoryName: string;
+  categoryColor: string;
+  level: GameLevel;
+};
+
+type Props = {
+  title: string;
+  description: string;
+  eyebrow: string;
+  heading: string;
+  intro: string;
+  levels: LevelItem[];
+  notes?: string[];
+};
+
+const { title, description, eyebrow, heading, intro, levels, notes = [] } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="listing-shell level-collection">
+    <header class="listing-header">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1>{heading}</h1>
+      <p>{intro}</p>
+    </header>
+
+    {notes.length > 0 && (
+      <div class="level-note-grid">
+        {notes.map((note) => (
+          <article>
+            <p>{note}</p>
+          </article>
+        ))}
+      </div>
+    )}
+
+    <div class="level-grid">
+      {levels.map(({ categoryName, categoryColor, level }) => (
+        <a class="level-card" href="/play" style={`--accent:${categoryColor}`}>
+          <img src={level.thumbnail} alt={`${level.title} puzzle thumbnail`} loading="lazy" />
+          <strong>{level.title}</strong>
+          <span>{categoryName} - {level.gridSize} - {level.difficulty}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,5 +1,18 @@
 ---
-import RoutePlaceholder from "@/components/RoutePlaceholder.astro";
+import LevelCollectionPage from "@/components/LevelCollectionPage.astro";
+import { allLevels } from "@/data/gameData";
 ---
 
-<RoutePlaceholder title="Levels" path="/levels" />
+<LevelCollectionPage
+  title="JigSolitaire Levels"
+  description="Browse all 120 imported JigSolitaire levels across Animals, Art, Cities, Food, and Nature."
+  eyebrow="All Levels"
+  heading="Every imported JigSolitaire puzzle."
+  intro="Browse the full collection from the original project, then open the browser game and pick the visual world that fits your mood."
+  levels={allLevels.map(({ category, level }) => ({ categoryName: category.name, categoryColor: category.color, level }))}
+  notes={[
+    "Start with Easy and Medium grids when you want a quick visual warm-up.",
+    "Move into Hard, Expert, and Master grids when you want slower pattern reading and fewer obvious anchors.",
+    "Every preview uses the original imported JigSolitaire image assets."
+  ]}
+/>

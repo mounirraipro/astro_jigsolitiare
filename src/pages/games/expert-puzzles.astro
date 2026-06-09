@@ -1,5 +1,20 @@
 ---
-import RoutePlaceholder from "@/components/RoutePlaceholder.astro";
+import LevelCollectionPage from "@/components/LevelCollectionPage.astro";
+import { allLevels } from "@/data/gameData";
+
+const expertLevels = allLevels.filter(({ level }) => ["Hard", "Expert", "Master"].includes(level.difficulty));
 ---
 
-<RoutePlaceholder title="Expert Puzzles" path="/games/expert-puzzles" />
+<LevelCollectionPage
+  title="Expert Puzzle Games"
+  description="Challenge yourself with Hard, Expert, and Master JigSolitaire puzzles from the imported game collection."
+  eyebrow="Expert Puzzles"
+  heading="Harder grids for deeper focus."
+  intro="These levels reward patient visual memory, careful region building, and fewer guesses as the images become more complex."
+  levels={expertLevels.map(({ category, level }) => ({ categoryName: category.name, categoryColor: category.color, level }))}
+  notes={[
+    "Hard and Expert puzzles introduce more tiles and more ambiguous color zones.",
+    "Master puzzles are best when you want a slower, more deliberate solve.",
+    "Study the image first, build reliable anchors, then let merged groups simplify the finish."
+  ]}
+/>
