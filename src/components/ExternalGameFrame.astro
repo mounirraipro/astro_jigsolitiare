@@ -1,0 +1,49 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { externalGames, type ExternalGame } from "@/data/externalGames";
+
+type Props = {
+  game: ExternalGame;
+};
+
+const { game } = Astro.props;
+const relatedGames = externalGames.filter((item) => item.slug !== game.slug).slice(0, 4);
+---
+
+<BaseLayout title={game.title} description={game.description} seo={{ path: `/games/${game.slug}` }}>
+  <section class="embedded-game-page">
+    <header class="embedded-game-head">
+      <nav class="crumbs"><a href="/games">Games</a><span>/</span><span>{game.category}</span></nav>
+      <h1>{game.title}</h1>
+      <p>{game.description}</p>
+    </header>
+
+    <div class="embedded-game-layout">
+      <aside class="embedded-game-rail" aria-label="More games">
+        <p>More games</p>
+        {relatedGames.slice(0, 2).map((item) => (
+          <a href={`/games/${item.slug}`} style={`--accent:${item.accent}`}>
+            <img src={item.thumbnail} alt={`${item.title} thumbnail`} loading="lazy" />
+            <span>{item.shortTitle}</span>
+            <small>{item.category}</small>
+          </a>
+        ))}
+      </aside>
+
+      <div class="embedded-game-frame">
+        <iframe src={game.iframeUrl} title={game.title} loading="eager" allow="autoplay; fullscreen *" allowfullscreen></iframe>
+      </div>
+
+      <aside class="embedded-game-rail" aria-label="Try next">
+        <p>Try next</p>
+        {relatedGames.slice(2, 4).map((item) => (
+          <a href={`/games/${item.slug}`} style={`--accent:${item.accent}`}>
+            <img src={item.thumbnail} alt={`${item.title} thumbnail`} loading="lazy" />
+            <span>{item.shortTitle}</span>
+            <small>{item.category}</small>
+          </a>
+        ))}
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

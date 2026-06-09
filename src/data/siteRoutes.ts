@@ -7,7 +7,7 @@ export type SiteRoute = {
 export const siteRoutes: SiteRoute[] = [
   { path: "/", title: "Home", group: "main" },
   { path: "/play", title: "Play", group: "main" },
-  { path: "/games", title: "Levels", group: "main" },
+  { path: "/games", title: "Games", group: "main" },
   { path: "/categories", title: "Categories", group: "main" },
   { path: "/how-to-play", title: "How To Play", group: "content" },
   { path: "/blog", title: "Blog", group: "content" },

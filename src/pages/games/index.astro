@@ -1,21 +1,34 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { allLevels } from "@/data/gameData";
+import { externalGames } from "@/data/externalGames";
 ---
 
-<BaseLayout title="JigSolitaire Levels" description="Browse imported JigSolitaire puzzle levels and start playing online.">
-  <section class="listing-shell">
+<BaseLayout title="Free Online Games" description="Play JigSolitaire and more free browser games in a clean static Astro game hub.">
+  <section class="listing-shell games-hub">
     <header class="listing-header">
-      <p class="eyebrow">All Levels</p>
-      <h1>Imported JigSolitaire puzzles.</h1>
-      <p>Pick any preview, then play the full game in the browser.</p>
+      <p class="eyebrow">Game Library</p>
+      <h1>Play more browser games.</h1>
+      <p>Pick a game, open it in the same clean iframe layout, and keep playing without downloads or accounts.</p>
     </header>
-    <div class="level-grid">
-      {allLevels.map(({ category, level }) => (
-        <a class="level-card" href="/play">
-          <img src={level.thumbnail} alt={`${level.title} puzzle thumbnail`} loading="lazy" />
-          <strong>{level.title}</strong>
-          <span>{category.name} - {level.gridSize} - {level.difficulty}</span>
+    <div class="site-game-grid">
+      <a class="site-game-card site-game-card-featured" href="/play" style="--accent:#ff5e4d">
+        <img src="/level-thumbs/Animals/JigSolitaire_Animals1.webp" alt="JigSolitaire puzzle thumbnail" loading="lazy" />
+        <div>
+          <span>JigSolitaire</span>
+          <h2>JigSolitaire Online</h2>
+          <p>Swap image tiles, merge correct groups, and restore the full puzzle.</p>
+          <small>Featured puzzle game</small>
+        </div>
+      </a>
+      {externalGames.map((game) => (
+        <a class="site-game-card" href={`/games/${game.slug}`} style={`--accent:${game.accent}`}>
+          <img src={game.thumbnail} alt={`${game.title} thumbnail`} loading="lazy" />
+          <div>
+            <span>{game.category}</span>
+            <h2>{game.title}</h2>
+            <p>{game.description}</p>
+            <small>Play now</small>
+          </div>
         </a>
       ))}
     </div>

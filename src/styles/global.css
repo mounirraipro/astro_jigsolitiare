@@ -435,6 +435,83 @@
       0 0 0 1px rgb(226 232 240 / 0.95);
   }
 
+  .home-game-lobby {
+    display: grid;
+    grid-template-columns: minmax(178px, 0.24fr) minmax(0, 1fr) minmax(178px, 0.24fr);
+    gap: clamp(1rem, 2vw, 1.35rem);
+    align-items: center;
+  }
+
+  .home-game-rail {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .mini-game-card {
+    position: relative;
+    display: grid;
+    gap: 0.65rem;
+    min-height: 178px;
+    overflow: hidden;
+    border: 1px solid var(--color-line);
+    border-radius: 8px;
+    background:
+      linear-gradient(180deg, rgb(255 255 255 / 0.96), #fff),
+      radial-gradient(circle at 90% 4%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 7rem);
+    padding: 0.6rem;
+    color: var(--color-ink);
+    text-decoration: none;
+    box-shadow:
+      0 16px 34px rgb(15 23 42 / 0.075),
+      inset 0 1px 0 rgb(255 255 255 / 0.9);
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  }
+
+  .mini-game-card::before {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 4px;
+    background: var(--accent);
+    content: "";
+  }
+
+  .mini-game-card:hover {
+    border-color: color-mix(in srgb, var(--accent) 28%, var(--color-line));
+    transform: translateY(-4px);
+    box-shadow:
+      0 24px 46px rgb(15 23 42 / 0.12),
+      inset 0 1px 0 rgb(255 255 255 / 0.95);
+  }
+
+  .mini-game-card img {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border: 1px solid var(--color-line);
+    border-radius: 8px;
+    background: #f8fafc;
+    object-fit: cover;
+    box-shadow: 0 10px 18px rgb(15 23 42 / 0.08);
+  }
+
+  .mini-game-card span {
+    min-width: 0;
+    color: var(--accent);
+    font-size: 0.67rem;
+    font-weight: 950;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .mini-game-card strong {
+    min-width: 0;
+    font-size: clamp(1rem, 1.25vw, 1.15rem);
+    font-weight: 950;
+    line-height: 1.08;
+  }
+
   .hero-game iframe,
   .play-page iframe {
     display: block;
@@ -478,6 +555,12 @@
     font-size: clamp(2.15rem, 4.2vw, 4.2rem);
     font-weight: 950;
     line-height: 0.98;
+  }
+
+  .listing-header h1 {
+    max-width: 680px;
+    font-size: clamp(1.85rem, 3vw, 2.75rem);
+    line-height: 1.03;
   }
 
   .hero-copy p,
@@ -1214,7 +1297,7 @@
     margin: 0;
     max-width: 760px;
     color: var(--color-ink);
-    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-size: clamp(1.85rem, 3vw, 2.75rem);
     font-weight: 950;
     line-height: 1;
   }
@@ -1404,6 +1487,220 @@
     line-height: 1.18;
   }
 
+  .site-game-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .site-game-card {
+    position: relative;
+    display: grid;
+    overflow: hidden;
+    border: 1px solid var(--color-line);
+    border-radius: 8px;
+    background: #fff;
+    color: var(--color-ink);
+    text-decoration: none;
+    box-shadow: 0 16px 36px rgb(15 23 42 / 0.065);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+  }
+
+  .site-game-card::before {
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 2;
+    height: 4px;
+    background: var(--accent);
+    content: "";
+  }
+
+  .site-game-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 48px rgb(15 23 42 / 0.1);
+  }
+
+  .site-game-card-featured {
+    grid-column: span 2;
+    grid-template-columns: minmax(0, 1.06fr) minmax(260px, 0.94fr);
+    align-items: stretch;
+  }
+
+  .site-game-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-bottom: 1px solid var(--color-line);
+    background: #f8fafc;
+    object-fit: cover;
+  }
+
+  .site-game-card > div {
+    display: grid;
+    align-content: end;
+    min-height: 180px;
+    padding: clamp(1rem, 2.4vw, 1.35rem);
+  }
+
+  .site-game-card-featured img {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+  }
+
+  .site-game-card span {
+    color: var(--accent);
+    font-size: 0.76rem;
+    font-weight: 950;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .site-game-card h2 {
+    margin: 0.35rem 0 0.5rem;
+    max-width: 520px;
+    font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+    font-weight: 950;
+    line-height: 1.05;
+  }
+
+  .site-game-card p {
+    max-width: 520px;
+    margin: 0 0 0.9rem;
+    color: var(--color-muted);
+    line-height: 1.58;
+  }
+
+  .site-game-card small {
+    color: var(--color-ink);
+    font-weight: 950;
+  }
+
+  .embedded-game-page {
+    width: min(1320px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: clamp(1.8rem, 4vw, 3rem) 0 clamp(3rem, 6vw, 4rem);
+  }
+
+  .embedded-game-head {
+    max-width: 760px;
+    margin-bottom: 1.35rem;
+  }
+
+  .embedded-game-head h1 {
+    margin: 0;
+    color: var(--color-ink);
+    font-size: clamp(1.85rem, 3.4vw, 2.85rem);
+    font-weight: 950;
+    line-height: 1.03;
+  }
+
+  .embedded-game-head p {
+    max-width: 650px;
+    color: var(--color-muted);
+    font-size: 1.04rem;
+    line-height: 1.62;
+  }
+
+  .embedded-game-layout {
+    display: grid;
+    grid-template-columns: minmax(176px, 0.22fr) minmax(0, 1fr) minmax(176px, 0.22fr);
+    gap: clamp(1rem, 2vw, 1.35rem);
+    align-items: center;
+  }
+
+  .embedded-game-frame {
+    height: min(76vh, 760px);
+    min-height: 560px;
+    overflow: hidden;
+    border: 6px solid #fff;
+    border-radius: 26px;
+    background: #fff;
+    box-shadow: 0 28px 80px rgb(15 23 42 / 0.14), 0 0 0 1px var(--color-line);
+  }
+
+  .embedded-game-frame iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .embedded-game-rail {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .embedded-game-rail > p {
+    margin: 0 0 0.15rem;
+    color: var(--color-muted);
+    font-size: 0.72rem;
+    font-weight: 950;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .embedded-game-rail a {
+    position: relative;
+    display: grid;
+    gap: 0.58rem;
+    min-height: 166px;
+    overflow: hidden;
+    border: 1px solid var(--color-line);
+    border-radius: 8px;
+    background:
+      linear-gradient(180deg, rgb(255 255 255 / 0.96), #fff),
+      radial-gradient(circle at 90% 4%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 7rem);
+    color: var(--color-ink);
+    padding: 0.6rem;
+    text-decoration: none;
+    box-shadow:
+      0 16px 34px rgb(15 23 42 / 0.07),
+      inset 0 1px 0 rgb(255 255 255 / 0.9);
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  }
+
+  .embedded-game-rail a::before {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 4px;
+    background: var(--accent);
+    content: "";
+  }
+
+  .embedded-game-rail a:hover {
+    border-color: color-mix(in srgb, var(--accent) 28%, var(--color-line));
+    transform: translateY(-4px);
+    box-shadow:
+      0 24px 46px rgb(15 23 42 / 0.11),
+      inset 0 1px 0 rgb(255 255 255 / 0.95);
+  }
+
+  .embedded-game-rail a img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border: 1px solid var(--color-line);
+    border-radius: 8px;
+    background: #f8fafc;
+    object-fit: cover;
+    box-shadow: 0 10px 18px rgb(15 23 42 / 0.08);
+  }
+
+  .embedded-game-rail span {
+    min-width: 0;
+    font-weight: 950;
+    line-height: 1.08;
+  }
+
+  .embedded-game-rail small {
+    color: var(--accent);
+    font-size: 0.67rem;
+    font-weight: 900;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
   .article-card p,
   .feature-grid p,
   .faq-list p {
@@ -1444,34 +1741,35 @@
   }
 
   .page-header {
-    padding: clamp(3rem, 7vw, 5rem) 0 clamp(1.8rem, 4vw, 2.6rem);
-    text-align: center;
+    padding: clamp(2.25rem, 5vw, 3.6rem) 0 clamp(1.2rem, 3vw, 2rem);
+    text-align: left;
     border-bottom: 1px solid var(--color-line);
     background:
-      radial-gradient(circle at 18% 0, rgb(255 200 36 / 0.2), transparent 20rem),
-      radial-gradient(circle at 82% 10%, rgb(35 204 242 / 0.18), transparent 24rem),
+      radial-gradient(circle at 12% 0, rgb(255 200 36 / 0.14), transparent 18rem),
+      radial-gradient(circle at 88% 12%, rgb(35 204 242 / 0.12), transparent 22rem),
       linear-gradient(180deg, #f8fbff, #fff);
   }
 
   .page-header-inner {
-    width: min(820px, calc(100% - 48px));
+    width: min(1080px, calc(100% - 48px));
     margin: 0 auto;
   }
 
   .page-header h1 {
-    margin: 0 0 0.9rem;
+    margin: 0 0 0.7rem;
+    max-width: 720px;
     color: var(--color-ink);
-    font-size: clamp(3rem, 7.5vw, 5.65rem);
+    font-size: clamp(1.85rem, 3.4vw, 2.85rem);
     font-weight: 950;
-    line-height: 0.92;
+    line-height: 1.03;
   }
 
   .page-header p {
     max-width: 620px;
-    margin: 0 auto;
+    margin: 0;
     color: var(--color-muted);
-    font-size: clamp(1rem, 1.8vw, 1.16rem);
-    line-height: 1.65;
+    font-size: clamp(0.98rem, 1.4vw, 1.08rem);
+    line-height: 1.62;
   }
 
   .page-header-intro {
@@ -1480,15 +1778,20 @@
 
   .content-page-shell {
     display: grid;
-    grid-template-columns: minmax(0, 680px) 300px;
-    gap: clamp(2rem, 6vw, 4.5rem);
-    width: min(1080px, calc(100% - 48px));
+    grid-template-columns: minmax(0, 720px) 280px;
+    gap: clamp(1.5rem, 5vw, 3.2rem);
+    width: min(1120px, calc(100% - 48px));
     margin: 0 auto;
-    padding: clamp(2.5rem, 5vw, 4rem) 0;
+    padding: clamp(1.5rem, 4vw, 3rem) 0;
   }
 
   .page-content {
     min-width: 0;
+    border: 1px solid var(--color-line);
+    border-radius: 8px;
+    background: #fff;
+    padding: clamp(1.1rem, 3vw, 1.8rem);
+    box-shadow: 0 16px 36px rgb(15 23 42 / 0.055);
   }
 
   .page-content section {
@@ -1504,11 +1807,11 @@
   }
 
   .page-content h2 {
-    margin: 0 0 0.75rem;
+    margin: 0 0 0.65rem;
     color: var(--color-ink);
-    font-size: clamp(1.32rem, 2.2vw, 1.7rem);
+    font-size: clamp(1.12rem, 1.8vw, 1.42rem);
     font-weight: 950;
-    line-height: 1.12;
+    line-height: 1.18;
   }
 
   .page-content h3 {
@@ -1520,16 +1823,16 @@
 
   .page-content p {
     margin: 0 0 1rem;
-    color: var(--color-muted);
+    color: var(--color-copy);
     font-size: 0.98rem;
-    line-height: 1.78;
+    line-height: 1.72;
   }
 
   .page-content ul,
   .page-content ol {
     margin: 0 0 1rem;
     padding-left: 1.2rem;
-    color: var(--color-muted);
+    color: var(--color-copy);
   }
 
   .page-content li {
@@ -1547,8 +1850,11 @@
     position: sticky;
     top: 6.5rem;
     align-self: start;
-    border-left: 1px solid var(--color-line);
-    padding-left: 1.8rem;
+    border: 1px solid var(--color-line);
+    border-radius: 8px;
+    background: #fff;
+    padding: 1rem;
+    box-shadow: 0 14px 30px rgb(15 23 42 / 0.045);
   }
 
   .content-page-aside > p {
@@ -1633,25 +1939,25 @@
   }
 
   .blog-article-header {
-    width: min(920px, calc(100% - 48px));
+    width: min(1120px, calc(100% - 48px));
     margin: 0 auto;
-    padding: clamp(3rem, 7vw, 5rem) 0 clamp(1.4rem, 3vw, 2rem);
+    padding: clamp(2.25rem, 5vw, 3.8rem) 0 clamp(1.2rem, 3vw, 1.8rem);
   }
 
   .blog-article-header h1 {
     margin: 0;
-    max-width: 860px;
+    max-width: 780px;
     color: var(--color-ink);
-    font-size: clamp(2.5rem, 6vw, 4.8rem);
+    font-size: clamp(1.85rem, 3.4vw, 2.85rem);
     font-weight: 950;
-    line-height: 0.98;
+    line-height: 1.04;
   }
 
   .blog-article-header > p {
-    max-width: 720px;
+    max-width: 680px;
     color: var(--color-muted);
-    font-size: 1.14rem;
-    line-height: 1.75;
+    font-size: clamp(1rem, 1.4vw, 1.08rem);
+    line-height: 1.65;
   }
 
   .author-byline {
@@ -1690,8 +1996,8 @@
 
   .blog-article-shell {
     display: grid;
-    grid-template-columns: minmax(0, 760px) 300px;
-    gap: clamp(2rem, 6vw, 4rem);
+    grid-template-columns: minmax(0, 740px) 290px;
+    gap: clamp(1.5rem, 5vw, 3rem);
     width: min(1160px, calc(100% - 48px));
     margin: 0 auto;
     padding-bottom: clamp(3rem, 7vw, 5rem);
@@ -1699,6 +2005,11 @@
 
   .blog-article-main {
     min-width: 0;
+    border: 1px solid var(--color-line);
+    border-radius: 8px;
+    background: #fff;
+    padding: clamp(1.1rem, 3vw, 1.8rem);
+    box-shadow: 0 16px 36px rgb(15 23 42 / 0.055);
   }
 
   .article-tags-box,
@@ -2162,7 +2473,8 @@
   }
 
   .listing-header {
-    margin-bottom: 2rem;
+    max-width: 760px;
+    margin-bottom: 1.5rem;
   }
 
   .level-card {
@@ -2198,9 +2510,9 @@
   .article-shell h1 {
     margin: 0;
     color: var(--color-ink);
-    font-size: clamp(2.5rem, 6vw, 4.8rem);
+    font-size: clamp(1.85rem, 3.4vw, 2.85rem);
     font-weight: 950;
-    line-height: 0.98;
+    line-height: 1.04;
   }
 
   .article-meta {
@@ -2210,28 +2522,38 @@
 
   .article-description {
     color: var(--color-muted);
-    font-size: 1.15rem;
-    line-height: 1.75;
+    font-size: 1.04rem;
+    line-height: 1.65;
   }
 
   .article-content {
-    margin-top: 2rem;
+    margin-top: 0;
     color: var(--color-copy);
-    font-size: 1.04rem;
-    line-height: 1.8;
+    font-size: 1rem;
+    line-height: 1.74;
+  }
+
+  .article-content p {
+    margin: 0 0 1.05rem;
+  }
+
+  .article-content ul,
+  .article-content ol {
+    margin: 0 0 1.1rem;
+    padding-left: 1.25rem;
   }
 
   .article-content h2 {
-    margin: 2.25rem 0 0.75rem;
+    margin: 2rem 0 0.65rem;
     color: var(--color-ink);
-    font-size: 1.9rem;
-    line-height: 1.15;
+    font-size: clamp(1.25rem, 2vw, 1.62rem);
+    line-height: 1.18;
   }
 
   .article-content h3 {
-    margin: 1.5rem 0 0.4rem;
+    margin: 1.35rem 0 0.4rem;
     color: var(--color-ink);
-    font-size: 1.3rem;
+    font-size: 1.12rem;
   }
 
   .article-content a {
@@ -2265,6 +2587,8 @@
     .world-showcase,
     .blog-editorial,
     .blog-board,
+    .home-game-lobby,
+    .embedded-game-layout,
     .level-hero-card,
     .content-page-shell,
     .blog-article-shell,
@@ -2280,6 +2604,22 @@
       border-top: 1px solid var(--color-line);
       padding-top: 1.4rem;
       padding-left: 0;
+    }
+
+    .content-page-aside {
+      border: 1px solid var(--color-line);
+      padding: 1rem;
+    }
+
+    .home-game-rail,
+    .embedded-game-rail {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      order: 2;
+    }
+
+    .hero-game,
+    .embedded-game-frame {
+      order: 1;
     }
 
     .world-feature {
@@ -2332,9 +2672,14 @@
     .article-grid,
     .feature-grid,
     .level-note-grid,
+    .site-game-grid,
     .play-step-grid,
     .play-split-section {
       grid-template-columns: 1fr 1fr;
+    }
+
+    .site-game-card-featured {
+      grid-column: span 2;
     }
 
     .hero-copy {
@@ -2505,6 +2850,7 @@
     .content-band,
     .listing-shell,
     .article-shell,
+    .embedded-game-page,
     .play-info-section,
     .home-cta {
       width: calc(100% - 28px);
@@ -2519,7 +2865,14 @@
 
     .page-header h1,
     .blog-article-header h1 {
-      font-size: clamp(2.55rem, 15vw, 4rem);
+      font-size: clamp(1.75rem, 9vw, 2.65rem);
+      line-height: 1.06;
+    }
+
+    .listing-header h1,
+    .embedded-game-head h1 {
+      font-size: clamp(1.75rem, 9vw, 2.55rem);
+      line-height: 1.06;
     }
 
     .comment-box,
@@ -2541,10 +2894,38 @@
     .category-grid,
     .article-grid,
     .level-note-grid,
+    .site-game-grid,
     .feature-grid,
     .play-step-grid,
     .play-split-section {
       grid-template-columns: 1fr;
+    }
+
+    .embedded-game-frame {
+      min-height: 460px;
+      border-width: 5px;
+      border-radius: 20px;
+    }
+
+    .home-game-rail,
+    .embedded-game-rail {
+      grid-template-columns: 1fr;
+    }
+
+    .site-game-card-featured {
+      grid-column: auto;
+      grid-template-columns: 1fr;
+    }
+
+    .site-game-card-featured img {
+      height: auto;
+      min-height: 0;
+      aspect-ratio: 16 / 10;
+    }
+
+    .mini-game-card,
+    .embedded-game-rail a {
+      min-height: 76px;
     }
 
     .level-hero-card img {

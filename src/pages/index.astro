@@ -2,6 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { articles } from "@/data/articles";
 import { categories } from "@/data/gameData";
+import { externalGames } from "@/data/externalGames";
 import { siteConfig } from "@/data/siteConfig";
 
 const recentPosts = articles.slice(0, 3);
@@ -9,6 +10,7 @@ const featuredCategories = categories.map((category) => ({
   ...category,
   preview: category.levels[0]?.thumbnail ?? category.levels[0]?.image,
 }));
+const sideGames = externalGames.slice(0, 4);
 
 const faqItems = [
   ["What is JigSolitaire?", "JigSolitaire is a free browser puzzle game where you swap scrambled image tiles until the full picture is restored. Correct adjacent tiles merge into groups as you solve."],
@@ -20,8 +22,28 @@ const faqItems = [
 
 <BaseLayout title={siteConfig.name} description={siteConfig.description}>
   <section class="hero-play">
-    <div class="hero-game">
-      <iframe src="/game/index.html" title="Play JigSolitaire" loading="eager"></iframe>
+    <div class="home-game-lobby">
+      <div class="home-game-rail home-game-rail-left" aria-label="More games">
+        {sideGames.slice(0, 2).map((game) => (
+          <a class="mini-game-card" href={`/games/${game.slug}`} style={`--accent:${game.accent}`}>
+            <img src={game.thumbnail} alt={`${game.title} thumbnail`} loading="lazy" />
+            <span>{game.category}</span>
+            <strong>{game.shortTitle}</strong>
+          </a>
+        ))}
+      </div>
+      <div class="hero-game">
+        <iframe src="/game/index.html" title="Play JigSolitaire" loading="eager"></iframe>
+      </div>
+      <div class="home-game-rail home-game-rail-right" aria-label="More games">
+        {sideGames.slice(2, 4).map((game) => (
+          <a class="mini-game-card" href={`/games/${game.slug}`} style={`--accent:${game.accent}`}>
+            <img src={game.thumbnail} alt={`${game.title} thumbnail`} loading="lazy" />
+            <span>{game.category}</span>
+            <strong>{game.shortTitle}</strong>
+          </a>
+        ))}
+      </div>
     </div>
     <div class="hero-copy">
       <div class="hero-copy-main">
