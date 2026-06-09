@@ -7,6 +7,7 @@ export type ExternalGame = {
   thumbnail: string;
   iframeUrl: string;
   accent: string;
+  accentClass: string;
 };
 
 const playGameAdBase = "https://playgamead.com";
@@ -22,6 +23,7 @@ export const externalGames = [
     thumbnail: placeholderThumbnail,
     iframeUrl: `${playGameAdBase}/games/4-color-card-game/`,
     accent: "#ff5e4d",
+    accentClass: "accent-coral",
   },
   {
     slug: "solitaire-classic",
@@ -32,6 +34,7 @@ export const externalGames = [
     thumbnail: placeholderThumbnail,
     iframeUrl: `${playGameAdBase}/games/solitaire-classic/`,
     accent: "#23cc88",
+    accentClass: "accent-green",
   },
   {
     slug: "mahjong-connect",
@@ -42,6 +45,7 @@ export const externalGames = [
     thumbnail: placeholderThumbnail,
     iframeUrl: `${playGameAdBase}/games/mahjong-connect/`,
     accent: "#20b8d8",
+    accentClass: "accent-sky",
   },
   {
     slug: "word-search",
@@ -52,6 +56,7 @@ export const externalGames = [
     thumbnail: placeholderThumbnail,
     iframeUrl: `${playGameAdBase}/games/word-search/`,
     accent: "#f6b63d",
+    accentClass: "accent-gold",
   },
   {
     slug: "bubble-shooter",
@@ -62,6 +67,7 @@ export const externalGames = [
     thumbnail: placeholderThumbnail,
     iframeUrl: `${playGameAdBase}/games/bubble-shooter/`,
     accent: "#8b5cf6",
+    accentClass: "accent-violet",
   },
   {
     slug: "block-puzzle",
@@ -72,6 +78,7 @@ export const externalGames = [
     thumbnail: placeholderThumbnail,
     iframeUrl: `${playGameAdBase}/games/block-puzzle/`,
     accent: "#f97316",
+    accentClass: "accent-orange",
   },
   {
     slug: "sudoku",
@@ -82,6 +89,7 @@ export const externalGames = [
     thumbnail: placeholderThumbnail,
     iframeUrl: `${playGameAdBase}/games/sudoku/`,
     accent: "#2563eb",
+    accentClass: "accent-blue",
   },
 ] satisfies ExternalGame[];
 

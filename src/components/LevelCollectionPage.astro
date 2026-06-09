@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCategoryAccentClass } from "@/data/accentClasses";
 import type { GameLevel } from "@/data/gameData";
 
 type LevelItem = {
@@ -40,8 +41,8 @@ const { title, description, eyebrow, heading, intro, levels, notes = [] } = Astr
     )}
 
     <div class="level-grid">
-      {levels.map(({ categoryName, categoryColor, level }) => (
-        <a class="level-card" href="/play" style={`--accent:${categoryColor}`}>
+      {levels.map(({ categoryName, level }) => (
+        <a class:list={["level-card", getCategoryAccentClass(categoryName)]} href="/play">
           <img src={level.thumbnail} alt={`${level.title} puzzle thumbnail`} loading="lazy" />
           <strong>{level.title}</strong>
           <span>{categoryName} - {level.gridSize} - {level.difficulty}</span>

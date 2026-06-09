@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { externalGames } from "@/data/externalGames";
+import { brandAccentClass } from "@/data/accentClasses";
 ---
 
 <BaseLayout title="Free Online Games" description="Play JigSolitaire and more free browser games in a clean static Astro game hub.">
@@ -11,7 +12,7 @@ import { externalGames } from "@/data/externalGames";
       <p>Pick a game, open it in the same clean iframe layout, and keep playing without downloads or accounts.</p>
     </header>
     <div class="site-game-grid">
-      <a class="site-game-card site-game-card-featured" href="/play" style="--accent:#ff5e4d">
+      <a class:list={["site-game-card", "site-game-card-featured", brandAccentClass]} href="/play">
         <img src="/level-thumbs/Animals/JigSolitaire_Animals1.webp" alt="JigSolitaire puzzle thumbnail" loading="lazy" />
         <div>
           <span>JigSolitaire</span>
@@ -21,7 +22,7 @@ import { externalGames } from "@/data/externalGames";
         </div>
       </a>
       {externalGames.map((game) => (
-        <a class="site-game-card" href={`/games/${game.slug}`} style={`--accent:${game.accent}`}>
+        <a class:list={["site-game-card", game.accentClass]} href={`/games/${game.slug}`}>
           <img src={game.thumbnail} alt={`${game.title} thumbnail`} loading="lazy" />
           <div>
             <span>{game.category}</span>

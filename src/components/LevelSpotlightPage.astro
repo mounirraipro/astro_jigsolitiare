@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCategoryAccentClass } from "@/data/accentClasses";
 import type { GameCategory, GameLevel } from "@/data/gameData";
 
 type Props = {
@@ -13,6 +14,7 @@ type Props = {
 };
 
 const { title, description, heading, intro, category, level, related } = Astro.props;
+const accentClass = getCategoryAccentClass(category.name);
 ---
 
 <BaseLayout title={title} description={description}>
@@ -23,7 +25,7 @@ const { title, description, heading, intro, category, level, related } = Astro.p
       <p>{intro}</p>
     </header>
 
-    <div class="level-hero-card" style={`--accent:${category.color}`}>
+    <div class:list={["level-hero-card", accentClass]}>
       <img src={level.image} alt={`${heading} puzzle preview`} />
       <div>
         <span>{level.gridSize} - {level.difficulty}</span>
@@ -38,7 +40,7 @@ const { title, description, heading, intro, category, level, related } = Astro.p
     </div>
     <div class="level-grid">
       {related.map((item) => (
-        <a class="level-card" href="/play" style={`--accent:${category.color}`}>
+        <a class:list={["level-card", accentClass]} href="/play">
           <img src={item.thumbnail} alt={`${item.title} puzzle thumbnail`} loading="lazy" />
           <strong>{item.title}</strong>
           <span>{item.gridSize} - {item.difficulty}</span>

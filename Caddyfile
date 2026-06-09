@@ -1,4 +1,7 @@
 :{$PORT:80} {
+	@www header_regexp host Host ^www\.(.+)$
+	redir @www https://{re.host.1}{uri} 308
+
 	root * /srv
 	encode gzip zstd
 	try_files {path} {path}/index.html {path}.html

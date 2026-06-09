@@ -493,8 +493,59 @@
     return `/levels/${cat.name}/${imgFile}`;
   }
 
+  function optimizedImgUrl(cat, imgFile) {
+    return `/levels-webp/${cat.name}/${imgFile.replace(/\.png$/i, '.webp')}`;
+  }
+
   function thumbUrl(cat, imgFile) {
     return `/level-thumbs/${cat.name}/${imgFile}`;
+  }
+
+  const fullImagePreloadCache = new Map();
+
+  function loadImageUrl(src, fallbackColor, fallbackLabel, rejectOnError = false) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.decoding = 'async';
+      img.onload = async () => {
+        if (img.decode) {
+          try { await img.decode(); } catch {}
+        }
+        resolve(img);
+      };
+      img.onerror = () => {
+        if (rejectOnError) {
+          reject(new Error(`Failed to load "${src}"`));
+          return;
+        }
+
+        const c = document.createElement('canvas');
+        c.width = 400; c.height = 400;
+        const cx2 = c.getContext('2d');
+        cx2.fillStyle = fallbackColor;
+        cx2.fillRect(0, 0, 400, 400);
+        cx2.fillStyle = '#fff';
+        cx2.font = 'bold 18px Inter, sans-serif';
+        cx2.textAlign = 'center';
+        cx2.textBaseline = 'middle';
+        cx2.fillText(fallbackLabel, 200, 200);
+        resolve(c);
+      };
+      img.src = src;
+    });
+  }
+
+  function preloadFullImage(cat, imgFile) {
+    const cacheKey = `${cat.name}/${imgFile}`;
+    if (!fullImagePreloadCache.has(cacheKey)) {
+      const optimized = optimizedImgUrl(cat, imgFile);
+      const original = imgUrl(cat, imgFile);
+      const promise = loadImageUrl(optimized, cat.color, imgFile, true)
+        .catch(() => loadImageUrl(original, cat.color, imgFile));
+      fullImagePreloadCache.set(cacheKey, promise);
+    }
+    return fullImagePreloadCache.get(cacheKey);
   }
 
   const lazyImageObserver = 'IntersectionObserver' in window
@@ -546,26 +597,7 @@
   }
 
   function loadImage(cat, imgFile) {
-    return new Promise((resolve) => {
-      const img = new Image();
-      img.crossOrigin = 'anonymous';
-      img.onload = () => resolve(img);
-      img.onerror = () => {
-        // Fallback: colored canvas
-        const c = document.createElement('canvas');
-        c.width = 400; c.height = 400;
-        const cx2 = c.getContext('2d');
-        cx2.fillStyle = cat.color;
-        cx2.fillRect(0, 0, 400, 400);
-        cx2.fillStyle = '#fff';
-        cx2.font = 'bold 18px Inter, sans-serif';
-        cx2.textAlign = 'center';
-        cx2.textBaseline = 'middle';
-        cx2.fillText(imgFile, 200, 200);
-        resolve(c);
-      };
-      img.src = imgUrl(cat, imgFile);
-    });
+    return preloadFullImage(cat, imgFile);
   }
 
   // ==========================================
@@ -645,10 +677,14 @@
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
           </svg>
-          <span style="color: var(--white); font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;">${isTeaser ? 'Next Puzzle' : 'Locked'}</span>
+          <span class="locked-label">${isTeaser ? 'Next Puzzle' : 'Locked'}</span>
         `;
         card.appendChild(overlay);
       } else {
+        const warmImage = () => preloadFullImage(cat, level.img);
+        card.addEventListener('mouseenter', warmImage, { once: true });
+        card.addEventListener('focusin', warmImage, { once: true });
+        card.addEventListener('touchstart', warmImage, { once: true, passive: true });
         card.addEventListener('click', () => {
           sfx.click();
           currentLevelIndex = index;

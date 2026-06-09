@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCategoryAccentClass } from "@/data/accentClasses";
 import { getCategoryBySlug } from "@/data/gameData";
 
 type Props = {
@@ -9,6 +10,7 @@ type Props = {
 const { slug } = Astro.props;
 const category = getCategoryBySlug(slug);
 if (!category) throw new Error(`Missing category: ${slug}`);
+const accentClass = getCategoryAccentClass(category.name);
 ---
 
 <BaseLayout title={`${category.name} Puzzles`} description={category.description}>
@@ -20,7 +22,7 @@ if (!category) throw new Error(`Missing category: ${slug}`);
     </header>
     <div class="level-grid">
       {category.levels.map((level) => (
-        <a class="level-card" href="/play">
+        <a class:list={["level-card", accentClass]} href="/play">
           <img src={level.thumbnail} alt={`${level.title} puzzle thumbnail`} loading="lazy" />
           <strong>{level.title}</strong>
           <span>{level.gridSize} - {level.difficulty}</span>

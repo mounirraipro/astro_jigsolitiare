@@ -4,13 +4,35 @@ import { articles } from "@/data/articles";
 import { categories } from "@/data/gameData";
 import { externalGames } from "@/data/externalGames";
 import { siteConfig } from "@/data/siteConfig";
+import { brandAccentClass, getCategoryAccentClass } from "@/data/accentClasses";
 
 const recentPosts = articles.slice(0, 3);
 const featuredCategories = categories.map((category) => ({
   ...category,
   preview: category.levels[0]?.thumbnail ?? category.levels[0]?.image,
 }));
-const sideGames = externalGames.slice(0, 4);
+const homeBentoGames = [
+  {
+    href: "/play",
+    title: "JigSolitaire Online",
+    shortTitle: "JigSolitaire",
+    category: "Now playing",
+    thumbnail: "/level-thumbs/Animals/JigSolitaire_Animals1.webp",
+    accent: "#ff5e4d",
+    accentClass: brandAccentClass,
+  },
+  ...externalGames.map((game) => ({
+    href: `/games/${game.slug}`,
+    title: game.title,
+    shortTitle: game.shortTitle,
+    category: game.category,
+    thumbnail: game.thumbnail,
+    accent: game.accent,
+    accentClass: game.accentClass,
+  })),
+].slice(0, 8);
+const homeBentoLeft = homeBentoGames.slice(0, 4);
+const homeBentoRight = homeBentoGames.slice(4, 8);
 
 const faqItems = [
   ["What is JigSolitaire?", "JigSolitaire is a free browser puzzle game where you swap scrambled image tiles until the full picture is restored. Correct adjacent tiles merge into groups as you solve."],
@@ -23,24 +45,28 @@ const faqItems = [
 <BaseLayout title={siteConfig.name} description={siteConfig.description}>
   <section class="hero-play">
     <div class="home-game-lobby">
-      <div class="home-game-rail home-game-rail-left" aria-label="More games">
-        {sideGames.slice(0, 2).map((game) => (
-          <a class="mini-game-card" href={`/games/${game.slug}`} style={`--accent:${game.accent}`}>
+      <div class="game-bento-grid game-bento-grid-side" aria-label="Games you can play">
+        {homeBentoLeft.map((game, index) => (
+          <a class:list={["game-bento-card", game.accentClass, { "game-bento-card-featured": index === 0 }]} href={game.href}>
             <img src={game.thumbnail} alt={`${game.title} thumbnail`} loading="lazy" />
-            <span>{game.category}</span>
-            <strong>{game.shortTitle}</strong>
+            <div>
+              <span>{game.category}</span>
+              <strong>{game.shortTitle}</strong>
+            </div>
           </a>
         ))}
       </div>
       <div class="hero-game">
         <iframe src="/game/index.html" title="Play JigSolitaire" loading="eager"></iframe>
       </div>
-      <div class="home-game-rail home-game-rail-right" aria-label="More games">
-        {sideGames.slice(2, 4).map((game) => (
-          <a class="mini-game-card" href={`/games/${game.slug}`} style={`--accent:${game.accent}`}>
+      <div class="game-bento-grid game-bento-grid-side" aria-label="More games">
+        {homeBentoRight.map((game, index) => (
+          <a class:list={["game-bento-card", game.accentClass, { "game-bento-card-featured": index === 0 }]} href={game.href}>
             <img src={game.thumbnail} alt={`${game.title} thumbnail`} loading="lazy" />
-            <span>{game.category}</span>
-            <strong>{game.shortTitle}</strong>
+            <div>
+              <span>{game.category}</span>
+              <strong>{game.shortTitle}</strong>
+            </div>
           </a>
         ))}
       </div>
@@ -77,7 +103,7 @@ const faqItems = [
       <p>Pick a style, then let color and shape guide the solve.</p>
     </div>
     <div class="world-showcase">
-      <a class="world-feature" href="/play" style={`--accent:${featuredCategories[0].color}`}>
+      <a class:list={["world-feature", getCategoryAccentClass(featuredCategories[0].name)]} href="/play">
         <img src={featuredCategories[0].preview} alt={`${featuredCategories[0].name} JigSolitaire puzzle preview`} loading="lazy" />
         <div>
           <span>{featuredCategories[0].name}</span>
@@ -87,7 +113,7 @@ const faqItems = [
       </a>
       <div class="world-stack">
         {featuredCategories.slice(1).map((category) => (
-          <a class="world-card" href="/play" style={`--accent:${category.color}`}>
+          <a class:list={["world-card", getCategoryAccentClass(category.name)]} href="/play">
             <img src={category.preview} alt={`${category.name} JigSolitaire puzzle preview`} loading="lazy" />
             <div>
               <span>{category.name}</span>
@@ -131,8 +157,8 @@ const faqItems = [
           <small>{recentPosts[0].readTime}</small>
         </a>
         <div class="article-rail">
-          {recentPosts.slice(1).map((post, index) => (
-            <a class="editorial-card editorial-card-row" href={`/blog/${post.slug}`} style={`--i:${index + 2}`}>
+          {recentPosts.slice(1).map((post) => (
+            <a class="editorial-card editorial-card-row" href={`/blog/${post.slug}`}>
               <span>{post.category}</span>
               <h3>{post.title}</h3>
               <small>{post.readTime}</small>

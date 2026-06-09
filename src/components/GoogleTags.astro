@@ -61,10 +61,10 @@ const scriptType = usePartytown ? "text/partytown" : "text/javascript";
   placement === "body" && gtmId && (
     <noscript>
       <iframe
+        class="gtm-noscript-frame"
         src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
         height="0"
         width="0"
-        style="display:none;visibility:hidden"
       ></iframe>
     </noscript>
   )

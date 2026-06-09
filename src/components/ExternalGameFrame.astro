@@ -1,13 +1,46 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { externalGames, type ExternalGame } from "@/data/externalGames";
+import { brandAccentClass } from "@/data/accentClasses";
 
 type Props = {
   game: ExternalGame;
 };
 
 const { game } = Astro.props;
-const relatedGames = externalGames.filter((item) => item.slug !== game.slug).slice(0, 4);
+const bentoGames = [
+  {
+    href: `/games/${game.slug}`,
+    title: game.title,
+    shortTitle: game.shortTitle,
+    category: "Now playing",
+    thumbnail: game.thumbnail,
+    accent: game.accent,
+    accentClass: game.accentClass,
+  },
+  {
+    href: "/play",
+    title: "JigSolitaire Online",
+    shortTitle: "JigSolitaire",
+    category: "Featured",
+    thumbnail: "/level-thumbs/Animals/JigSolitaire_Animals1.webp",
+    accent: "#ff5e4d",
+    accentClass: brandAccentClass,
+  },
+  ...externalGames
+    .filter((item) => item.slug !== game.slug)
+    .map((item) => ({
+      href: `/games/${item.slug}`,
+      title: item.title,
+      shortTitle: item.shortTitle,
+      category: item.category,
+      thumbnail: item.thumbnail,
+      accent: item.accent,
+      accentClass: item.accentClass,
+    })),
+].slice(0, 8);
+const bentoGamesLeft = bentoGames.slice(0, 4);
+const bentoGamesRight = bentoGames.slice(4, 8);
 ---
 
 <BaseLayout title={game.title} description={game.description} seo={{ path: `/games/${game.slug}` }}>
@@ -19,31 +52,33 @@ const relatedGames = externalGames.filter((item) => item.slug !== game.slug).sli
     </header>
 
     <div class="embedded-game-layout">
-      <aside class="embedded-game-rail" aria-label="More games">
-        <p>More games</p>
-        {relatedGames.slice(0, 2).map((item) => (
-          <a href={`/games/${item.slug}`} style={`--accent:${item.accent}`}>
+      <div class="game-bento-grid game-bento-grid-side" aria-label="More games">
+        {bentoGamesLeft.map((item, index) => (
+          <a class:list={["game-bento-card", item.accentClass, { "game-bento-card-featured": index === 0 }]} href={item.href}>
             <img src={item.thumbnail} alt={`${item.title} thumbnail`} loading="lazy" />
-            <span>{item.shortTitle}</span>
-            <small>{item.category}</small>
+            <div>
+              <span>{item.category}</span>
+              <strong>{item.shortTitle}</strong>
+            </div>
           </a>
         ))}
-      </aside>
+      </div>
 
       <div class="embedded-game-frame">
         <iframe src={game.iframeUrl} title={game.title} loading="eager" allow="autoplay; fullscreen *" allowfullscreen></iframe>
       </div>
 
-      <aside class="embedded-game-rail" aria-label="Try next">
-        <p>Try next</p>
-        {relatedGames.slice(2, 4).map((item) => (
-          <a href={`/games/${item.slug}`} style={`--accent:${item.accent}`}>
+      <div class="game-bento-grid game-bento-grid-side" aria-label="Try next">
+        {bentoGamesRight.map((item, index) => (
+          <a class:list={["game-bento-card", item.accentClass, { "game-bento-card-featured": index === 0 }]} href={item.href}>
             <img src={item.thumbnail} alt={`${item.title} thumbnail`} loading="lazy" />
-            <span>{item.shortTitle}</span>
-            <small>{item.category}</small>
+            <div>
+              <span>{item.category}</span>
+              <strong>{item.shortTitle}</strong>
+            </div>
           </a>
         ))}
-      </aside>
+      </div>
     </div>
   </section>
 </BaseLayout>

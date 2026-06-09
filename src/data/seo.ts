@@ -57,14 +57,14 @@ const routeFallbackSeo = (route: SiteRoute): SeoPage => ({
 const pageOverrides: Partial<Record<string, Partial<SeoPage>>> = {
   "/": {
     title: siteConfig.name,
-    seoTitle: `${siteConfig.name} Online - Free Jigsaw Puzzle Game`,
+    seoTitle: `Play ${siteConfig.name} Online - Free Puzzle Tiles Game`,
     description: siteConfig.description,
     priority: 1,
     changeFrequency: "weekly",
   },
   "/play": {
-    seoTitle: `Play ${siteConfig.name} Online Free`,
-    description: `Play ${siteConfig.name}, the free browser puzzle game with tile swapping, merged groups, and image restoration.`,
+    seoTitle: `Play ${siteConfig.name} Online - Free Puzzle Tiles`,
+    description: `Play ${siteConfig.name}, the free open browser puzzle game with tile swapping, merged groups, and image restoration.`,
     priority: 0.9,
     changeFrequency: "weekly",
   },

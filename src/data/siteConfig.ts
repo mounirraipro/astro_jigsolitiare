@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "JigSolitaire",
   tagline: "Swap tiles, merge groups, and restore beautiful puzzle images.",
   description:
-    "Play JigSolitaire online free, a browser puzzle game that blends jigsaw image solving with solitaire-style tile strategy.",
+    "Play JigSolitaire online free, an open browser puzzle game where you swap image tiles and solve jigsaw-style levels.",
   gameGenre: "tile-swap puzzle game",
   audience: "puzzle players, families, students, adults, and casual brain-game fans",
   contactEmail: "support@jigsolitaire.online",
@@ -14,7 +14,7 @@ export const siteConfig = {
   socialHandle: "",
   publisherName: "JigSolitaire",
   sameAs: [] as string[],
-  emitMetaKeywords: false,
+  emitMetaKeywords: true,
   topicKeywords: [
     "JigSolitaire",
     "jigsaw puzzle online",

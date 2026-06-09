@@ -49,6 +49,9 @@ const footerLinkClass = "text-[0.92rem] font-medium text-muted no-underline tran
     <meta name="application-name" content={siteConfig.name} />
     <meta name="generator" content="Astro" />
     {siteConfig.emitMetaKeywords && pageSeo.keywords?.length && <meta name="keywords" content={[...new Set(pageSeo.keywords)].join(", ")} />}
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/favicon.ico" />
     <link rel="canonical" href={canonicalUrl} />
     <meta property="og:site_name" content={siteConfig.name} />
     <meta property="og:type" content={pageSeo.schemaType === "Article" || pageSeo.schemaType === "Blog" ? "article" : "website"} />
@@ -105,7 +108,7 @@ const footerLinkClass = "text-[0.92rem] font-medium text-muted no-underline tran
           </div>
           <nav class="menu-link-grid" aria-label="Full menu">
             {menuLinks.map((route, index) => (
-              <a href={route.path} style={`--i:${index}`} aria-current={isActive(route.path) ? "page" : undefined}>
+              <a href={route.path} aria-current={isActive(route.path) ? "page" : undefined}>
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <strong>{route.title}</strong>
               </a>
