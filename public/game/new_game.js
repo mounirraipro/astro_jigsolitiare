@@ -621,19 +621,30 @@ const ImageSplitter = {
     // ── Step 1: contain-scale to fit inside the available area ──────────
     // "contain" = scale so the image is as large as possible while still
     // fitting entirely within (maxBoardW × maxBoardH).  Never upscale past 1×.
-    const scaleToFitW = maxBoardW / naturalW;
-    const scaleToFitH = maxBoardH / naturalH;
-    const containScale = Math.min(scaleToFitW, scaleToFitH); // allow upscale to fill available canvas area
+    const targetRatio = cols / rows;
+    const naturalRatio = naturalW / naturalH;
 
-    let boardW = naturalW * containScale;
-    let boardH = naturalH * containScale;
+    let sourceX = 0;
+    let sourceY = 0;
+    let sourceW = naturalW;
+    let sourceH = naturalH;
+
+    // Crop to the grid ratio so portrait photos do not create tiny narrow boards.
+    if (naturalRatio > targetRatio) {
+      sourceW = naturalH * targetRatio;
+      sourceX = (naturalW - sourceW) / 2;
+    } else if (naturalRatio < targetRatio) {
+      sourceH = naturalW / targetRatio;
+      sourceY = (naturalH - sourceH) / 2;
+    }
 
     // ── Step 2: snap to exact tile multiples (floor, never ceil) ────────
     // Flooring instead of rounding guarantees we never exceed maxBoardW/H.
-    const tileW = Math.floor(boardW / cols);
-    const tileH = Math.floor(boardH / rows);
-    boardW = tileW * cols;
-    boardH = tileH * rows;
+    const tileSize = Math.max(1, Math.floor(Math.min(maxBoardW / cols, maxBoardH / rows)));
+    const tileW = tileSize;
+    const tileH = tileSize;
+    const boardW = tileW * cols;
+    const boardH = tileH * rows;
 
     // ── Step 3: map board pixels back to natural-image coordinates ───────
     // The board represents the full image scaled to (boardW × boardH).
@@ -641,8 +652,8 @@ const ImageSplitter = {
     //   srcX = (col  * tileW) / boardW * naturalW
     //   srcW =         tileW  / boardW * naturalW
     // (same formula for Y/H)
-    const scaleBackX = naturalW / boardW;
-    const scaleBackY = naturalH / boardH;
+    const sourceTileW = sourceW / cols;
+    const sourceTileH = sourceH / rows;
 
     const tiles = [];
 
@@ -651,10 +662,10 @@ const ImageSplitter = {
         const tileIndex = r * cols + c;
 
         // Source rect in natural image pixels
-        const srcX = c * tileW * scaleBackX;
-        const srcY = r * tileH * scaleBackY;
-        const srcW = tileW * scaleBackX;
-        const srcH = tileH * scaleBackY;
+        const srcX = sourceX + c * sourceTileW;
+        const srcY = sourceY + r * sourceTileH;
+        const srcW = sourceTileW;
+        const srcH = sourceTileH;
 
         // CSS background-image helpers
         // bgSize: the full image scaled to board size
@@ -678,7 +689,17 @@ const ImageSplitter = {
       }
     }
 
-    return { boardW, boardH, tileW, tileH, tiles };
+    return {
+      boardW,
+      boardH,
+      tileW,
+      tileH,
+      tiles,
+      sourceX,
+      sourceY,
+      sourceW,
+      sourceH,
+    };
   },
 
   /**

@@ -311,6 +311,7 @@
   // PROGRESS (localStorage)
   // ==========================================
   const STORAGE_KEY = 'jigsolitaire_progress_v6';
+  const RECORDS_KEY = 'jigsolitaire_records_v1';
 
   function getProgress() {
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
@@ -339,6 +340,41 @@
 
   function isLevelSolved(levelId, progress = getProgress()) {
     return !!progress[levelId];
+  }
+
+  function getRecords() {
+    try { return JSON.parse(localStorage.getItem(RECORDS_KEY)) || {}; }
+    catch { return {}; }
+  }
+
+  function saveRecords(records) {
+    localStorage.setItem(RECORDS_KEY, JSON.stringify(records));
+  }
+
+  function getLevelRecord(levelId) {
+    return getRecords()[levelId] || null;
+  }
+
+  function saveLevelRecord(levelId, result) {
+    const records = getRecords();
+    const previous = records[levelId] || null;
+    const bestMoves = previous?.bestMoves ? Math.min(previous.bestMoves, result.moves) : result.moves;
+    const bestSeconds = previous?.bestSeconds ? Math.min(previous.bestSeconds, result.seconds) : result.seconds;
+
+    records[levelId] = {
+      bestMoves,
+      bestSeconds,
+      lastMoves: result.moves,
+      lastSeconds: result.seconds,
+      solvedAt: new Date().toISOString(),
+    };
+    saveRecords(records);
+
+    return {
+      record: records[levelId],
+      isNewBestMoves: !previous || result.moves < (previous.bestMoves || Infinity),
+      isNewBestTime: !previous || result.seconds < (previous.bestSeconds || Infinity),
+    };
   }
 
   // ==========================================
@@ -379,6 +415,11 @@
   const gameCanvas       = document.getElementById('game-canvas');
   const winPreviewImage  = document.getElementById('win-preview-image');
   const timerValueEl     = document.getElementById('timer-value');
+  const gameLevelLabel   = document.getElementById('game-level-label');
+  const gameCategoryLabel = document.getElementById('game-category-label');
+  const gameMovesValue   = document.getElementById('game-moves-value');
+  const gameBestMovesValue = document.getElementById('game-best-moves-value');
+  const gameBestTimeValue = document.getElementById('game-best-time-value');
 
   const ctx  = gameCanvas.getContext('2d');
 
@@ -484,6 +525,55 @@
     [startScreen, collectionScreen, puzzleScreen, gameScreen, winScreen]
       .forEach(s => s.classList.remove('active'));
     screen.classList.add('active');
+    document.body.dataset.screen = screen.id || '';
+  }
+
+  function getBoardAvailableSize() {
+    const bp = document.querySelector('.game-board-area');
+    const rect = bp.getBoundingClientRect();
+    const style = window.getComputedStyle(bp);
+    const horizontalPadding = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
+    const verticalPadding = parseFloat(style.paddingTop) + parseFloat(style.paddingBottom);
+
+    return {
+      width: Math.max(1, rect.width - horizontalPadding),
+      height: Math.max(1, rect.height - verticalPadding),
+    };
+  }
+
+  function waitForLayout() {
+    return new Promise(resolve => {
+      requestAnimationFrame(() => requestAnimationFrame(resolve));
+    });
+  }
+
+  function setCanvasSize(width, height) {
+    gameCanvas.width = width;
+    gameCanvas.height = height;
+    gameCanvas.style.width = `${width}px`;
+    gameCanvas.style.height = `${height}px`;
+  }
+
+  function formatTime(secondsValue) {
+    return secondsValue < 60
+      ? `${secondsValue}s`
+      : `${Math.floor(secondsValue / 60)}m${(secondsValue % 60).toString().padStart(2, '0')}s`;
+  }
+
+  function formatTimeLabel(secondsValue) {
+    return secondsValue < 60
+      ? `${secondsValue} SECONDS`
+      : `${Math.floor(secondsValue / 60)}M ${secondsValue % 60}S`;
+  }
+
+  function updateGameInfoPanel() {
+    if (!currentLevel) return;
+    const record = getLevelRecord(currentLevel.id);
+    if (gameLevelLabel) gameLevelLabel.textContent = String(currentLevelIndex + 1);
+    if (gameCategoryLabel && currentCategory) gameCategoryLabel.textContent = currentCategory.name;
+    if (gameMovesValue) gameMovesValue.textContent = String(moves);
+    if (gameBestMovesValue) gameBestMovesValue.textContent = record ? String(record.bestMoves) : '--';
+    if (gameBestTimeValue) gameBestTimeValue.textContent = record ? formatTime(record.bestSeconds) : 'No record';
   }
 
   // ==========================================
@@ -888,11 +978,11 @@
     showScreen(gameScreen);
     confetti.stop();
     updateTimerEl();
+    updateGameInfoPanel();
+    await waitForLayout();
 
     // Size board to available area
-    const bp = document.querySelector('.game-board-area');
-    const aW = bp.clientWidth - 24;
-    const aH = bp.clientHeight - 24;
+    const { width: aW, height: aH } = getBoardAvailableSize();
 
     // Loading placeholder
     const ratio = cols / rows;
@@ -902,8 +992,7 @@
     bWtmp = Math.floor(bWtmp / cols) * cols;
     bHtmp = Math.floor(bHtmp / rows) * rows;
 
-    gameCanvas.width = bWtmp;
-    gameCanvas.height = bHtmp;
+    setCanvasSize(bWtmp, bHtmp);
     ctx.fillStyle = '#f2f2f2';
     ctx.fillRect(0, 0, bWtmp, bHtmp);
     ctx.fillStyle = '#9a9a9a';
@@ -921,8 +1010,7 @@
     const bW = splitResult.boardW;
     const bH = splitResult.boardH;
 
-    gameCanvas.width = bW;
-    gameCanvas.height = bH;
+    setCanvasSize(bW, bH);
 
     // Build initial (solved) state
     state = new PuzzleState(cols, rows);
@@ -1005,6 +1093,7 @@
         if (moved) {
           moveHistory.push(snapshot);
           moves++;
+          updateGameInfoPanel();
           sfx.drop();
           mergedGroups = GroupEngine.computeGroups(state);
           dc.updateGroups(mergedGroups);
@@ -1029,7 +1118,11 @@
   // ==========================================
   function _drawFullImage(bW, bH) {
     ctx.clearRect(0, 0, bW, bH);
-    ctx.drawImage(sourceImage, 0, 0, bW, bH);
+    const sx = splitResult?.sourceX ?? 0;
+    const sy = splitResult?.sourceY ?? 0;
+    const sw = splitResult?.sourceW ?? (sourceImage.naturalWidth || sourceImage.width);
+    const sh = splitResult?.sourceH ?? (sourceImage.naturalHeight || sourceImage.height);
+    ctx.drawImage(sourceImage, sx, sy, sw, sh, 0, 0, bW, bH);
     ctx.save();
     ctx.strokeStyle = 'rgba(255,255,255,0.3)';
     ctx.lineWidth = 1;
@@ -1122,6 +1215,28 @@
     ctx.restore();
   }
 
+  function getSolvedPreviewSrc() {
+    if (!sourceImage || !splitResult) return sourceImage?.src || '';
+    const preview = document.createElement('canvas');
+    const maxSize = 960;
+    const ratio = splitResult.sourceW / splitResult.sourceH;
+    preview.width = ratio >= 1 ? maxSize : Math.round(maxSize * ratio);
+    preview.height = ratio >= 1 ? Math.round(maxSize / ratio) : maxSize;
+    const previewCtx = preview.getContext('2d');
+    previewCtx.drawImage(
+      sourceImage,
+      splitResult.sourceX,
+      splitResult.sourceY,
+      splitResult.sourceW,
+      splitResult.sourceH,
+      0,
+      0,
+      preview.width,
+      preview.height,
+    );
+    return preview.toDataURL('image/jpeg', 0.92);
+  }
+
   // ==========================================
   // GAME ACTIONS: UNDO / SHOW / SURRENDER
   // ==========================================
@@ -1178,9 +1293,7 @@
   function stopTimer() { clearInterval(timerInterval); }
 
   function updateTimerEl() {
-    timerValueEl.textContent = seconds < 60
-      ? `${seconds}s`
-      : `${Math.floor(seconds / 60)}m${(seconds % 60).toString().padStart(2, '0')}s`;
+    timerValueEl.textContent = formatTime(seconds);
   }
 
   // ==========================================
@@ -1193,15 +1306,23 @@
 
     const finalMoves = moves;
     const finalSeconds = seconds;
+    const recordResult = saveLevelRecord(currentLevel.id, { moves: finalMoves, seconds: finalSeconds });
+    const record = recordResult.record;
 
     // Populate win screen stats
-    document.getElementById('win-time-label').textContent =
-      finalSeconds < 60 ? `${finalSeconds} SECONDS` : `${Math.floor(finalSeconds / 60)}M ${finalSeconds % 60}S`;
+    document.getElementById('win-title').textContent =
+      recordResult.isNewBestMoves || recordResult.isNewBestTime ? 'New best run.' : 'Clean solve.';
+    document.getElementById('win-subtitle').textContent =
+      `${currentCategory.name} level ${currentLevelIndex + 1} restored.`;
+    document.getElementById('win-time-label').textContent = formatTimeLabel(finalSeconds);
     document.getElementById('win-moves-label').textContent = `${finalMoves} MOVES`;
+    document.getElementById('win-best-moves-label').textContent = `${record.bestMoves}`;
+    document.getElementById('win-best-time-label').textContent = formatTime(record.bestSeconds);
+    updateGameInfoPanel();
 
-    // Set the image src to the raw source map natively
+    // Use the same cropped source area as the playable puzzle.
     if (sourceImage) {
-      winPreviewImage.src = sourceImage.src;
+      winPreviewImage.src = getSolvedPreviewSrc();
     }
 
     // Next level wiring
@@ -1250,13 +1371,11 @@
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
       if (currentLevel && gameScreen.classList.contains('active') && sourceImage && state) {
-        const bp = document.querySelector('.game-board-area');
-        const aW = bp.clientWidth - 24, aH = bp.clientHeight - 24;
+        const { width: aW, height: aH } = getBoardAvailableSize();
         splitResult = ImageSplitter.split(sourceImage, cols, rows, aW, aH);
         tileW = splitResult.tileW;
         tileH = splitResult.tileH;
-        gameCanvas.width = splitResult.boardW;
-        gameCanvas.height = splitResult.boardH;
+        setCanvasSize(splitResult.boardW, splitResult.boardH);
         if (dc) { dc.cellSize.tileW = tileW; dc.cellSize.tileH = tileH; }
         drawBoard();
       }
