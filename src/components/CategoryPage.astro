@@ -16,6 +16,8 @@ const seoTitle = isLevelPage ? `${category.name} JigSolitaire Levels` : `${categ
 const seoDescription = isLevelPage
   ? `Browse ${category.name} JigSolitaire levels online, compare visual puzzle difficulty, and play browser tile-swap jigsaw solitaire challenges.`
   : category.description;
+const pageKind = isLevelPage ? "levels" : "puzzles";
+const difficultyNames = Array.from(new Set(category.levels.map((level) => level.difficulty))).join(", ");
 ---
 
 <BaseLayout title={seoTitle} description={seoDescription}>
@@ -34,5 +36,25 @@ const seoDescription = isLevelPage
         </a>
       ))}
     </div>
+
+    <section class="seo-copy-section" aria-labelledby={`${category.slug}-${pageKind}-guide`}>
+      <div class="section-head">
+        <h2 id={`${category.slug}-${pageKind}-guide`}>How these {pageKind} play.</h2>
+      </div>
+      <div class="seo-copy-grid">
+        <article class="seo-copy-card seo-copy-wide">
+          <h3>{category.name} JigSolitaire overview</h3>
+          <p>{category.longDescription} This collection includes {category.levels.length} browser puzzles that use clean grid-based tile swapping rather than loose jigsaw pieces. The category is useful for players who want a focused visual theme, consistent controls, and enough level variety to practice pattern recognition across several images.</p>
+        </article>
+        <article class="seo-copy-card">
+          <h3>Difficulty range</h3>
+          <p>The {category.name.toLowerCase()} collection includes {difficultyNames} levels. Early puzzles give clear visual anchors and smaller grids, while later puzzles ask for stronger memory, better tile organization, and more patience. Use the preview image at the start of each round to identify edges, high-contrast regions, and subject details before the board is shuffled.</p>
+        </article>
+        <article class="seo-copy-card">
+          <h3>Solving approach</h3>
+          <p>Start by placing obvious corners and strong color zones, then build small merged groups from tiles that clearly belong together. In {category.name.toLowerCase()} puzzles, repeated textures can make guessing tempting, but deliberate comparison works better. Read the image in regions first, then refine exact placement as neighboring tiles begin to lock into groups.</p>
+        </article>
+      </div>
+    </section>
   </section>
 </BaseLayout>

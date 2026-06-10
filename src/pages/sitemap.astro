@@ -62,7 +62,8 @@ const sitemapSections = [
   <section class="mx-auto w-[min(1080px,calc(100%-48px))] py-12 max-sm:w-[calc(100%-28px)]">
     <p class="mb-6 text-[0.78rem] font-black uppercase tracking-[0.08em] text-game-green after:mt-3.5 after:block after:h-px after:w-10 after:bg-current after:content-['']">Navigation</p>
     <h1 class="mb-5 max-w-[720px] text-[clamp(2.4rem,6vw,4.4rem)] font-black leading-[0.98] tracking-normal text-ink">Sitemap</h1>
-    <p class="max-w-[720px] text-lg leading-8 text-muted">Browse every public page, game, category, level, and article available on {siteConfig.name}.</p>
+    <p class="max-w-[760px] text-lg leading-8 text-muted">Browse every public page, game, category, level, and article available on {siteConfig.name}. This HTML sitemap is designed for visitors who want a direct overview of the site structure, while the XML sitemap gives search engines a clean machine-readable list of indexable URLs.</p>
+    <p class="mt-4 max-w-[760px] text-base leading-7 text-muted">Use the sections below to jump to the playable JigSolitaire page, category collections, individual level pages, supporting guides, legal pages, and long-form puzzle articles. Each link points to a canonical trailing-slash route so crawlers and users land on the final page version without unnecessary redirects.</p>
 
     <div class="mt-10 grid gap-5">
       {
@@ -87,5 +88,10 @@ const sitemapSections = [
         ))
       }
     </div>
+
+    <section class="mt-10 rounded-[28px] border border-white/80 bg-white/78 p-6 shadow-[0_18px_50px_rgba(31,44,71,0.08)] backdrop-blur">
+      <h2 class="mb-3 text-2xl font-black text-ink">How this sitemap is organized</h2>
+      <p class="max-w-[860px] text-base leading-7 text-muted">Main pages cover core navigation such as Play, Games, Categories, Blog, FAQ, and Contact. Puzzle category and level pages help players browse JigSolitaire content by theme and difficulty. Game pages include the external playable iframe plus explanatory content, and blog articles provide deeper guides for puzzle strategy, screen time, focus, and family play.</p>
+    </section>
   </section>
 </BaseLayout>

@@ -171,6 +171,14 @@ export const pageContent = {
         heading: "Frequently Asked",
         body: "Before reaching out, you may find your answer in the FAQ page, where we collect common gameplay, compatibility, and account-free usage questions.",
       },
+      {
+        heading: "Support Scope",
+        body: "We can help with gameplay issues, broken pages, loading problems, accessibility feedback, privacy questions, and reports about confusing content. If you are contacting us about a specific puzzle, include the category name and level title so we can reproduce the issue faster.",
+      },
+      {
+        heading: "Advertising and Partnership Messages",
+        body: "For advertising, publishing, or partnership questions, include the organization name, website, proposal summary, and the page or placement you are asking about. We review these messages carefully because the site is designed to stay family-friendly, useful, and aligned with the puzzle experience.",
+      },
     ],
   },
   "cookie-policy": {

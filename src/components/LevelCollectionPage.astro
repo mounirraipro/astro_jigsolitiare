@@ -20,6 +20,8 @@ type Props = {
 };
 
 const { title, description, eyebrow, heading, intro, levels, notes = [] } = Astro.props;
+const categoryNames = Array.from(new Set(levels.map(({ categoryName }) => categoryName))).join(", ");
+const difficultyNames = Array.from(new Set(levels.map(({ level }) => level.difficulty))).join(", ");
 ---
 
 <BaseLayout title={title} description={description}>
@@ -49,5 +51,25 @@ const { title, description, eyebrow, heading, intro, levels, notes = [] } = Astr
         </a>
       ))}
     </div>
+
+    <section class="seo-copy-section" aria-labelledby="level-collection-guide">
+      <div class="section-head">
+        <h2 id="level-collection-guide">Level guide.</h2>
+      </div>
+      <div class="seo-copy-grid">
+        <article class="seo-copy-card seo-copy-wide">
+          <h3>What this collection includes</h3>
+          <p>This page collects {levels.length} JigSolitaire levels across {categoryNames}. Each level uses the same core browser puzzle rules: study the image, swap tiles into place, and use merged groups as progress markers. The collection format helps players compare categories, preview images, and choose a puzzle that matches their available time and preferred visual theme.</p>
+        </article>
+        <article class="seo-copy-card">
+          <h3>Difficulty and pacing</h3>
+          <p>The visible levels include {difficultyNames} difficulty labels. Smaller grids are better for quick play, warm-ups, and learning the merge mechanic. Harder grids are better for longer sessions because they require more visual memory and more organized tile movement. Pick the level type based on how much focus you want to spend.</p>
+        </article>
+        <article class="seo-copy-card">
+          <h3>How to solve cleaner</h3>
+          <p>Before moving tiles, identify corners, strong edges, faces, skylines, food shapes, or other obvious anchors. Move uncertain pieces into the right region before trying exact placement. Once a few correct neighbors merge, use that group as a reference point and build outward. This reduces random swaps and makes difficult images easier to finish.</p>
+        </article>
+      </div>
+    </section>
   </section>
 </BaseLayout>

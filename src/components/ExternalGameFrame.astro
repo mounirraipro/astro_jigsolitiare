@@ -80,5 +80,31 @@ const bentoGamesRight = bentoGames.slice(4, 8);
         ))}
       </div>
     </div>
+
+    <section class="seo-copy-section embedded-seo-content" aria-labelledby={`${game.slug}-guide`}>
+      <div class="section-head">
+        <h2 id={`${game.slug}-guide`}>{game.title} guide.</h2>
+      </div>
+      <div class="seo-copy-grid">
+        <article class="seo-copy-card seo-copy-wide">
+          <h3>About {game.title}</h3>
+          <p>{game.seoOverview}</p>
+        </article>
+        <article class="seo-copy-card">
+          <h3>How to play</h3>
+          <p>{game.howToPlay}</p>
+        </article>
+        <article class="seo-copy-card">
+          <h3>Strategy</h3>
+          <p>{game.strategyGuide}</p>
+        </article>
+        <article class="seo-copy-card">
+          <h3>Player tips</h3>
+          <ul>
+            {game.playerTips.map((tip) => <li>{tip}</li>)}
+          </ul>
+        </article>
+      </div>
+    </section>
   </section>
 </BaseLayout>

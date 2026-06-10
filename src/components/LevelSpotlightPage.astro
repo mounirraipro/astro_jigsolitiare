@@ -36,8 +36,28 @@ const previewImage = level.image.replace("/levels/", "/levels-webp/").replace(/\
       </div>
     </div>
 
+    <section class="seo-copy-section" aria-labelledby={`${level.id}-spotlight-guide`}>
+      <div class="section-head">
+        <h2 id={`${level.id}-spotlight-guide`}>Level notes.</h2>
+      </div>
+      <div class="seo-copy-grid">
+        <article class="seo-copy-card seo-copy-wide">
+          <h3>About this {category.name.toLowerCase()} puzzle</h3>
+          <p>{heading} is part of the {category.name} JigSolitaire collection, a set of browser puzzles built around visual memory, tile swapping, and progressive group merging. This level uses a {level.gridSize} grid with {level.difficulty.toLowerCase()} pacing, so players can focus on reading the image before making deliberate swaps. It is a useful route for practicing how visual anchors become solved sections.</p>
+        </article>
+        <article class="seo-copy-card">
+          <h3>How to approach it</h3>
+          <p>Study the full image during the preview phase and choose two or three anchor details before the shuffle starts. Look for clear edges, high-contrast shapes, or subject features that are easy to recognize inside a single tile. Place those anchors first, then compare neighboring colors and lines until small groups merge and the board becomes easier to manage.</p>
+        </article>
+        <article class="seo-copy-card">
+          <h3>What to practice</h3>
+          <p>This level is useful for practicing controlled tile movement rather than guessing. Move pieces into the correct area first, then refine exact placement. If a swap does not create a clearer region, pause and compare the reference image again. Better solves usually come from fewer intentional moves, not from quickly testing every possible tile pair.</p>
+        </article>
+      </div>
+    </section>
+
     <div class="section-head">
-      <h2>More animal puzzles.</h2>
+      <h2>More {category.name.toLowerCase()} puzzles.</h2>
     </div>
     <div class="level-grid">
       {related.map((item) => (
