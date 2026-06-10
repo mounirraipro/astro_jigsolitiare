@@ -16,19 +16,20 @@ const staticContentPages: SitemapEntry[] = [
   { path: "/games/beginner-puzzles", changeFrequency: "monthly", priority: 0.68 },
   { path: "/games/expert-puzzles", changeFrequency: "monthly", priority: 0.68 },
   { path: "/levels", changeFrequency: "weekly", priority: 0.72 },
-  { path: "/levels/animals", changeFrequency: "weekly", priority: 0.68 },
   { path: "/levels/animals/dog-cat", changeFrequency: "monthly", priority: 0.62 },
   { path: "/levels/animals/parrot", changeFrequency: "monthly", priority: 0.62 },
-  { path: "/levels/art", changeFrequency: "weekly", priority: 0.68 },
-  { path: "/levels/cities", changeFrequency: "weekly", priority: 0.68 },
-  { path: "/levels/food", changeFrequency: "weekly", priority: 0.68 },
-  { path: "/levels/nature", changeFrequency: "weekly", priority: 0.68 },
 ];
 
 const categoryPages: SitemapEntry[] = categories.map((category) => ({
   path: `/categories/${category.slug}`,
   changeFrequency: "weekly",
   priority: 0.7,
+}));
+
+const levelCategoryPages: SitemapEntry[] = categories.map((category) => ({
+  path: `/levels/${category.slug}`,
+  changeFrequency: "weekly",
+  priority: 0.68,
 }));
 
 const gamePages: SitemapEntry[] = externalGames.map((game) => ({
@@ -79,6 +80,7 @@ export const GET: APIRoute = ({ site }) => {
     ...seoPages.filter((page) => !page.noIndex),
     ...staticContentPages,
     ...categoryPages,
+    ...levelCategoryPages,
     ...gamePages,
     ...articlePages,
   ].forEach((entry) => {

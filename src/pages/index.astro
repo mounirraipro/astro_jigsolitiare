@@ -6,6 +6,7 @@ import { externalGames } from "@/data/externalGames";
 import { siteConfig } from "@/data/siteConfig";
 import { brandAccentClass, getCategoryAccentClass } from "@/data/accentClasses";
 
+const categoryNames = categories.map((category) => category.name).join(", ");
 const recentPosts = articles.slice(0, 3);
 const featuredCategories = categories.map((category) => ({
   ...category,
@@ -39,7 +40,7 @@ const faqItems = [
   ["How do you play JigSolitaire online?", "Choose a puzzle, preview the image, then drag tiles to swap positions. Use color, edges, and texture clues to rebuild the picture while correct neighbors merge into larger groups."],
   ["Is JigSolitaire free?", "Yes. JigSolitaire is free to play in the browser with no download, no account, and no app install required."],
   ["Does JigSolitaire work on mobile?", "Yes. JigSolitaire supports mouse and touch play, so it works on desktop, tablets, and modern phones."],
-  ["How many JigSolitaire puzzles are included?", `This version includes ${categories.reduce((sum, category) => sum + category.levels.length, 0)}+ levels across Animals, Nature, Cities, Art, and Food collections.`],
+  ["How many JigSolitaire puzzles are included?", `This version includes ${categories.reduce((sum, category) => sum + category.levels.length, 0)} levels across ${categoryNames} collections.`],
 ];
 
 const homeStructuredData = [
@@ -171,7 +172,7 @@ const homeStructuredData = [
   <section class="home-section home-worlds">
     <div class="home-section-head">
       <p class="eyebrow">Choose a world</p>
-      <h2>Five visual collections.</h2>
+      <h2>{categories.length} visual collections.</h2>
       <p>Pick a style, then let color and shape guide the solve.</p>
     </div>
     <div class="world-showcase">

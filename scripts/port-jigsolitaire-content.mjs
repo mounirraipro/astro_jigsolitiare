@@ -131,32 +131,44 @@ const categoryMetadata = {
   Animals: {
     slug: "animals",
     color: "#ef4444",
-    description: "Adorable wildlife puzzles featuring animals from around the world.",
-    longDescription: "Dive into the wild kingdom with animal puzzle images that reward color matching, shape reading, and patient visual memory.",
-  },
-  Nature: {
-    slug: "nature",
-    color: "#22c55e",
-    description: "Landscapes and natural scenes to piece together.",
-    longDescription: "Explore mountains, forests, water, and outdoor textures through calm visual puzzles built for relaxed focus.",
-  },
-  Cities: {
-    slug: "cities",
-    color: "#3b82f6",
-    description: "Cityscapes and architectural puzzle images from around the globe.",
-    longDescription: "Travel through skyline details, streets, buildings, and landmark compositions with crisp tile-swap challenges.",
+    description: "Play JigSolitaire animal puzzles online with wildlife images, clear visual anchors, tile swapping, and relaxing browser-based jigsaw solitaire levels.",
+    longDescription: "Dive into JigSolitaire animal puzzles with wildlife images that reward color matching, shape reading, patient visual memory, and smart group merging.",
   },
   Art: {
     slug: "art",
     color: "#8b5cf6",
-    description: "Classic and modern art reimagined as puzzle grids.",
-    longDescription: "Solve painterly compositions, abstract details, and vivid artwork with a slower, more observant puzzle rhythm.",
+    description: "Play JigSolitaire art puzzles online with painterly images, abstract details, color matching, and calm jigsaw solitaire tile-swap challenges.",
+    longDescription: "Solve JigSolitaire art puzzles with painterly compositions, abstract details, vivid color zones, and a slower rhythm for careful visual solving.",
+  },
+  Cities: {
+    slug: "cities",
+    color: "#3b82f6",
+    description: "Play JigSolitaire city puzzles online with skyline images, architecture details, streets, landmarks, and browser-based tile-swap solving.",
+    longDescription: "Travel through JigSolitaire city puzzles with skyline details, streets, buildings, and landmark compositions that make crisp tile-swap challenges.",
   },
   Food: {
     slug: "food",
     color: "#f59e0b",
-    description: "Food photography puzzles full of color and texture.",
-    longDescription: "Piece together bright dishes, ingredients, and plating details that test pattern recognition in a deliciously visual way.",
+    description: "Play JigSolitaire food puzzles online with colorful dishes, ingredients, texture clues, and jigsaw solitaire levels built for visual focus.",
+    longDescription: "Piece together JigSolitaire food puzzles with bright dishes, ingredients, and plating details that test pattern recognition in a deliciously visual way.",
+  },
+  Nature: {
+    slug: "nature",
+    color: "#22c55e",
+    description: "Play JigSolitaire nature puzzles online with landscapes, forests, water scenes, outdoor textures, and relaxing tile-swap jigsaw levels.",
+    longDescription: "Explore JigSolitaire nature puzzles with mountains, forests, water, and outdoor textures through calm visual challenges built for relaxed focus.",
+  },
+  Space: {
+    slug: "space",
+    color: "#6366f1",
+    description: "Play JigSolitaire space puzzles online with planets, nebulae, astronauts, orbital scenes, and crisp tile-swap jigsaw solitaire challenges.",
+    longDescription: "Explore JigSolitaire space puzzles with planets, stars, nebula colors, and futuristic scenes that reward edge reading, contrast matching, and patient visual memory.",
+  },
+  Fantasy: {
+    slug: "fantasy",
+    color: "#a855f7",
+    description: "Play JigSolitaire fantasy puzzles online with enchanted forests, floating castles, crystals, dragons, and magical browser puzzle scenes.",
+    longDescription: "Solve JigSolitaire fantasy puzzles with glowing forests, castles, crystals, and storybook scenes that make each tile-swap challenge feel vivid and imaginative.",
   },
 };
 
@@ -164,7 +176,13 @@ const difficulty = ["Easy", "Medium", "Hard", "Expert", "Master"];
 const levelsDir = path.join(publicRoot, "levels");
 const categories = [];
 let id = 1;
-for (const folder of fs.readdirSync(levelsDir).filter((name) => fs.statSync(path.join(levelsDir, name)).isDirectory()).sort()) {
+const categoryOrder = ["Animals", "Art", "Cities", "Food", "Nature", "Space", "Fantasy"];
+const categoryFolders = fs.readdirSync(levelsDir).filter((name) => fs.statSync(path.join(levelsDir, name)).isDirectory());
+for (const folder of categoryFolders.sort((a, b) => {
+  const aIndex = categoryOrder.indexOf(a);
+  const bIndex = categoryOrder.indexOf(b);
+  return (aIndex === -1 ? categoryOrder.length : aIndex) - (bIndex === -1 ? categoryOrder.length : bIndex) || a.localeCompare(b);
+})) {
   const meta = categoryMetadata[folder] ?? {
     slug: folder.toLowerCase(),
     color: "#64748b",

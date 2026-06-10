@@ -7,5 +7,7 @@ export const getCategoryAccentClass = (name: string) => {
   if (key === "cities") return "accent-violet";
   if (key === "food") return "accent-gold";
   if (key === "nature") return "accent-green";
+  if (key === "space") return "accent-blue";
+  if (key === "fantasy") return "accent-violet";
   return brandAccentClass;
 };

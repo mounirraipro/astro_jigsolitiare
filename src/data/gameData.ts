@@ -263,6 +263,14 @@ export const categories = [
         "difficulty": "Master",
         "image": "/levels/Animals/JigSolitaire_Animals30.png",
         "thumbnail": "/level-thumbs/Animals/JigSolitaire_Animals30.webp"
+      },
+      {
+        "id": 31,
+        "title": "JigSolitaire Animals31",
+        "gridSize": "3x5",
+        "difficulty": "Master",
+        "image": "/levels/Animals/JigSolitaire_Animals31.png",
+        "thumbnail": "/level-thumbs/Animals/JigSolitaire_Animals31.webp"
       }
     ]
   },
@@ -274,7 +282,7 @@ export const categories = [
     "longDescription": "Solve JigSolitaire art puzzles with painterly compositions, abstract details, vivid color zones, and a slower rhythm for careful visual solving.",
     "levels": [
       {
-        "id": 31,
+        "id": 32,
         "title": "JigSolitaire Art1",
         "gridSize": "3x3",
         "difficulty": "Easy",
@@ -282,7 +290,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Art/JigSolitaire_Art1.webp"
       },
       {
-        "id": 32,
+        "id": 33,
         "title": "JigSolitaire Art2",
         "gridSize": "3x3",
         "difficulty": "Medium",
@@ -290,7 +298,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Art/JigSolitaire_Art2.webp"
       },
       {
-        "id": 33,
+        "id": 34,
         "title": "JigSolitaire Art3",
         "gridSize": "3x4",
         "difficulty": "Hard",
@@ -298,7 +306,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Art/JigSolitaire_Art3.webp"
       },
       {
-        "id": 34,
+        "id": 35,
         "title": "JigSolitaire Art4",
         "gridSize": "3x4",
         "difficulty": "Expert",
@@ -306,7 +314,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Art/JigSolitaire_Art4.webp"
       },
       {
-        "id": 35,
+        "id": 36,
         "title": "JigSolitaire Art5",
         "gridSize": "3x4",
         "difficulty": "Master",
@@ -314,7 +322,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Art/JigSolitaire_Art5.webp"
       },
       {
-        "id": 36,
+        "id": 37,
         "title": "JigSolitaire Art6",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -322,7 +330,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Art/JigSolitaire_Art6.webp"
       },
       {
-        "id": 37,
+        "id": 38,
         "title": "JigSolitaire Art7",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -330,7 +338,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Art/JigSolitaire_Art7.webp"
       },
       {
-        "id": 38,
+        "id": 39,
         "title": "JigSolitaire Art8",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -338,7 +346,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Art/JigSolitaire_Art8.webp"
       },
       {
-        "id": 39,
+        "id": 40,
         "title": "JigSolitaire Art9",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -346,7 +354,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Art/JigSolitaire_Art9.webp"
       },
       {
-        "id": 40,
+        "id": 41,
         "title": "JigSolitaire Art10",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -354,12 +362,28 @@ export const categories = [
         "thumbnail": "/level-thumbs/Art/JigSolitaire_Art10.webp"
       },
       {
-        "id": 41,
+        "id": 42,
         "title": "JigSolitaire Art11",
         "gridSize": "3x5",
         "difficulty": "Master",
         "image": "/levels/Art/JigSolitaire_Art11.png",
         "thumbnail": "/level-thumbs/Art/JigSolitaire_Art11.webp"
+      },
+      {
+        "id": 43,
+        "title": "JigSolitaire Art12",
+        "gridSize": "3x5",
+        "difficulty": "Master",
+        "image": "/levels/Art/JigSolitaire_Art12.png",
+        "thumbnail": "/level-thumbs/Art/JigSolitaire_Art12.webp"
+      },
+      {
+        "id": 44,
+        "title": "JigSolitaire Art13",
+        "gridSize": "3x5",
+        "difficulty": "Master",
+        "image": "/levels/Art/JigSolitaire_Art13.png",
+        "thumbnail": "/level-thumbs/Art/JigSolitaire_Art13.webp"
       }
     ]
   },
@@ -371,7 +395,7 @@ export const categories = [
     "longDescription": "Travel through JigSolitaire city puzzles with skyline details, streets, buildings, and landmark compositions that make crisp tile-swap challenges.",
     "levels": [
       {
-        "id": 42,
+        "id": 45,
         "title": "JigSolitaire Cities1",
         "gridSize": "3x3",
         "difficulty": "Easy",
@@ -379,7 +403,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities1.webp"
       },
       {
-        "id": 43,
+        "id": 46,
         "title": "JigSolitaire Cities2",
         "gridSize": "3x3",
         "difficulty": "Medium",
@@ -387,7 +411,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities2.webp"
       },
       {
-        "id": 44,
+        "id": 47,
         "title": "JigSolitaire Cities3",
         "gridSize": "3x4",
         "difficulty": "Hard",
@@ -395,7 +419,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities3.webp"
       },
       {
-        "id": 45,
+        "id": 48,
         "title": "JigSolitaire Cities4",
         "gridSize": "3x4",
         "difficulty": "Expert",
@@ -403,7 +427,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities4.webp"
       },
       {
-        "id": 46,
+        "id": 49,
         "title": "JigSolitaire Cities5",
         "gridSize": "3x4",
         "difficulty": "Master",
@@ -411,7 +435,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities5.webp"
       },
       {
-        "id": 47,
+        "id": 50,
         "title": "JigSolitaire Cities6",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -419,7 +443,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities6.webp"
       },
       {
-        "id": 48,
+        "id": 51,
         "title": "JigSolitaire Cities7",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -427,7 +451,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities7.webp"
       },
       {
-        "id": 49,
+        "id": 52,
         "title": "JigSolitaire Cities8",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -435,7 +459,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities8.webp"
       },
       {
-        "id": 50,
+        "id": 53,
         "title": "JigSolitaire Cities9",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -443,7 +467,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities9.webp"
       },
       {
-        "id": 51,
+        "id": 54,
         "title": "JigSolitaire Cities10",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -451,7 +475,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities10.webp"
       },
       {
-        "id": 52,
+        "id": 55,
         "title": "JigSolitaire Cities11",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -459,7 +483,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities11.webp"
       },
       {
-        "id": 53,
+        "id": 56,
         "title": "JigSolitaire Cities12",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -467,7 +491,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities12.webp"
       },
       {
-        "id": 54,
+        "id": 57,
         "title": "JigSolitaire Cities13",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -475,7 +499,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities13.webp"
       },
       {
-        "id": 55,
+        "id": 58,
         "title": "JigSolitaire Cities14",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -483,7 +507,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities14.webp"
       },
       {
-        "id": 56,
+        "id": 59,
         "title": "JigSolitaire Cities15",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -491,7 +515,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities15.webp"
       },
       {
-        "id": 57,
+        "id": 60,
         "title": "JigSolitaire Cities16",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -499,7 +523,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities16.webp"
       },
       {
-        "id": 58,
+        "id": 61,
         "title": "JigSolitaire Cities17",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -507,7 +531,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities17.webp"
       },
       {
-        "id": 59,
+        "id": 62,
         "title": "JigSolitaire Cities18",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -515,7 +539,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities18.webp"
       },
       {
-        "id": 60,
+        "id": 63,
         "title": "JigSolitaire Cities19",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -523,7 +547,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities19.webp"
       },
       {
-        "id": 61,
+        "id": 64,
         "title": "JigSolitaire Cities20",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -531,7 +555,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities20.webp"
       },
       {
-        "id": 62,
+        "id": 65,
         "title": "JigSolitaire Cities21",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -539,7 +563,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities21.webp"
       },
       {
-        "id": 63,
+        "id": 66,
         "title": "JigSolitaire Cities22",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -547,7 +571,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities22.webp"
       },
       {
-        "id": 64,
+        "id": 67,
         "title": "JigSolitaire Cities23",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -555,7 +579,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities23.webp"
       },
       {
-        "id": 65,
+        "id": 68,
         "title": "JigSolitaire Cities24",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -563,7 +587,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities24.webp"
       },
       {
-        "id": 66,
+        "id": 69,
         "title": "JigSolitaire Cities25",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -571,7 +595,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities25.webp"
       },
       {
-        "id": 67,
+        "id": 70,
         "title": "JigSolitaire Cities26",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -579,7 +603,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities26.webp"
       },
       {
-        "id": 68,
+        "id": 71,
         "title": "JigSolitaire Cities27",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -587,7 +611,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities27.webp"
       },
       {
-        "id": 69,
+        "id": 72,
         "title": "JigSolitaire Cities28",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -595,7 +619,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities28.webp"
       },
       {
-        "id": 70,
+        "id": 73,
         "title": "JigSolitaire Cities29",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -603,7 +627,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities29.webp"
       },
       {
-        "id": 71,
+        "id": 74,
         "title": "JigSolitaire Cities30",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -611,7 +635,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities30.webp"
       },
       {
-        "id": 72,
+        "id": 75,
         "title": "JigSolitaire Cities31",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -619,7 +643,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities31.webp"
       },
       {
-        "id": 73,
+        "id": 76,
         "title": "JigSolitaire Cities32",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -627,7 +651,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities32.webp"
       },
       {
-        "id": 74,
+        "id": 77,
         "title": "JigSolitaire Cities33",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -635,7 +659,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities33.webp"
       },
       {
-        "id": 75,
+        "id": 78,
         "title": "JigSolitaire Cities34",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -643,7 +667,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities34.webp"
       },
       {
-        "id": 76,
+        "id": 79,
         "title": "JigSolitaire Cities35",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -651,12 +675,20 @@ export const categories = [
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities35.webp"
       },
       {
-        "id": 77,
+        "id": 80,
         "title": "JigSolitaire Cities36",
         "gridSize": "3x5",
         "difficulty": "Master",
         "image": "/levels/Cities/JigSolitaire_Cities36.png",
         "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities36.webp"
+      },
+      {
+        "id": 81,
+        "title": "JigSolitaire Cities37",
+        "gridSize": "3x5",
+        "difficulty": "Master",
+        "image": "/levels/Cities/JigSolitaire_Cities37.png",
+        "thumbnail": "/level-thumbs/Cities/JigSolitaire_Cities37.webp"
       }
     ]
   },
@@ -668,7 +700,7 @@ export const categories = [
     "longDescription": "Piece together JigSolitaire food puzzles with bright dishes, ingredients, and plating details that test pattern recognition in a deliciously visual way.",
     "levels": [
       {
-        "id": 78,
+        "id": 82,
         "title": "JigSolitaire Food1",
         "gridSize": "3x3",
         "difficulty": "Easy",
@@ -676,7 +708,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Food/JigSolitaire_Food1.webp"
       },
       {
-        "id": 79,
+        "id": 83,
         "title": "JigSolitaire Food2",
         "gridSize": "3x3",
         "difficulty": "Medium",
@@ -684,7 +716,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Food/JigSolitaire_Food2.webp"
       },
       {
-        "id": 80,
+        "id": 84,
         "title": "JigSolitaire Food3",
         "gridSize": "3x4",
         "difficulty": "Hard",
@@ -692,7 +724,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Food/JigSolitaire_Food3.webp"
       },
       {
-        "id": 81,
+        "id": 85,
         "title": "JigSolitaire Food4",
         "gridSize": "3x4",
         "difficulty": "Expert",
@@ -700,7 +732,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Food/JigSolitaire_Food4.webp"
       },
       {
-        "id": 82,
+        "id": 86,
         "title": "JigSolitaire Food5",
         "gridSize": "3x4",
         "difficulty": "Master",
@@ -708,7 +740,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Food/JigSolitaire_Food5.webp"
       },
       {
-        "id": 83,
+        "id": 87,
         "title": "JigSolitaire Food6",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -716,7 +748,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Food/JigSolitaire_Food6.webp"
       },
       {
-        "id": 84,
+        "id": 88,
         "title": "JigSolitaire Food7",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -724,7 +756,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Food/JigSolitaire_Food7.webp"
       },
       {
-        "id": 85,
+        "id": 89,
         "title": "JigSolitaire Food8",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -732,7 +764,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Food/JigSolitaire_Food8.webp"
       },
       {
-        "id": 86,
+        "id": 90,
         "title": "JigSolitaire Food9",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -740,7 +772,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Food/JigSolitaire_Food9.webp"
       },
       {
-        "id": 87,
+        "id": 91,
         "title": "JigSolitaire Food10",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -748,12 +780,28 @@ export const categories = [
         "thumbnail": "/level-thumbs/Food/JigSolitaire_Food10.webp"
       },
       {
-        "id": 88,
+        "id": 92,
         "title": "JigSolitaire Food11",
         "gridSize": "3x5",
         "difficulty": "Master",
         "image": "/levels/Food/JigSolitaire_Food11.png",
         "thumbnail": "/level-thumbs/Food/JigSolitaire_Food11.webp"
+      },
+      {
+        "id": 93,
+        "title": "JigSolitaire Food12",
+        "gridSize": "3x5",
+        "difficulty": "Master",
+        "image": "/levels/Food/JigSolitaire_Food12.png",
+        "thumbnail": "/level-thumbs/Food/JigSolitaire_Food12.webp"
+      },
+      {
+        "id": 94,
+        "title": "JigSolitaire Food13",
+        "gridSize": "3x5",
+        "difficulty": "Master",
+        "image": "/levels/Food/JigSolitaire_Food13.png",
+        "thumbnail": "/level-thumbs/Food/JigSolitaire_Food13.webp"
       }
     ]
   },
@@ -765,7 +813,7 @@ export const categories = [
     "longDescription": "Explore JigSolitaire nature puzzles with mountains, forests, water, and outdoor textures through calm visual challenges built for relaxed focus.",
     "levels": [
       {
-        "id": 89,
+        "id": 95,
         "title": "JigSolitaire Nature1",
         "gridSize": "3x3",
         "difficulty": "Easy",
@@ -773,7 +821,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature1.webp"
       },
       {
-        "id": 90,
+        "id": 96,
         "title": "JigSolitaire Nature2",
         "gridSize": "3x3",
         "difficulty": "Medium",
@@ -781,7 +829,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature2.webp"
       },
       {
-        "id": 91,
+        "id": 97,
         "title": "JigSolitaire Nature3",
         "gridSize": "3x4",
         "difficulty": "Hard",
@@ -789,7 +837,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature3.webp"
       },
       {
-        "id": 92,
+        "id": 98,
         "title": "JigSolitaire Nature4",
         "gridSize": "3x4",
         "difficulty": "Expert",
@@ -797,7 +845,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature4.webp"
       },
       {
-        "id": 93,
+        "id": 99,
         "title": "JigSolitaire Nature5",
         "gridSize": "3x4",
         "difficulty": "Master",
@@ -805,7 +853,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature5.webp"
       },
       {
-        "id": 94,
+        "id": 100,
         "title": "JigSolitaire Nature6",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -813,7 +861,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature6.webp"
       },
       {
-        "id": 95,
+        "id": 101,
         "title": "JigSolitaire Nature7",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -821,7 +869,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature7.webp"
       },
       {
-        "id": 96,
+        "id": 102,
         "title": "JigSolitaire Nature8",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -829,7 +877,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature8.webp"
       },
       {
-        "id": 97,
+        "id": 103,
         "title": "JigSolitaire Nature9",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -837,7 +885,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature9.webp"
       },
       {
-        "id": 98,
+        "id": 104,
         "title": "JigSolitaire Nature10",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -845,7 +893,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature10.webp"
       },
       {
-        "id": 99,
+        "id": 105,
         "title": "JigSolitaire Nature11",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -853,7 +901,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature11.webp"
       },
       {
-        "id": 100,
+        "id": 106,
         "title": "JigSolitaire Nature12",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -861,7 +909,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature12.webp"
       },
       {
-        "id": 101,
+        "id": 107,
         "title": "JigSolitaire Nature13",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -869,7 +917,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature13.webp"
       },
       {
-        "id": 102,
+        "id": 108,
         "title": "JigSolitaire Nature14",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -877,7 +925,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature14.webp"
       },
       {
-        "id": 103,
+        "id": 109,
         "title": "JigSolitaire Nature15",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -885,7 +933,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature15.webp"
       },
       {
-        "id": 104,
+        "id": 110,
         "title": "JigSolitaire Nature16",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -893,7 +941,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature16.webp"
       },
       {
-        "id": 105,
+        "id": 111,
         "title": "JigSolitaire Nature17",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -901,7 +949,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature17.webp"
       },
       {
-        "id": 106,
+        "id": 112,
         "title": "JigSolitaire Nature18",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -909,7 +957,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature18.webp"
       },
       {
-        "id": 107,
+        "id": 113,
         "title": "JigSolitaire Nature19",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -917,7 +965,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature19.webp"
       },
       {
-        "id": 108,
+        "id": 114,
         "title": "JigSolitaire Nature20",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -925,7 +973,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature20.webp"
       },
       {
-        "id": 109,
+        "id": 115,
         "title": "JigSolitaire Nature21",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -933,7 +981,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature21.webp"
       },
       {
-        "id": 110,
+        "id": 116,
         "title": "JigSolitaire Nature22",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -941,7 +989,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature22.webp"
       },
       {
-        "id": 111,
+        "id": 117,
         "title": "JigSolitaire Nature23",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -949,7 +997,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature23.webp"
       },
       {
-        "id": 112,
+        "id": 118,
         "title": "JigSolitaire Nature24",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -957,7 +1005,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature24.webp"
       },
       {
-        "id": 113,
+        "id": 119,
         "title": "JigSolitaire Nature25",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -965,7 +1013,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature25.webp"
       },
       {
-        "id": 114,
+        "id": 120,
         "title": "JigSolitaire Nature26",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -973,7 +1021,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature26.webp"
       },
       {
-        "id": 115,
+        "id": 121,
         "title": "JigSolitaire Nature27",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -981,7 +1029,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature27.webp"
       },
       {
-        "id": 116,
+        "id": 122,
         "title": "JigSolitaire Nature28",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -989,7 +1037,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature28.webp"
       },
       {
-        "id": 117,
+        "id": 123,
         "title": "JigSolitaire Nature29",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -997,7 +1045,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature29.webp"
       },
       {
-        "id": 118,
+        "id": 124,
         "title": "JigSolitaire Nature30",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -1005,7 +1053,7 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature30.webp"
       },
       {
-        "id": 119,
+        "id": 125,
         "title": "JigSolitaire Nature31",
         "gridSize": "3x5",
         "difficulty": "Master",
@@ -1013,12 +1061,94 @@ export const categories = [
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature31.webp"
       },
       {
-        "id": 120,
+        "id": 126,
         "title": "JigSolitaire Nature32",
         "gridSize": "3x5",
         "difficulty": "Master",
         "image": "/levels/Nature/JigSolitaire_Nature32.png",
         "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature32.webp"
+      },
+      {
+        "id": 127,
+        "title": "JigSolitaire Nature33",
+        "gridSize": "3x5",
+        "difficulty": "Master",
+        "image": "/levels/Nature/JigSolitaire_Nature33.png",
+        "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature33.webp"
+      },
+      {
+        "id": 128,
+        "title": "JigSolitaire Nature34",
+        "gridSize": "3x5",
+        "difficulty": "Master",
+        "image": "/levels/Nature/JigSolitaire_Nature34.png",
+        "thumbnail": "/level-thumbs/Nature/JigSolitaire_Nature34.webp"
+      }
+    ]
+  },
+  {
+    "name": "Space",
+    "slug": "space",
+    "color": "#6366f1",
+    "description": "Play JigSolitaire space puzzles online with planets, nebulae, astronauts, orbital scenes, and crisp tile-swap jigsaw solitaire challenges.",
+    "longDescription": "Explore JigSolitaire space puzzles with planets, stars, nebula colors, and futuristic scenes that reward edge reading, contrast matching, and patient visual memory.",
+    "levels": [
+      {
+        "id": 129,
+        "title": "JigSolitaire Space1",
+        "gridSize": "3x3",
+        "difficulty": "Easy",
+        "image": "/levels/Space/JigSolitaire_Space1.png",
+        "thumbnail": "/level-thumbs/Space/JigSolitaire_Space1.webp"
+      },
+      {
+        "id": 130,
+        "title": "JigSolitaire Space2",
+        "gridSize": "3x3",
+        "difficulty": "Medium",
+        "image": "/levels/Space/JigSolitaire_Space2.png",
+        "thumbnail": "/level-thumbs/Space/JigSolitaire_Space2.webp"
+      },
+      {
+        "id": 131,
+        "title": "JigSolitaire Space3",
+        "gridSize": "3x4",
+        "difficulty": "Hard",
+        "image": "/levels/Space/JigSolitaire_Space3.png",
+        "thumbnail": "/level-thumbs/Space/JigSolitaire_Space3.webp"
+      }
+    ]
+  },
+  {
+    "name": "Fantasy",
+    "slug": "fantasy",
+    "color": "#a855f7",
+    "description": "Play JigSolitaire fantasy puzzles online with enchanted forests, floating castles, crystals, dragons, and magical browser puzzle scenes.",
+    "longDescription": "Solve JigSolitaire fantasy puzzles with glowing forests, castles, crystals, and storybook scenes that make each tile-swap challenge feel vivid and imaginative.",
+    "levels": [
+      {
+        "id": 132,
+        "title": "JigSolitaire Fantasy1",
+        "gridSize": "3x3",
+        "difficulty": "Easy",
+        "image": "/levels/Fantasy/JigSolitaire_Fantasy1.png",
+        "thumbnail": "/level-thumbs/Fantasy/JigSolitaire_Fantasy1.webp"
+      },
+      {
+        "id": 133,
+        "title": "JigSolitaire Fantasy2",
+        "gridSize": "3x3",
+        "difficulty": "Medium",
+        "image": "/levels/Fantasy/JigSolitaire_Fantasy2.png",
+        "thumbnail": "/level-thumbs/Fantasy/JigSolitaire_Fantasy2.webp"
+      },
+      {
+        "id": 134,
+        "title": "JigSolitaire Fantasy3",
+        "gridSize": "3x4",
+        "difficulty": "Hard",
+        "image": "/levels/Fantasy/JigSolitaire_Fantasy3.png",
+        "thumbnail": "/level-thumbs/Fantasy/JigSolitaire_Fantasy3.webp"
       }
     ]
   }

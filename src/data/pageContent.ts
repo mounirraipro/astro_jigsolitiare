@@ -46,7 +46,7 @@ export const pageContent = {
       {
         heading: "Key Features",
         items: [
-          "Five beautiful categories: Animals, Nature, Cities, Art, and Food.",
+          "Seven beautiful categories: Animals, Nature, Cities, Art, Food, Space, and Fantasy.",
           "Handcrafted levels with progressive grid difficulty.",
           "Smart tile merging when adjacent tiles are correctly placed.",
           "Smooth drag-and-drop play with satisfying visual feedback.",
@@ -279,7 +279,7 @@ export const pageContent = {
       },
       {
         heading: "How many levels are there?",
-        body: "JigSolitaire includes levels across five categories: Animals, Nature, Cities, Art, and Food. Each category uses imagery and difficulty progression designed for visual puzzle solving.",
+        body: "JigSolitaire includes 134 levels across seven categories: Animals, Nature, Cities, Art, Food, Space, and Fantasy. Each category uses imagery and difficulty progression designed for visual puzzle solving.",
       },
       {
         heading: "What does the difficulty progression look like?",
@@ -313,7 +313,7 @@ export const pageContent = {
       },
       {
         heading: "Step 1: Choose a Category",
-        body: "Select from five visual categories: Animals, Nature, Cities, Art, and Food. Each collection uses imagery that rewards careful observation.",
+        body: "Select from seven visual categories: Animals, Nature, Cities, Art, Food, Space, and Fantasy. Each collection uses imagery that rewards careful observation.",
       },
       {
         heading: "Step 2: Memorize the Image",

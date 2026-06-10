@@ -262,11 +262,13 @@
   // GAME DATA — static export friendly
   // ==========================================
   const CATEGORY_DEFINITIONS = [
-    { slug: 'animals', name: 'Animals', color: '#ef4444', count: 30 },
-    { slug: 'art', name: 'Art', color: '#e17055', count: 11 },
-    { slug: 'cities', name: 'Cities', color: '#6c5ce7', count: 36 },
-    { slug: 'food', name: 'Food', color: '#fdcb6e', count: 11 },
-    { slug: 'nature', name: 'Nature', color: '#22c55e', count: 32 },
+    { slug: 'animals', name: 'Animals', color: '#ef4444', count: 31 },
+    { slug: 'art', name: 'Art', color: '#e17055', count: 13 },
+    { slug: 'cities', name: 'Cities', color: '#6c5ce7', count: 37 },
+    { slug: 'food', name: 'Food', color: '#fdcb6e', count: 13 },
+    { slug: 'nature', name: 'Nature', color: '#22c55e', count: 34 },
+    { slug: 'space', name: 'Space', color: '#6366f1', count: 3 },
+    { slug: 'fantasy', name: 'Fantasy', color: '#a855f7', count: 3 },
   ];
 
   function titleFromFile(fileName) {

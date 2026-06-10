@@ -1,14 +1,16 @@
 ---
 import LevelCollectionPage from "@/components/LevelCollectionPage.astro";
-import { allLevels } from "@/data/gameData";
+import { allLevels, categories } from "@/data/gameData";
+
+const categoryNames = categories.map((category) => category.name).join(", ");
 ---
 
 <LevelCollectionPage
   title="JigSolitaire Levels"
-  description="Browse all 120+ JigSolitaire levels across Animals, Art, Cities, Food, and Nature, then play free online tile-swap jigsaw puzzles in your browser."
+  description={`Browse ${allLevels.length} JigSolitaire levels across ${categoryNames}, then play free online tile-swap jigsaw puzzles in your browser.`}
   eyebrow="All Levels"
   heading="Every imported JigSolitaire puzzle."
-  intro="Browse the full collection from the original project, then open the browser game and pick the visual world that fits your mood."
+  intro="Browse the full collection, then open the browser game and pick the visual world that fits your mood."
   levels={allLevels.map(({ category, level }) => ({ categoryName: category.name, categoryColor: category.color, level }))}
   notes={[
     "Start with Easy and Medium grids when you want a quick visual warm-up.",

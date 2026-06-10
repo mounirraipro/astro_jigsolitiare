@@ -2,14 +2,16 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getCategoryAccentClass } from "@/data/accentClasses";
 import { categories } from "@/data/gameData";
+
+const categoryNames = categories.map((category) => category.name).join(", ");
 ---
 
-<BaseLayout title="JigSolitaire Categories" description="Browse JigSolitaire puzzle categories including Animals, Nature, Cities, Art, and Food, then play free browser jigsaw solitaire levels online.">
+<BaseLayout title="JigSolitaire Categories" description={`Browse JigSolitaire puzzle categories including ${categoryNames}, then play free browser jigsaw solitaire levels online.`}>
   <section class="listing-shell">
     <header class="listing-header">
       <p class="eyebrow">Puzzle Categories</p>
-      <h1>Five imported puzzle worlds.</h1>
-      <p>These categories and images come from the original JigSolitaire game assets.</p>
+      <h1>{categories.length} puzzle worlds.</h1>
+      <p>Browse every visual collection available in the JigSolitaire browser game.</p>
     </header>
     <div class="category-grid">
       {categories.map((category) => (
@@ -28,7 +30,7 @@ import { categories } from "@/data/gameData";
       <div class="seo-copy-grid">
         <article class="seo-copy-card seo-copy-wide">
           <h3>Choose a JigSolitaire visual theme</h3>
-          <p>JigSolitaire categories organize the puzzle library by image style, which makes it easier to choose the right kind of solve. Animals provide recognizable subjects and expressive details, nature offers landscapes and repeated textures, cities add architecture and skyline structure, art focuses on color and composition, and food uses bright objects with clear shapes. Each category uses the same tile-swap rules, so the difference comes from visual reading.</p>
+          <p>JigSolitaire categories organize the puzzle library by image style, which makes it easier to choose the right kind of solve. Animals, nature, cities, art, food, space, and fantasy each use the same tile-swap rules, but the visual clues change from clear subjects to dense textures, color fields, architecture, planets, and storybook scenes.</p>
         </article>
         <article class="seo-copy-card">
           <h3>How categories affect difficulty</h3>

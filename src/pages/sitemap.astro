@@ -9,13 +9,9 @@ import { siteConfig } from "@/data/siteConfig";
 
 const levelPages = [
   { path: "/levels", title: "All Levels" },
-  { path: "/levels/animals", title: "Animal Levels" },
+  ...categories.map((category) => ({ path: `/levels/${category.slug}`, title: `${category.name} Levels` })),
   { path: "/levels/animals/dog-cat", title: "Dog Cat Puzzle" },
   { path: "/levels/animals/parrot", title: "Parrot Puzzle" },
-  { path: "/levels/art", title: "Art Levels" },
-  { path: "/levels/cities", title: "City Levels" },
-  { path: "/levels/food", title: "Food Levels" },
-  { path: "/levels/nature", title: "Nature Levels" },
 ];
 
 const extraGamePages = [
