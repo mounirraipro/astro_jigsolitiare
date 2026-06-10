@@ -23,6 +23,16 @@ const pageSeo = {
   description: seo.description ?? description ?? routeSeo.description,
   keywords: [...(routeSeo.keywords ?? []), ...(seo.keywords ?? [])],
 };
+const improveMetaDescription = (value: string) => {
+  const clean = value.trim();
+  const expanded =
+    clean.length >= 110
+      ? clean
+      : `${clean} Play online free with browser tile swapping, merged groups, and visual jigsaw solitaire puzzle levels.`;
+  if (expanded.length <= 155) return expanded;
+  return `${expanded.slice(0, 152).replace(/\s+\S*$/, "")}...`;
+};
+pageSeo.description = improveMetaDescription(pageSeo.description);
 const origin = Astro.site?.origin ?? siteConfig.siteUrl;
 const canonicalUrl = getCanonicalUrl(pageSeo.path ?? pathname, origin);
 const pageTitle = buildPageTitle(pageSeo);

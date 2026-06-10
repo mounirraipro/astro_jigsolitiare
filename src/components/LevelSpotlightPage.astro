@@ -15,6 +15,7 @@ type Props = {
 
 const { title, description, heading, intro, category, level, related } = Astro.props;
 const accentClass = getCategoryAccentClass(category.name);
+const previewImage = level.image.replace("/levels/", "/levels-webp/").replace(/\.png$/i, ".webp");
 ---
 
 <BaseLayout title={title} description={description}>
@@ -26,7 +27,7 @@ const accentClass = getCategoryAccentClass(category.name);
     </header>
 
     <div class:list={["level-hero-card", accentClass]}>
-      <img src={level.image} alt={`${heading} puzzle preview`} />
+      <img src={previewImage} alt={`${heading} puzzle preview`} width="1200" height="800" />
       <div>
         <span>{level.gridSize} - {level.difficulty}</span>
         <h2>{level.title}</h2>
@@ -41,7 +42,7 @@ const accentClass = getCategoryAccentClass(category.name);
     <div class="level-grid">
       {related.map((item) => (
         <a class:list={["level-card", accentClass]} href="/play/">
-          <img src={item.thumbnail} alt={`${item.title} puzzle thumbnail`} loading="lazy" />
+          <img src={item.thumbnail} alt={`${item.title} puzzle thumbnail`} width="640" height="360" loading="lazy" />
           <strong>{item.title}</strong>
           <span>{item.gridSize} - {item.difficulty}</span>
         </a>

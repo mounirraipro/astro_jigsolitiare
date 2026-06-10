@@ -16,6 +16,13 @@ const related = [
 ].slice(0, 3);
 const tags = article.keywords.slice(0, 6);
 const path = `/blog/${article.slug}`;
+const shortenMeta = (value: string, maxLength: number) => {
+  if (value.length <= maxLength) return value;
+  const trimmed = value.slice(0, maxLength - 3).replace(/\s+\S*$/, "");
+  return `${trimmed}...`;
+};
+const articleSeoTitle = shortenMeta(`${article.title} | Puzzle Guide`, 58);
+const articleMetaDescription = shortenMeta(article.description, 152);
 const articleStructuredData = [
   {
     "@context": "https://schema.org",
@@ -43,7 +50,7 @@ const articleStructuredData = [
 <BaseLayout
   title={article.title}
   description={article.description}
-  seo={{ title: article.title, seoTitle: article.title, description: article.description, keywords: article.keywords, schemaType: "Article", path }}
+  seo={{ title: article.title, seoTitle: articleSeoTitle, description: articleMetaDescription, keywords: article.keywords, schemaType: "Article", path }}
   structuredData={articleStructuredData}
 >
   <article class="blog-article">

@@ -1,6 +1,5 @@
 import { defineConfig } from "astro/config";
 import partytown from "@astrojs/partytown";
-import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { siteConfig } from "./src/data/siteConfig";
 
@@ -20,6 +19,5 @@ export default defineConfig({
         forward: ["dataLayer.push", "gtag"],
       },
     }),
-    sitemap(),
   ],
 });

@@ -21,8 +21,8 @@ export const categories = [
     "name": "Animals",
     "slug": "animals",
     "color": "#ef4444",
-    "description": "Adorable wildlife puzzles featuring animals from around the world.",
-    "longDescription": "Dive into the wild kingdom with animal puzzle images that reward color matching, shape reading, and patient visual memory.",
+    "description": "Play JigSolitaire animal puzzles online with wildlife images, clear visual anchors, tile swapping, and relaxing browser-based jigsaw solitaire levels.",
+    "longDescription": "Dive into JigSolitaire animal puzzles with wildlife images that reward color matching, shape reading, patient visual memory, and smart group merging.",
     "levels": [
       {
         "id": 1,
@@ -270,8 +270,8 @@ export const categories = [
     "name": "Art",
     "slug": "art",
     "color": "#8b5cf6",
-    "description": "Classic and modern art reimagined as puzzle grids.",
-    "longDescription": "Solve painterly compositions, abstract details, and vivid artwork with a slower, more observant puzzle rhythm.",
+    "description": "Play JigSolitaire art puzzles online with painterly images, abstract details, color matching, and calm jigsaw solitaire tile-swap challenges.",
+    "longDescription": "Solve JigSolitaire art puzzles with painterly compositions, abstract details, vivid color zones, and a slower rhythm for careful visual solving.",
     "levels": [
       {
         "id": 31,
@@ -367,8 +367,8 @@ export const categories = [
     "name": "Cities",
     "slug": "cities",
     "color": "#3b82f6",
-    "description": "Cityscapes and architectural puzzle images from around the globe.",
-    "longDescription": "Travel through skyline details, streets, buildings, and landmark compositions with crisp tile-swap challenges.",
+    "description": "Play JigSolitaire city puzzles online with skyline images, architecture details, streets, landmarks, and browser-based tile-swap solving.",
+    "longDescription": "Travel through JigSolitaire city puzzles with skyline details, streets, buildings, and landmark compositions that make crisp tile-swap challenges.",
     "levels": [
       {
         "id": 42,
@@ -664,8 +664,8 @@ export const categories = [
     "name": "Food",
     "slug": "food",
     "color": "#f59e0b",
-    "description": "Food photography puzzles full of color and texture.",
-    "longDescription": "Piece together bright dishes, ingredients, and plating details that test pattern recognition in a deliciously visual way.",
+    "description": "Play JigSolitaire food puzzles online with colorful dishes, ingredients, texture clues, and jigsaw solitaire levels built for visual focus.",
+    "longDescription": "Piece together JigSolitaire food puzzles with bright dishes, ingredients, and plating details that test pattern recognition in a deliciously visual way.",
     "levels": [
       {
         "id": 78,
@@ -761,8 +761,8 @@ export const categories = [
     "name": "Nature",
     "slug": "nature",
     "color": "#22c55e",
-    "description": "Landscapes and natural scenes to piece together.",
-    "longDescription": "Explore mountains, forests, water, and outdoor textures through calm visual puzzles built for relaxed focus.",
+    "description": "Play JigSolitaire nature puzzles online with landscapes, forests, water scenes, outdoor textures, and relaxing tile-swap jigsaw levels.",
+    "longDescription": "Explore JigSolitaire nature puzzles with mountains, forests, water, and outdoor textures through calm visual challenges built for relaxed focus.",
     "levels": [
       {
         "id": 89,

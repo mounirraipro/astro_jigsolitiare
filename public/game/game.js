@@ -493,8 +493,12 @@
     return `/levels/${cat.name}/${imgFile}`;
   }
 
+  function gameReadyImgUrl(cat, imgFile) {
+    return `/levels-game-webp/${cat.name}/${imgFile.replace(/\.(png|jpe?g)$/i, '.webp')}`;
+  }
+
   function optimizedImgUrl(cat, imgFile) {
-    return `/levels-webp/${cat.name}/${imgFile.replace(/\.png$/i, '.webp')}`;
+    return `/levels-webp/${cat.name}/${imgFile.replace(/\.(png|jpe?g)$/i, '.webp')}`;
   }
 
   function thumbUrl(cat, imgFile) {
@@ -502,12 +506,28 @@
   }
 
   const fullImagePreloadCache = new Map();
+  const backgroundImageQueue = [];
+  const queuedImagePreloads = new Set();
+  const MAX_BACKGROUND_IMAGE_PRELOADS = 2;
+  let activeBackgroundImagePreloads = 0;
 
-  function loadImageUrl(src, fallbackColor, fallbackLabel, rejectOnError = false) {
+  function imageCacheKey(cat, imgFile) {
+    return `${cat.name}/${imgFile}`;
+  }
+
+  function loadImageUrl(src, fallbackColor, fallbackLabel, options = {}) {
+    const normalizedOptions = typeof options === 'boolean'
+      ? { rejectOnError: options }
+      : options;
+    const { rejectOnError = false, fetchPriority = 'auto' } = normalizedOptions;
+
     return new Promise((resolve, reject) => {
       const img = new Image();
       img.crossOrigin = 'anonymous';
       img.decoding = 'async';
+      if ('fetchPriority' in img) {
+        img.fetchPriority = fetchPriority;
+      }
       img.onload = async () => {
         if (img.decode) {
           try { await img.decode(); } catch {}
@@ -536,16 +556,84 @@
     });
   }
 
-  function preloadFullImage(cat, imgFile) {
-    const cacheKey = `${cat.name}/${imgFile}`;
+  async function loadFirstAvailableImage(sources, fallbackColor, fallbackLabel, fetchPriority) {
+    for (let i = 0; i < sources.length; i++) {
+      const isFinalSource = i === sources.length - 1;
+      try {
+        return await loadImageUrl(sources[i], fallbackColor, fallbackLabel, {
+          rejectOnError: !isFinalSource,
+          fetchPriority,
+        });
+      } catch {
+        // Try the next format. The final source resolves to a canvas fallback if needed.
+      }
+    }
+
+    return loadImageUrl(sources[sources.length - 1], fallbackColor, fallbackLabel, {
+      fetchPriority,
+    });
+  }
+
+  function preloadFullImage(cat, imgFile, options = {}) {
+    const { fetchPriority = 'auto' } = options;
+    const cacheKey = imageCacheKey(cat, imgFile);
     if (!fullImagePreloadCache.has(cacheKey)) {
-      const optimized = optimizedImgUrl(cat, imgFile);
-      const original = imgUrl(cat, imgFile);
-      const promise = loadImageUrl(optimized, cat.color, imgFile, true)
-        .catch(() => loadImageUrl(original, cat.color, imgFile));
+      const promise = loadFirstAvailableImage([
+        gameReadyImgUrl(cat, imgFile),
+        optimizedImgUrl(cat, imgFile),
+        imgUrl(cat, imgFile),
+      ], cat.color, imgFile, fetchPriority);
       fullImagePreloadCache.set(cacheKey, promise);
     }
     return fullImagePreloadCache.get(cacheKey);
+  }
+
+  function requestIdleTask(callback, timeout = 1200) {
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(callback, { timeout });
+    } else {
+      window.setTimeout(callback, 150);
+    }
+  }
+
+  function queueImagePreload(cat, imgFile, priority = false) {
+    const cacheKey = imageCacheKey(cat, imgFile);
+    if (fullImagePreloadCache.has(cacheKey) || queuedImagePreloads.has(cacheKey)) return;
+
+    const item = { cat, imgFile, cacheKey };
+    queuedImagePreloads.add(cacheKey);
+
+    if (priority) {
+      backgroundImageQueue.unshift(item);
+    } else {
+      backgroundImageQueue.push(item);
+    }
+
+    pumpBackgroundImageQueue();
+  }
+
+  function pumpBackgroundImageQueue() {
+    while (activeBackgroundImagePreloads < MAX_BACKGROUND_IMAGE_PRELOADS && backgroundImageQueue.length > 0) {
+      const item = backgroundImageQueue.shift();
+      activeBackgroundImagePreloads++;
+
+      preloadFullImage(item.cat, item.imgFile, { fetchPriority: 'low' })
+        .catch(() => {})
+        .finally(() => {
+          queuedImagePreloads.delete(item.cacheKey);
+          activeBackgroundImagePreloads--;
+          pumpBackgroundImageQueue();
+        });
+    }
+  }
+
+  function scheduleImagePreloads(entries, options = {}) {
+    const { priority = false } = options;
+    if (!entries.length) return;
+
+    requestIdleTask(() => {
+      entries.forEach(({ cat, imgFile }) => queueImagePreload(cat, imgFile, priority));
+    });
   }
 
   const lazyImageObserver = 'IntersectionObserver' in window
@@ -596,8 +684,49 @@
     });
   }
 
+  function getNextPlayableLevelIndex(cat, progress) {
+    const nextUnsolvedIndex = cat.levels.findIndex((level, index) => {
+      return isLevelUnlocked(cat, index, progress) && !isLevelSolved(level.id, progress);
+    });
+
+    return nextUnsolvedIndex >= 0 ? nextUnsolvedIndex : 0;
+  }
+
+  function scheduleCollectionPreloads() {
+    const progress = getProgress();
+    const entries = [];
+
+    CATEGORIES.forEach((cat) => {
+      const startIndex = getNextPlayableLevelIndex(cat, progress);
+      cat.levels.slice(startIndex, startIndex + 2).forEach((level) => {
+        entries.push({ cat, imgFile: level.img });
+      });
+    });
+
+    scheduleImagePreloads(entries);
+  }
+
+  function schedulePuzzlePreloads(cat) {
+    const progress = getProgress();
+    const entries = getVisibleLevelEntries(cat, progress)
+      .filter(({ unlocked }) => unlocked)
+      .slice(0, 8)
+      .map(({ level }) => ({ cat, imgFile: level.img }));
+
+    scheduleImagePreloads(entries, { priority: true });
+  }
+
+  function scheduleNextLevelPreload(cat, levelIndex) {
+    const nextIndex = levelIndex + 1;
+    const nextLevel = cat.levels[nextIndex];
+
+    if (nextLevel) {
+      scheduleImagePreloads([{ cat, imgFile: nextLevel.img }], { priority: true });
+    }
+  }
+
   function loadImage(cat, imgFile) {
-    return preloadFullImage(cat, imgFile);
+    return preloadFullImage(cat, imgFile, { fetchPriority: 'high' });
   }
 
   // ==========================================
@@ -615,7 +744,10 @@
   function initCollectionScreen() {
     const progressKey = getProgressKey(getProgress());
     const nextRenderKey = `${CATEGORIES.length}:${progressKey}`;
-    if (collectionRenderKey === nextRenderKey) return;
+    if (collectionRenderKey === nextRenderKey) {
+      scheduleCollectionPreloads();
+      return;
+    }
 
     collectionGrid.innerHTML = '';
     const fragment = document.createDocumentFragment();
@@ -637,6 +769,7 @@
 
     collectionGrid.appendChild(fragment);
     collectionRenderKey = nextRenderKey;
+    scheduleCollectionPreloads();
   }
 
   document.getElementById('btn-quick-play-collection').addEventListener('click', () => {
@@ -650,7 +783,10 @@
   function initPuzzleScreen(cat) {
     const progress = getProgress();
     const nextRenderKey = `${cat.slug}:${getProgressKey(progress)}`;
-    if (puzzleRenderKey === nextRenderKey) return;
+    if (puzzleRenderKey === nextRenderKey) {
+      schedulePuzzlePreloads(cat);
+      return;
+    }
 
     puzzleGrid.innerHTML = '';
     const fragment = document.createDocumentFragment();
@@ -681,7 +817,7 @@
         `;
         card.appendChild(overlay);
       } else {
-        const warmImage = () => preloadFullImage(cat, level.img);
+        const warmImage = () => preloadFullImage(cat, level.img, { fetchPriority: 'high' });
         card.addEventListener('mouseenter', warmImage, { once: true });
         card.addEventListener('focusin', warmImage, { once: true });
         card.addEventListener('touchstart', warmImage, { once: true, passive: true });
@@ -696,6 +832,7 @@
 
     puzzleGrid.appendChild(fragment);
     puzzleRenderKey = nextRenderKey;
+    schedulePuzzlePreloads(cat);
   }
 
   document.getElementById('btn-quick-play-puzzle').addEventListener('click', () => {
@@ -773,10 +910,11 @@
     ctx.font = '500 13px Inter, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('Loading…', bWtmp / 2, bHtmp / 2);
+    ctx.fillText('Loading...', bWtmp / 2, bHtmp / 2);
 
     // Load image + split
     sourceImage = await loadImage(cat, level.img);
+    scheduleNextLevelPreload(cat, currentLevelIndex);
     splitResult = ImageSplitter.split(sourceImage, cols, rows, aW, aH);
     tileW = splitResult.tileW;
     tileH = splitResult.tileH;

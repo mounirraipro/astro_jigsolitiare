@@ -11,9 +11,14 @@ const { slug } = Astro.props;
 const category = getCategoryBySlug(slug);
 if (!category) throw new Error(`Missing category: ${slug}`);
 const accentClass = getCategoryAccentClass(category.name);
+const isLevelPage = Astro.url.pathname.toLowerCase().startsWith("/levels/");
+const seoTitle = isLevelPage ? `${category.name} JigSolitaire Levels` : `${category.name} JigSolitaire Puzzles`;
+const seoDescription = isLevelPage
+  ? `Browse ${category.name} JigSolitaire levels online, compare visual puzzle difficulty, and play browser tile-swap jigsaw solitaire challenges.`
+  : category.description;
 ---
 
-<BaseLayout title={`${category.name} Puzzles`} description={category.description}>
+<BaseLayout title={seoTitle} description={seoDescription}>
   <section class="listing-shell">
     <header class="listing-header">
       <p class="eyebrow">JigSolitaire Category</p>
@@ -23,7 +28,7 @@ const accentClass = getCategoryAccentClass(category.name);
     <div class="level-grid">
       {category.levels.map((level) => (
         <a class:list={["level-card", accentClass]} href="/play/">
-          <img src={level.thumbnail} alt={`${level.title} puzzle thumbnail`} loading="lazy" />
+          <img src={level.thumbnail} alt={`${level.title} puzzle thumbnail`} width="640" height="360" loading="lazy" />
           <strong>{level.title}</strong>
           <span>{level.gridSize} - {level.difficulty}</span>
         </a>

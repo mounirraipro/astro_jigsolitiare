@@ -4,7 +4,7 @@ import { externalGames } from "@/data/externalGames";
 import { brandAccentClass } from "@/data/accentClasses";
 ---
 
-<BaseLayout title="Free Online Games" description="Play JigSolitaire and more free browser games in a clean static Astro game hub.">
+<BaseLayout title="Free Online Games" description="Play JigSolitaire and more free online browser games, including card games, tile puzzles, word games, logic games, and arcade puzzle favorites.">
   <section class="listing-shell games-hub">
     <header class="listing-header">
       <p class="eyebrow">Game Library</p>
@@ -13,7 +13,7 @@ import { brandAccentClass } from "@/data/accentClasses";
     </header>
     <div class="site-game-grid">
       <a class:list={["site-game-card", "site-game-card-featured", brandAccentClass]} href="/play/">
-        <img src="/level-thumbs/Animals/JigSolitaire_Animals1.webp" alt="JigSolitaire puzzle thumbnail" loading="lazy" />
+        <img src="/level-thumbs/Animals/JigSolitaire_Animals1.webp" alt="JigSolitaire puzzle thumbnail" width="640" height="360" loading="lazy" />
         <div>
           <span>JigSolitaire</span>
           <h2>JigSolitaire Online</h2>
@@ -23,7 +23,7 @@ import { brandAccentClass } from "@/data/accentClasses";
       </a>
       {externalGames.map((game) => (
         <a class:list={["site-game-card", game.accentClass]} href={`/games/${game.slug}/`}>
-          <img src={game.thumbnail} alt={`${game.title} thumbnail`} loading="lazy" />
+          <img src={game.thumbnail} alt={`${game.title} thumbnail`} width="640" height="360" loading="lazy" />
           <div>
             <span>{game.category}</span>
             <h2>{game.title}</h2>

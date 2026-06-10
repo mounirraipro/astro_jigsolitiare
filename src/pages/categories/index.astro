@@ -4,7 +4,7 @@ import { getCategoryAccentClass } from "@/data/accentClasses";
 import { categories } from "@/data/gameData";
 ---
 
-<BaseLayout title="JigSolitaire Categories" description="Browse JigSolitaire puzzle categories including Animals, Nature, Cities, Art, and Food.">
+<BaseLayout title="JigSolitaire Categories" description="Browse JigSolitaire puzzle categories including Animals, Nature, Cities, Art, and Food, then play free browser jigsaw solitaire levels online.">
   <section class="listing-shell">
     <header class="listing-header">
       <p class="eyebrow">Puzzle Categories</p>
@@ -14,7 +14,7 @@ import { categories } from "@/data/gameData";
     <div class="category-grid">
       {categories.map((category) => (
         <a class:list={["media-card", getCategoryAccentClass(category.name)]} href="/play/">
-          <img src={category.levels[0]?.thumbnail ?? category.levels[0]?.image} alt={`${category.name} category preview`} loading="lazy" />
+          <img src={category.levels[0]?.thumbnail ?? category.levels[0]?.image} alt={`${category.name} category preview`} width="640" height="360" loading="lazy" />
           <span>{category.name}</span>
           <small>{category.levels.length} levels</small>
         </a>

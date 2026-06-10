@@ -4,7 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>JigSolitaire</title>
+  <title>JigSolitaire Game Player - Free Online Puzzle</title>
+  <meta name="description" content="Play the embedded JigSolitaire puzzle game, swap image tiles, merge correct groups, and restore each picture in your browser.">
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://astro.jigsolitaire.online/play/">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,6 +19,12 @@
 </head>
 
 <body>
+  <h1 class="seo-only">JigSolitaire Game Player</h1>
+  <nav class="seo-only" aria-label="Game player links">
+    <a href="/play/">Play JigSolitaire</a>
+    <a href="/how-to-play/">How To Play</a>
+    <a href="/games/">More Games</a>
+  </nav>
   <div id="app">
 
     <!-- ── Global Audio Controls ── -->
@@ -175,7 +184,7 @@
       </div>
 
       <div class="win-image-area">
-        <img id="win-preview-image" alt="Solved Puzzle">
+        <img id="win-preview-image" alt="Solved Puzzle" width="640" height="360">
       </div>
 
       <div class="win-actions-bar">

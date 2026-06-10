@@ -10,7 +10,7 @@ type Props = {
 const { game } = Astro.props;
 const bentoGames = [
   {
-    href: `/games/${game.slug}`,
+    href: `/games/${game.slug}/`,
     title: game.title,
     shortTitle: game.shortTitle,
     category: "Now playing",
@@ -19,7 +19,7 @@ const bentoGames = [
     accentClass: game.accentClass,
   },
   {
-    href: "/play",
+    href: "/play/",
     title: "JigSolitaire Online",
     shortTitle: "JigSolitaire",
     category: "Featured",
@@ -30,7 +30,7 @@ const bentoGames = [
   ...externalGames
     .filter((item) => item.slug !== game.slug)
     .map((item) => ({
-      href: `/games/${item.slug}`,
+      href: `/games/${item.slug}/`,
       title: item.title,
       shortTitle: item.shortTitle,
       category: item.category,
@@ -55,7 +55,7 @@ const bentoGamesRight = bentoGames.slice(4, 8);
       <div class="game-bento-grid game-bento-grid-side" aria-label="More games">
         {bentoGamesLeft.map((item, index) => (
           <a class:list={["game-bento-card", item.accentClass, { "game-bento-card-featured": index === 0 }]} href={item.href}>
-            <img src={item.thumbnail} alt={`${item.title} thumbnail`} loading="lazy" />
+            <img src={item.thumbnail} alt={`${item.title} thumbnail`} width="640" height="360" loading="lazy" />
             <div>
               <span>{item.category}</span>
               <strong>{item.shortTitle}</strong>
@@ -71,7 +71,7 @@ const bentoGamesRight = bentoGames.slice(4, 8);
       <div class="game-bento-grid game-bento-grid-side" aria-label="Try next">
         {bentoGamesRight.map((item, index) => (
           <a class:list={["game-bento-card", item.accentClass, { "game-bento-card-featured": index === 0 }]} href={item.href}>
-            <img src={item.thumbnail} alt={`${item.title} thumbnail`} loading="lazy" />
+            <img src={item.thumbnail} alt={`${item.title} thumbnail`} width="640" height="360" loading="lazy" />
             <div>
               <span>{item.category}</span>
               <strong>{item.shortTitle}</strong>

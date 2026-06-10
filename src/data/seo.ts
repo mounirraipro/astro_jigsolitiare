@@ -57,7 +57,7 @@ const routeFallbackSeo = (route: SiteRoute): SeoPage => ({
 const pageOverrides: Partial<Record<string, Partial<SeoPage>>> = {
   "/": {
     title: siteConfig.name,
-    seoTitle: `Play ${siteConfig.name} Online - Free Puzzle Tiles Game`,
+    seoTitle: `${siteConfig.name} Online - Free Jigsaw Solitaire Game`,
     description: siteConfig.description,
     priority: 1,
     changeFrequency: "weekly",
@@ -186,16 +186,12 @@ export const buildJsonLd = (page: SeoPage, canonicalUrl: string) => {
       "@type": "WebSite",
       "@id": websiteId,
       name: siteConfig.name,
+      alternateName: ["JigSolitaire Online", "Jigsaw Solitaire", "jigsolitiare"],
       url: siteConfig.siteUrl,
       description: siteConfig.description,
       inLanguage: siteConfig.language,
       publisher: {
         "@id": publisherId,
-      },
-      potentialAction: {
-        "@type": "SearchAction",
-        target: `${siteConfig.siteUrl.replace(/\/$/, "")}/search?q={search_term_string}`,
-        "query-input": "required name=search_term_string",
       },
     },
     {

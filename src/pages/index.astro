@@ -35,20 +35,60 @@ const homeBentoLeft = homeBentoGames.slice(0, 4);
 const homeBentoRight = homeBentoGames.slice(4, 8);
 
 const faqItems = [
-  ["What is JigSolitaire?", "JigSolitaire is a free browser puzzle game where you swap scrambled image tiles until the full picture is restored. Correct adjacent tiles merge into groups as you solve."],
-  ["Is JigSolitaire free?", "Yes. The game is free to play in the browser with no download and no account required."],
-  ["Does it work on mobile?", "Yes. The copied game supports mouse and touch play, so it works on desktop, tablets, and modern phones."],
-  ["How many puzzle categories are included?", "This Astro version includes the copied Animals, Nature, Cities, Art, and Food puzzle sets."],
+  ["What is JigSolitaire?", "JigSolitaire is a free online jigsaw solitaire game where you swap scrambled image tiles until the full picture is restored. Correct adjacent tiles merge into groups as you solve."],
+  ["How do you play JigSolitaire online?", "Choose a puzzle, preview the image, then drag tiles to swap positions. Use color, edges, and texture clues to rebuild the picture while correct neighbors merge into larger groups."],
+  ["Is JigSolitaire free?", "Yes. JigSolitaire is free to play in the browser with no download, no account, and no app install required."],
+  ["Does JigSolitaire work on mobile?", "Yes. JigSolitaire supports mouse and touch play, so it works on desktop, tablets, and modern phones."],
+  ["How many JigSolitaire puzzles are included?", `This version includes ${categories.reduce((sum, category) => sum + category.levels.length, 0)}+ levels across Animals, Nature, Cities, Art, and Food collections.`],
+];
+
+const homeStructuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    name: "JigSolitaire",
+    alternateName: ["JigSolitaire Online", "Jigsaw Solitaire", "jigsolitiare"],
+    url: `${siteConfig.siteUrl}/`,
+    image: new URL(siteConfig.defaultOgImage, siteConfig.siteUrl).href,
+    description: siteConfig.description,
+    applicationCategory: "Game",
+    gamePlatform: ["Web browser", "Desktop", "Mobile", "Tablet"],
+    genre: ["Jigsaw puzzle", "Solitaire puzzle", "Tile swap puzzle"],
+    operatingSystem: "Any modern browser",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.publisherName,
+      url: siteConfig.siteUrl,
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map(([question, answer]) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: answer,
+      },
+    })),
+  },
 ];
 ---
 
-<BaseLayout title={siteConfig.name} description={siteConfig.description}>
+<BaseLayout title={siteConfig.name} description={siteConfig.description} structuredData={homeStructuredData}>
   <section class="hero-play">
     <div class="home-game-lobby">
       <div class="game-bento-grid game-bento-grid-side" aria-label="Games you can play">
         {homeBentoLeft.map((game, index) => (
           <a class:list={["game-bento-card", game.accentClass, { "game-bento-card-featured": index === 0 }]} href={game.href}>
-            <img src={game.thumbnail} alt={`${game.title} thumbnail`} loading="lazy" />
+            <img src={game.thumbnail} alt={`${game.title} thumbnail`} width="640" height="360" loading="lazy" />
             <div>
               <span>{game.category}</span>
               <strong>{game.shortTitle}</strong>
@@ -62,7 +102,7 @@ const faqItems = [
       <div class="game-bento-grid game-bento-grid-side" aria-label="More games">
         {homeBentoRight.map((game, index) => (
           <a class:list={["game-bento-card", game.accentClass, { "game-bento-card-featured": index === 0 }]} href={game.href}>
-            <img src={game.thumbnail} alt={`${game.title} thumbnail`} loading="lazy" />
+            <img src={game.thumbnail} alt={`${game.title} thumbnail`} width="640" height="360" loading="lazy" />
             <div>
               <span>{game.category}</span>
               <strong>{game.shortTitle}</strong>
@@ -75,7 +115,7 @@ const faqItems = [
       <div class="hero-copy-main">
         <p class="eyebrow">Instant play</p>
         <h1>JigSolitaire Online</h1>
-        <p>Swap tiles, merge groups, and restore the image. No download. No account.</p>
+        <p>Play JigSolitaire free in your browser. Swap image tiles, merge correct groups, and restore each jigsaw-style picture with no download and no account.</p>
         <a class="text-link hero-note" href="/how-to-play/">Learn the rules</a>
       </div>
       <div class="hero-play-panel">
@@ -96,6 +136,38 @@ const faqItems = [
     </div>
   </section>
 
+  <section class="home-section home-search-intent">
+    <div class="home-section-head split-head">
+      <div>
+        <p class="eyebrow">JigSolitaire guide</p>
+        <h2>Play the jigsaw solitaire puzzle.</h2>
+      </div>
+      <p>JigSolitaire combines the calm image solving of a jigsaw puzzle with the quick decisions of a solitaire-style tile board.</p>
+    </div>
+    <div class="process-strip">
+      <article>
+        <span>Free</span>
+        <h3>Browser play</h3>
+        <p>Open <a href="/play/">JigSolitaire online</a> and start a level instantly. The game runs in the browser, so there is no app store, installer, or sign-up flow.</p>
+      </article>
+      <article>
+        <span>Visual</span>
+        <h3>Tile swapping</h3>
+        <p>Each level begins as a scrambled picture. Move tiles by reading colors, shapes, edge lines, and small landmarks inside the image.</p>
+      </article>
+      <article>
+        <span>Merge</span>
+        <h3>Smart progress</h3>
+        <p>Correct neighbors merge into movable groups. That makes JigSolitaire feel different from a normal sliding puzzle and keeps each solve readable.</p>
+      </article>
+      <article>
+        <span>Learn</span>
+        <h3>Helpful paths</h3>
+        <p>Use the <a href="/how-to-play/">how to play guide</a>, browse <a href="/levels/">JigSolitaire levels</a>, or explore <a href="/categories/">puzzle categories</a>.</p>
+      </article>
+    </div>
+  </section>
+
   <section class="home-section home-worlds">
     <div class="home-section-head">
       <p class="eyebrow">Choose a world</p>
@@ -104,7 +176,7 @@ const faqItems = [
     </div>
     <div class="world-showcase">
       <a class:list={["world-feature", getCategoryAccentClass(featuredCategories[0].name)]} href="/play/">
-        <img src={featuredCategories[0].preview} alt={`${featuredCategories[0].name} JigSolitaire puzzle preview`} loading="lazy" />
+        <img src={featuredCategories[0].preview} alt={`${featuredCategories[0].name} JigSolitaire puzzle preview`} width="640" height="360" loading="lazy" />
         <div>
           <span>{featuredCategories[0].name}</span>
           <strong>Begin with Animals.</strong>
@@ -114,7 +186,7 @@ const faqItems = [
       <div class="world-stack">
         {featuredCategories.slice(1).map((category) => (
           <a class:list={["world-card", getCategoryAccentClass(category.name)]} href="/play/">
-            <img src={category.preview} alt={`${category.name} JigSolitaire puzzle preview`} loading="lazy" />
+            <img src={category.preview} alt={`${category.name} JigSolitaire puzzle preview`} width="640" height="360" loading="lazy" />
             <div>
               <span>{category.name}</span>
               <small>{category.levels.length} levels</small>
