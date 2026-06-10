@@ -23,6 +23,13 @@ const shortenMeta = (value: string, maxLength: number) => {
 };
 const articleSeoTitle = shortenMeta(`${article.title} | Puzzle Guide`, 58);
 const articleMetaDescription = shortenMeta(article.description, 152);
+const articleHeadingOverrides: Record<string, string> = {
+  "are-puzzles-good-for-anxiety-and-stress": "Puzzles for Anxiety and Stress",
+  "golden-age-of-puzzles": "The Golden Age of Jigsaw Puzzles",
+  "solving-puzzles-together": "Solving Puzzles Together",
+  "tile-swap-puzzle-games-guide": "Tile-Swap Puzzle Games Guide",
+};
+const articleHeading = articleHeadingOverrides[article.slug] ?? article.title;
 const articleStructuredData = [
   {
     "@context": "https://schema.org",
@@ -56,7 +63,7 @@ const articleStructuredData = [
   <article class="blog-article">
     <header class="blog-article-header">
       <nav class="crumbs"><a href="/blog/">Blog</a><span>/</span><span>{article.category}</span></nav>
-      <h1>{article.title}</h1>
+      <h1>{articleHeading}</h1>
       <p>{article.description}</p>
       <div class="author-byline">
         <span class="author-avatar">LA</span>
@@ -73,7 +80,7 @@ const articleStructuredData = [
 
         <section class="article-tags-box" aria-label="Article tags">
           <span class="article-tags-label">Filed under:</span>
-          <a class="article-tag article-tag-category" href={`/blog/?category=${encodeURIComponent(article.category)}`}>{article.category}</a>
+          <a class="article-tag article-tag-category" href="/blog/">{article.category}</a>
           {tags.map((tag) => <span class="article-tag">{tag}</span>)}
         </section>
 
@@ -92,7 +99,7 @@ const articleStructuredData = [
         <section class="comment-box">
           <div>
             <p class="comment-label">Comments & feedback</p>
-            <h2>Have a note about this guide?</h2>
+            <h3>Have a note about this guide?</h3>
             <p>Send a correction, question, or puzzle tip. We read feedback and use it to improve future updates.</p>
           </div>
           <a class="secondary-action" href={`mailto:${siteConfig.contactEmail}?subject=${encodeURIComponent(`Comment on: ${article.title}`)}`}>Email a comment</a>
@@ -111,7 +118,7 @@ const articleStructuredData = [
 
         {related.length > 0 && (
           <nav class="related-articles" aria-label="Continue reading">
-            <h2>Continue Reading</h2>
+            <h2>More after {articleHeading}</h2>
             <div>
               {related.map((item) => (
                 <a href={`/blog/${item.slug}/`}>
@@ -136,7 +143,7 @@ const articleStructuredData = [
         </div>
         <div class="article-side-card">
           <p>Play after reading</p>
-          <h2>Try the ideas in a puzzle.</h2>
+          <h3>Try the ideas in a puzzle.</h3>
           <a class="primary-action" href="/play/"><span class="play-triangle"></span>Play JigSolitaire</a>
         </div>
       </aside>

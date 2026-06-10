@@ -15,7 +15,7 @@ type Props = {
 
 const { title, description, heading, intro, category, level, related } = Astro.props;
 const accentClass = getCategoryAccentClass(category.name);
-const previewImage = level.image.replace("/levels/", "/levels-webp/").replace(/\.png$/i, ".webp");
+const previewImage = level.thumbnail;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -38,7 +38,7 @@ const previewImage = level.image.replace("/levels/", "/levels-webp/").replace(/\
 
     <section class="seo-copy-section" aria-labelledby={`${level.id}-spotlight-guide`}>
       <div class="section-head">
-        <h2 id={`${level.id}-spotlight-guide`}>Level notes.</h2>
+        <h2 id={`${level.id}-spotlight-guide`}>{heading} level notes.</h2>
       </div>
       <div class="seo-copy-grid">
         <article class="seo-copy-card seo-copy-wide">
@@ -57,7 +57,7 @@ const previewImage = level.image.replace("/levels/", "/levels-webp/").replace(/\
     </section>
 
     <div class="section-head">
-      <h2>More {category.name.toLowerCase()} puzzles.</h2>
+      <h2>More {category.name.toLowerCase()} puzzles after {heading}</h2>
     </div>
     <div class="level-grid">
       {related.map((item) => (

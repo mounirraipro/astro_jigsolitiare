@@ -25,7 +25,7 @@ const updated = "February 14, 2026";
 export const pageContent = {
   about: {
     title: "About JigSolitaire",
-    seoTitle: `About Us - ${gameName}`,
+    seoTitle: `About ${gameName} - Free Online Puzzle Game`,
     description: `Learn about ${gameName}, our mission to create the ultimate free online puzzle experience, and the team behind the game.`,
     keywords: ["about JigSolitaire", "puzzle game team", "who made JigSolitaire"],
     schemaType: "AboutPage",
@@ -63,7 +63,7 @@ export const pageContent = {
         ],
       },
       {
-        heading: "Get In Touch",
+        heading: "Contact the JigSolitaire Team",
         body: "We love hearing from players. Send feedback, suggestions, bug reports, or partnership notes through the Contact page so we can keep improving JigSolitaire.",
       },
     ],
@@ -140,14 +140,14 @@ export const pageContent = {
   },
   contact: {
     title: "Contact Us",
-    seoTitle: `Contact ${gameName}`,
+    seoTitle: `Contact ${gameName} Support - Puzzle Game Help`,
     description: `Get in touch with the ${gameName} team for support, feedback, partnerships, accessibility concerns, or privacy questions.`,
     keywords: ["contact JigSolitaire", "JigSolitaire support", "puzzle game contact"],
     schemaType: "ContactPage",
     intro: "Have a question, suggestion, partnership idea, or policy concern? We would love to hear from you.",
     sections: [
       {
-        heading: "Get In Touch",
+        heading: "Send Us a Message",
         body: "We value every message from our community. Whether you are reporting a bug, suggesting a feature, asking about business opportunities, or following up on privacy and accessibility concerns, we aim to make it easy to reach a real person.",
       },
       {
@@ -183,7 +183,7 @@ export const pageContent = {
   },
   "cookie-policy": {
     title: "Cookie Policy",
-    seoTitle: `Cookie Policy | ${gameName}`,
+    seoTitle: `${gameName} Cookie Policy - Ads and Privacy Choices`,
     description: `Learn about the cookies ${gameName} uses, why we use them, and how to manage your cookie preferences.`,
     keywords: ["JigSolitaire cookies", "cookie policy", "cookie preferences", "tracking cookies"],
     updated,
@@ -218,14 +218,14 @@ export const pageContent = {
         body: "Most browsers let you block, delete, or manage cookies through browser settings. You can also opt out of personalized advertising through Google Ad Settings or industry opt-out tools.",
       },
       {
-        heading: "Contact Us",
+        heading: "Cookie Questions",
         body: `If you have questions about our use of cookies, contact us at ${contact}.`,
       },
     ],
   },
   disclaimer: {
     title: "Disclaimer",
-    seoTitle: `Disclaimer | ${gameName}`,
+    seoTitle: `${gameName} Disclaimer - Website and Game Terms`,
     description: `Read the ${gameName} disclaimer regarding website content accuracy, external links, and general use of our free online puzzle game.`,
     keywords: ["JigSolitaire disclaimer", "website disclaimer", "legal disclaimer"],
     updated,
@@ -252,14 +252,14 @@ export const pageContent = {
         body: "We work to keep information accurate and useful, but we cannot guarantee completeness, timeliness, or error-free content.",
       },
       {
-        heading: "Contact",
+        heading: "Disclaimer Questions",
         body: "If you have questions or concerns about this disclaimer, please visit the Contact page.",
       },
     ],
   },
   faq: {
     title: "Frequently Asked Questions",
-    seoTitle: `FAQ - ${gameName}`,
+    seoTitle: `${gameName} FAQ - Gameplay, Levels and Support`,
     description: `Frequently asked questions about ${gameName}. Find answers about gameplay, features, device support, and more.`,
     keywords: ["JigSolitaire FAQ", "puzzle game questions", "JigSolitaire help"],
     schemaType: "FAQPage",
@@ -439,7 +439,7 @@ export const pageContent = {
   },
   "difficulty-guide": {
     title: "Difficulty Guide",
-    seoTitle: `JigSolitaire Difficulty Guide - Choose the Right Puzzle Level`,
+    seoTitle: "JigSolitaire Difficulty Guide - Pick Puzzle Levels",
     description: "Understand JigSolitaire difficulty, grid size, image complexity, and how to choose levels that match your skill and available time.",
     keywords: ["JigSolitaire difficulty", "puzzle difficulty guide", "choose puzzle level", "beginner puzzle levels"],
     schemaType: "Article",
@@ -483,7 +483,7 @@ export const pageContent = {
   },
   "game-mechanics": {
     title: "Game Mechanics",
-    seoTitle: `JigSolitaire Game Mechanics - Tile Swapping, Merging, and Progress`,
+    seoTitle: "JigSolitaire Mechanics - Tile Swapping and Merging",
     description: "Learn how JigSolitaire works, including tile swapping, preview memory, group merging, difficulty progression, and puzzle feedback.",
     keywords: ["JigSolitaire mechanics", "tile swapping", "tile merging puzzle", "browser puzzle mechanics"],
     schemaType: "Article",
@@ -517,7 +517,7 @@ export const pageContent = {
   },
   "privacy-policy": {
     title: "Privacy Policy",
-    seoTitle: `Privacy Policy | ${gameName}`,
+    seoTitle: `${gameName} Privacy Policy - Data and Ads`,
     description: `Read the ${gameName} Privacy Policy. Learn how we collect, use, and protect data when you use our free online puzzle game.`,
     keywords: ["JigSolitaire privacy policy", "data protection", "cookie policy puzzle game"],
     updated,
@@ -574,7 +574,7 @@ export const pageContent = {
         ],
       },
       {
-        heading: "Contact Us",
+        heading: "Privacy Questions",
         body: `If you have questions about this Privacy Policy, contact us at ${contact}.`,
       },
     ],
@@ -630,7 +630,7 @@ export const pageContent = {
         body: "We may update these Terms of Service at any time. Continued use of the service after changes are posted means you accept the updated terms.",
       },
       {
-        heading: "Contact",
+        heading: "Terms Questions",
         body: `If you have questions about these Terms of Service, contact us at ${contact}.`,
       },
     ],

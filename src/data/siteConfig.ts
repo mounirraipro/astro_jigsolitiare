@@ -10,7 +10,7 @@ export const siteConfig = {
   locale: "en_US",
   language: "en",
   themeColor: "#ff5e4d",
-  defaultOgImage: "/Jigsolitaire.online_Thmbnail.png",
+  defaultOgImage: "/jigsolitaire-og.jpg",
   socialHandle: "",
   publisherName: "JigSolitaire",
   sameAs: [] as string[],

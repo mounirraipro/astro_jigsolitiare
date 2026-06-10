@@ -41,9 +41,10 @@ const bentoGames = [
 ].slice(0, 8);
 const bentoGamesLeft = bentoGames.slice(0, 4);
 const bentoGamesRight = bentoGames.slice(4, 8);
+const gameSeoTitle = `Play ${game.title} Online - Free Browser Game`;
 ---
 
-<BaseLayout title={game.title} description={game.description} seo={{ path: `/games/${game.slug}` }}>
+<BaseLayout title={game.title} description={game.description} seo={{ path: `/games/${game.slug}`, seoTitle: gameSeoTitle }}>
   <section class="embedded-game-page">
     <header class="embedded-game-head">
       <nav class="crumbs"><a href="/games/">Games</a><span>/</span><span>{game.category}</span></nav>

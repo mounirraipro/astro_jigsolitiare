@@ -2300,7 +2300,7 @@
     text-transform: uppercase;
   }
 
-  .comment-box h2,
+  .comment-box h3,
   .related-articles h2 {
     margin: 0 0 0.45rem;
     color: var(--color-ink);
@@ -2407,7 +2407,7 @@
     text-transform: uppercase;
   }
 
-  .article-side-card h2 {
+  .article-side-card h3 {
     margin: 0 0 1rem;
     color: var(--color-ink);
     font-size: 1.35rem;

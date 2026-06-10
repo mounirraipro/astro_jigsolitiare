@@ -15,7 +15,7 @@ export type ExternalGame = {
 };
 
 const playGameAdBase = "https://playgamead.com";
-const placeholderThumbnail = "/game-thumbs/game-placeholder.png";
+const placeholderThumbnail = "/game-thumbs/game-placeholder.webp";
 
 export const externalGames = [
   {

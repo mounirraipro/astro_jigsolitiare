@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>JigSolitaire Game Player - Free Online Puzzle</title>
   <meta name="description" content="Play the embedded JigSolitaire puzzle game, swap image tiles, merge correct groups, and restore each picture in your browser.">
-  <meta name="robots" content="noindex, follow">
-  <link rel="canonical" href="https://astro.jigsolitaire.online/play/">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://astro.jigsolitaire.online/game/">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +15,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="game.css?v=image-expansion-20260610">
+  <link rel="stylesheet" href="game.css">
 </head>
 
 <body>
@@ -25,6 +25,12 @@
     <a href="/how-to-play/">How To Play</a>
     <a href="/games/">More Games</a>
   </nav>
+  <section class="seo-only" aria-label="About the JigSolitaire game player">
+    <h2>Play JigSolitaire in the browser</h2>
+    <p>JigSolitaire is a free online jigsaw solitaire puzzle game built around image tiles, direct swapping, and smart group merging. Each puzzle starts with a complete picture preview, then the board shuffles into a grid. Players use color, edges, texture, and subject details to move tiles back into place. Correct neighboring tiles merge into larger groups, which makes progress visible and helps each solve feel cleaner as the image comes together.</p>
+    <p>The embedded player includes animals, art, cities, food, nature, space, and fantasy puzzle collections. It works on desktop and mobile browsers with no download, no account, and no app install. Use the full play page for the largest layout, or open the how to play guide for step-by-step rules, solving tips, difficulty guidance, and strategy notes.</p>
+    <p>Every round is designed for quick loading, clear controls, keyboard-free play, and relaxed visual problem solving.</p>
+  </section>
   <div id="app">
 
     <!-- ── Global Audio Controls ── -->
@@ -229,8 +235,8 @@
 
   </div>
 
-  <script src="new_game.js?v=image-expansion-20260610"></script>
-  <script src="game.js?v=image-expansion-20260610"></script>
+  <script src="new_game.js"></script>
+  <script src="game.js"></script>
 </body>
 
 </html>
